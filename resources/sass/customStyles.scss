@@ -1,0 +1,124 @@
+.hero-container{
+    height:70vh
+}
+.hero-container .hero{
+    height: 100%;
+    padding: 20;
+    justify-content: center;
+    align-items: center;
+    background-image:url("../img/66488399394004.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+
+.hero>.overlay,
+.overlay.mask{
+    background-color:rgba(16, 12, 12, 0.4);
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 10%;
+}
+
+
+.hero>.overlay h1{
+    font-size: 380%;
+}
+
+.hero>.overlay h1,
+.h1-strong{
+    font-family: fantasy;
+}
+
+@media (max-width: 768) {
+    .hero>.overlay h1{
+        font-size: 150%;
+    }
+
+    .hero>.overlay h1,
+    .h1-strong{
+        font-weight: bolder;
+    }
+  }
+
+.no-pad{
+    padding: 0 !important;
+}
+
+.left-sided-panel{
+    background-image: url("../img/photo-1490818387583-1baba5e638af.jpg");
+    background-attachment: initial;
+    background-size: inherit;
+    background-repeat: no-repeat;
+    background-position: initial;
+}
+
+.right-sided-panel{
+    background-color: "#f2f6f7";
+    background-image: url("../img/spices-png-hd-16.png");
+    background-attachment: initial;
+    background-size: inherit;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+
+.has-background-img{
+    background-attachment: initial;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+
+.align-center{
+    text-align: center
+}                       
+
+.transparent{
+    background-color: transparent;
+}
+
+.capitalize{
+    text-transform: capitalize;
+}
+
+.pad-tb-100{
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.pad-tb-50{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.pad-top-0{
+    padding-top: 0px !important;
+}
+
+.bg-red-orange{
+    background-color: #b80514 !important;
+}
+
+.dropdown-menu a.dropdown-item:hover,
+li.nav-item:hover,
+li.nav-item:active{
+    color: "green";
+    background-color: "#eeeeee" !important;
+}
+
+
+.capitalize{
+    text-transform: capitalize
+}
+
+.min-height-100{
+    min-height: 100vh !important
+}
+
+.item-detail-list{
+    border-left-width:0px !important;
+    border-right-width:0px !important;
+    border-top-width: 0px !important;
+    border-bottom: 1px solid "#eee" !important;
+}

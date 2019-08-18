@@ -1,0 +1,21 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// custom styles
+@import './customStyles.scss';
+
+// <!-- Font Awesome -->
+// @import './mdbootstrap/css/font-awesome.min.css';
+@import url("https://use.fontawesome.com/releases/v5.7.0/css/all.css");
+// <!-- Bootstrap core CSS -->
+// @import './mdbootstrap/css/bootstrap.min.css';
+@import url("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css");
+// <!-- Material Design Bootstrap -->
+// @import './mdbootstrap/css/mdb.css';
+@import url("https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.5/css/mdb.min.css");
