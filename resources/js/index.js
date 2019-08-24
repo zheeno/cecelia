@@ -9,6 +9,7 @@ import Landing from './components/marketPlace/Landing';
 import SubCategory from './components/marketPlace/SubCategory';
 import ItemDetail from './components/marketPlace/ItemDetail';
 import FoodCategory from './components/marketPlace/FoodCategory';
+import SearchResults from './components/marketPlace/SearchResults';
 
 
 
@@ -20,12 +21,14 @@ export default class Index extends Component {
             addingItem: false,
             token: localStorage.getItem("cartToken"),
             cartItems: [],
-            cartData: null
+            cartData: null,
+            searchKeyword: ""
         };
         this.genCartToken = this.genCartToken.bind(this);
         this.getCartItems = this.getCartItems.bind(this);
         this.addItem = this.addItem.bind(this);
         this.removeItem = this.removeItem.bind(this);
+        this.handleKeywordChange = this.handleKeywordChange.bind(this);
     }
 
     componentDidMount() {
@@ -63,9 +66,27 @@ export default class Index extends Component {
                         cartItems: data.cart,
                         cartData: data.cartData
                     });
+                    // check if items have already been added to the order list
+                    if (data.is_on_order_list) {
+                        // generate a new token
+                        this.setState({ addingItem: true });
+                        Axios.get('/api/market/genCartToken').then(
+                            response => {
+                                const data = response.data;
+                                this.setState({
+                                    token: data.token,
+                                    addingItem: false
+                                });
+                                localStorage.setItem("cartToken", data.token);
+                                // this.getCartItems();
+                            }
+                        ).catch(errors => {
+                            console.log(errors);
+                        });
+                    }
                 }
             ).catch(errors => {
-                this.setState({addingItem: false});
+                this.setState({ addingItem: false });
                 console.log(errors);
             });
         }
@@ -86,7 +107,7 @@ export default class Index extends Component {
                 localStorage.setItem("cartToken", data.cartData.token);
             }
         ).catch(errors => {
-            this.setState({addingItem: false});
+            this.setState({ addingItem: false });
             console.log(errors);
         });
     }
@@ -105,10 +126,16 @@ export default class Index extends Component {
                 return true;
             }
         ).catch(errors => {
-            this.setState({addingItem: false});
+            this.setState({ addingItem: false });
             console.log(errors);
             return false;
         });
+    }
+
+
+    handleKeywordChange(e) {
+        const _words = e.target["value"];
+        this.setState({ searchKeyword: _words });
     }
 
     render() {
@@ -122,9 +149,10 @@ export default class Index extends Component {
                                 {/* <!-- Navbar brand --> */}
                                 <Link className="navbar-brand h1-strong fa-2x" to="/market">Market Place</Link>
                                 <div className="collapse navbar-collapse" id="navbarSupportedContent-444">
-                                    <form className="form-inline ml-auto">
+                                    <form className="form-inline ml-auto"  method="GET" action="/market/search/items/">
                                         <div className="md-form my-0">
-                                            <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
+                                            <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="q" value={this.state.searchKeyword} onChange={this.handleKeywordChange} required />
+                                            {/* <button type="submit" className={this.state.searchKeyword.length == 0 ? "btn btn-sm p-2 m-0 btn-white disabled" : "btn btn-sm p-2 m-0 btn-white"}><span className="fa fa-search" /></button> */}
                                         </div>
                                     </form>
                                 </div>
@@ -135,6 +163,7 @@ export default class Index extends Component {
                             </div>
                             {/* routes */}
                             <Route path="/market" exact component={Landing} />
+                            <Route path="/market/search/:query" exact render={(props) => <SearchResults {...props} />} />
                             <Route path="/market/category/:id" exact render={(props) => <FoodCategory {...props} />} />
                             <Route path="/market/category/sub/:id" exact render={(props) => <SubCategory {...props} />} />
                             <Route path="/market/foodItem/:id" exact render={(props) => <ItemDetail {...props} addItem={(item) => { this.addItem(item) }} removeItem={(itemId) => this.removeItem(itemId)} isAdding={this.state.addingItem} />} />

@@ -4,6 +4,19 @@
 
 @section('content')
 
+    @if($params['cartContent']['is_on_order_list'] == true)
+    <div class="container-fluid">
+        <div class="row" style="padding-top:100px; padding-bottom:100px">
+            <div class="col-md-8 mx-auto align-center p-3">
+                <span class="fa fa-exclamation-triangle fa-4x warning-ic"></span>
+                <br /><br />
+                <p class="lead dark-grey-text">Sorry we were unable to find the items which you added to cart.<br />
+                They may have been moved to your order list, kindly click the button below.<br />
+                <a class="btn btn-danger bg-red-orange capitalize white-text" href="/me/orders/{{ $params['cartContent']['order_id'] }}">View orders</a> 
+            </div>
+        </div>
+    </div>
+    @else
     <div class="container-fluid">
         <form class="row" style="padding-top:20px" method="POST" action="/market/checkout">
             @csrf()
@@ -47,8 +60,8 @@
                 
                 <div class="row p-3">
                     <div class="md-form col-md-11 mx-auto">
-                        <label class="active">Delivery Address</label>
-                        <textarea class="md-textarea" name="address" required ></textarea>
+                        <label class="active">*Delivery Address</label>
+                        <textarea class="md-textarea" style="width:100%" name="address" required ></textarea>
                     </div>
                 </div>
             </div>
@@ -134,4 +147,5 @@
             </div>
         </div>
     </div>
+    @endif
 @endSection

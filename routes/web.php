@@ -13,7 +13,6 @@
 
 Route::get('/', [
     "uses" => "HomeController@index",
-    "as" => "home"
 ]);
 
 Route::get('/home', [
@@ -137,11 +136,27 @@ Route::group(['middleware' => 'auth'], function(){ //grouping routes such that o
         Route::POST('/leaveMarket', [
             'uses' => 'Api\MarketPlaceController@leaveMarket'
         ]);
+
+        Route::POST('/initRepay', [
+            'uses' => 'Api\MarketPlaceController@initRepay'
+        ]);
+
+        Route::POST('/rave/pay', 'Api\MarketPlaceController@initializeRave')->name('pay');
+
+        Route::POST('/rave/callback', 'Api\MarketPlaceController@raveCallback')->name('callback');
     });
 });
 
 Route::group(['prefix' => 'market'], function(){
     Route::GET('/', [
+        'uses' => 'Api\MarketPlaceController@openMarketPlace'
+    ]);
+
+    Route::GET('/search/items', [
+        'uses' => 'Api\MarketPlaceController@searchFoodItemsWithKeyword'
+    ]);
+
+    Route::GET('/search/{uri}', [
         'uses' => 'Api\MarketPlaceController@openMarketPlace'
     ]);
 

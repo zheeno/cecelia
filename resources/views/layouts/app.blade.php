@@ -6,11 +6,13 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
 
     <title>{{ config('app.name', 'Laravel') }} | @yield('subTitle')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://kit.fontawesome.16c085c5d4.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -32,31 +34,46 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
             <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link h1-strong" href="/market">Market Place</a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link h1-strong" href="/market">Market Place</a>
+                </li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle h1-strong" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Categories
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                    aria-labelledby="navbarDropdownMenuLink-333">
+                    <?php $categories = \App\Category::orderby('category_name', 'ASC')->get(); ?>
+                        @foreach($categories as $category)
+                        <a class="dropdown-item h1-strong" href="/market/category/{{ $category->id}}">{{ $category->category_name}}</a>
+                        @endforeach
+                    </div>
+                </li>
             </ul>
-            <ul class="navbar-nav ml-auto nav-flex-icons">
+            <ul class="navbar-nav ml-auto">
             @Auth()
             <li class="nav-item bg-red-orange">
-                <a onClick="navToShoppingCart()" class="nav-link h1-strong waves-effect waves-light white-text">
+                <a onClick="navToShoppingCart()" class="nav-link waves-effect waves-light white-text h1-strong">
                     <i class="fa fa-shopping-cart"></i> Shopping Cart
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link h1-strong dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle h1-strong" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-user"></i>
+                <i class="fa fa-user-circle" style="font-size:18px;color:#b80514"></i>&nbsp;
+                {{ Auth::user()->name }}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-default"
                 aria-labelledby="navbarDropdownMenuLink-333">
-                <span class="dropdown-item white">Logged in as {{ Auth::user()->name }}</span>
-                    <a class="dropdown-item" href="{{ route('me.orders') }}">Orders</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    @if(Auth::user()->isAdmin())
+                    <a class="dropdown-item h1-strong" href="{{ route('console.dashboard') }}">Console</a>
+                    @endif
+                    <a class="dropdown-item h1-strong" href="{{ route('me.orders') }}">Orders</a>
                     <form id="logoutForm" method="POST" action="/logout">
                         @csrf
-                        <a onClick="logout()" class="dropdown-item">
+                        <a onClick="logout()" class="dropdown-item h1-strong">
                             <i class="fa fa-sign-out"></i> Logout
                         </a>
                     </form>
@@ -116,17 +133,22 @@
                 <div class="col-md-3 mx-auto p-3">
                     <span style="font-size: 25px" class="h1-strong orange-text">Food Categories</span>
                     <ul class="list-group">
-                        <li class="list-group-item white-text transparent p-1" style="border-width: 0px">Cereals</li>
-                        <li class="list-group-item white-text transparent p-1" style="border-width: 0px">Tubers</li>
-                        <li class="list-group-item white-text transparent p-1" style="border-width: 0px">Vegetables</li>
+                        @foreach($categories as $category)
+                        <li class="list-group-item white-text transparent p-1" style="border-width: 0px"><a class="white-text" href="/market/category/{{ $category->id}}">{{ $category->category_name}}</a></li>
+                        @endforeach
                     </ul>
                 </div>
                 
                 <div class="col-md-3 mx-auto p-3">
                     <span style="font-size: 25px" class="h1-strong orange-text">Cecelia</span>
-                    <ul class="list-group">
+                    <div>
+                        <a href="" class="btn transparent orange-text shadow-none"><span class="fab fa-facebook fa-3x"></span></a>
+                        <a href="" class="btn transparent orange-text shadow-none"><span class="fab fa-twitter-square fa-3x"></span></a>
+                        <a href="" class="btn transparent orange-text shadow-none"><span class="fab fa-google-plus-square fa-3x"></span></a>
+                    </div>
+                    <!-- <ul class="list-group">
                         <li class="list-group-item white-text transparent p-1" style="border-width: 0px">Lagos</li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </footer>

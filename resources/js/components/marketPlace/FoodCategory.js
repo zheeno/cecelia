@@ -60,15 +60,27 @@ export default class FoodCategory extends Component {
                     this.state.requestSuccess ?
                         <React.Fragment>
                             <div className="row pad-0">
-                                <div className="col-12 left-sided-panel p-0" style={{ backgroundSize: "cover", backgroundPosition: "center" }}>
-                                    <div className="overlay mask row m-0 p-5">
-                                        <div className="p-3 pad-tb-100 col-md-10">
-                                            <h2 className="h1-strong white-text">
-                                                {this.state.category.category_name}
-                                            </h2>
+                                {this.state.category.cover_image != null ?
+                                    <div className="col-12 p-0 has-background-img" style={{ backgroundSize: "cover", backgroundPosition: "center", backgroundImage: `url(${this.state.category.cover_image})` }}>
+                                        <div className="overlay mask row m-0 p-5">
+                                            <div className="p-3 pad-tb-100 col-md-10">
+                                                <h2 className="h1-strong white-text">
+                                                    {this.state.category.category_name}
+                                                </h2>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                    :
+                                    <div className="left-sided-panel col-12 p-0" style={{ backgroundSize: "cover", backgroundPosition: "center" }}>
+                                        <div className="overlay mask row m-0 p-5">
+                                            <div className="p-3 pad-tb-100 col-md-10">
+                                                <h2 className="h1-strong white-text">
+                                                    {this.state.category.category_name}
+                                                </h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
                             </div>
                             {this.state.subCategories.length > 0 ?
                                 this.state.subCategories.map((subCat, i) => {
@@ -84,11 +96,11 @@ export default class FoodCategory extends Component {
                                                         return (
                                                             <Link to={"/market/foodItem/" + food.id} key={food.id} className="col-md-3 m-2 p-0" style={{ textDecoration: "none", color: "#555" }}>
                                                                 <div className="card p-0">
-                                                                    <div className="card-body p-5" style={{ height: 150, backgroundImage: `url(${food.item_image})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "top" }}>
+                                                                    <div className="card-body p-5" style={{ height: 150, backgroundImage: `url(${food.item_image})`, backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "top" }}>
 
                                                                     </div>
                                                                     <div className="card-footer p-3 white border-0">
-                                                                        <p className="lead h1-strong m-0">{food.item_name}</p>
+                                                                        <p className="m-0">{food.item_name}</p>
                                                                     </div>
                                                                 </div>
                                                             </Link>)

@@ -7,13 +7,22 @@
     <div class="container pad-tb-50">
         <div class="col-md-11 col-lg-10 mx-auto">
             <h2 class="h2-responsive"><a href="{{ route('me.orders') }}" class="grey-text" style="text-decoration: none">My Orders</a> | <span class="h1-strong">{{ substr($params["order"]->cart_token,  7, 10) }}</span></h2>
+        
+            @if(session('alert_success'))
+                <div class="justify-content-center flex-center col-12 alert alert-success align-center"><p>{!! session('alert_success') !!}</p></div>
+                <script>localStorage.removeItem("cartToken")</script>
+            @endif
+            @if(session('alert_failure'))
+                <div class="justify-content-center flex-center col-12 alert alert-danger align-center"><p>{!! session('alert_failure') !!}</p></div>
+                <script>localStorage.removeItem("cartToken")</script>
+            @endif
         </div>
 
        <div class="col-md-11 col-lg-10 mx-auto list-group">
            <div class="row pad-tb-50">
-               <div class="col-md-6 p-3 white shadow mx-auto">
-                   <h4 class="h4-responsive h1-strong">Pick-up Address</h4>
-                   <ul class="list-group p-0 transparent">
+               <div class="col-md-6 p-0 white shadow mx-auto">
+                   <h4 class="h4-responsive h1-strong m-3">Pick-up Details</h4>
+                   <ul class="list-group transparent p-2" style="margin-bottom:80px !important">
                        <li class="list-group-item border-0 transparent p-0">
                            <small class="grey-text">Name</small><br />
                            <span class="dark-grey-text">{{ $params['order']->customer_name }}</span>
@@ -51,10 +60,15 @@
                         </li>
                         @endif
                     </ul>
+                    @if($params['order']->delivery_status == 0)
+                    <div class="orange darken-4 p-2" style="bottom: 0px;position: absolute;width: 100%;"><span class="white-text">Delivery Pending</span></div>
+                    @else
+                    <div class="green p-2" style="bottom: 0px;position: absolute;width: 100%;"><span class="white-text">@if(count($params['cartItems']) > 1) {{"Items"}} @else {{ "Item" }} @endif Delivered</span></div>
+                    @endif
                </div>
-               <div class="col-md-5 p-3 mx-auto white shadow">
-                   <h4 class="h4-responsive h1-strong">Order Details</h4>
-                   <ul class="list-group">
+               <div class="col-md-5 mx-auto white shadow p-0">
+                   <h4 class="h4-responsive h1-strong m-3">Order Details</h4>
+                   <ul class="list-group p-2" style="margin-bottom:80px !important">
                        <li class="list-group-item border-0 transparent p-0">
                            <small class="grey-text">Delivery Status</small><br />
                            <span class="dark-grey-text">
@@ -86,6 +100,19 @@
                            <span class="h4-responsive h1-strong dark-grey-text">&#8358;{{ number_format ($params['order']->order_total, 2) }}</span>
                         </li>
                     </ul>
+                    <br />
+                    @if($params['order']->payment_status == 0)
+                    <div class="red darken-4 p-2" style="bottom: 0px;position: absolute;width: 100%;">
+                        <form method="POST" action="/market/initRepay">
+                            <span class="white-text">Payment Pending</span>
+                            {{ csrf_field()}}
+                            <input type="hidden" name="order_id" value="{{ $params['order']->id }}" />
+                            <button type="submit" class="btn btn-sm btn-white m-0 p-1" style="float:right">Pay</button>
+                        </form>
+                    </div>
+                    @else
+                    <div class="green p-2" style="bottom: 0px;position: absolute;width: 100%;"><span class="white-text">Payment Received</span></div>
+                    @endif
                </div>
            </div>
            <div class="row">

@@ -62,14 +62,14 @@ export default class Landing extends Component {
                                     <div className="row pad-tb-50">
                                         {this.state.suggestedItems.map(function (food, i) {
                                             return (
-                                                <Link to={"/market/foodItem/" + food.item.id} key={food.item.id} className="col-md-3 m-2 p-0" style={{ textDecoration: "none", color: "#555" }}>
+                                                <Link to={"/market/foodItem/" + food.item.id} key={food.item.id} className="col-md-3 m-2 p-0" style={{ textDecoration: "none", color: "#555", minHeight: "100%" }}>
                                                     <div className="card p-0">
-                                                        <div className="card-body p-5" style={{ height: 150, backgroundImage: `url(${food.item.item_image})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "top" }}>
+                                                        <div className="card-body p-5" style={{ height: 150, backgroundImage: `url(${food.item.item_image})`, backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "top" }}>
 
                                                         </div>
                                                         <div className="card-footer p-3 white border-0">
-                                                            <p className="lead h1-strong m-0">{food.item.item_name}</p>
-                                                            <strong style={{ marginTop: -8 }}>{food.category.category_name}</strong><br />
+                                                            <p className="m-0" style={{fontWeight: "bold", fontFamily: "inherit"}}>{food.item.item_name}</p>
+                                                            <span className="brick-red-text" style={{ marginTop: -8, fontSize: 13 }}>{food.category.category_name}</span><br />
                                                             <small style={{ marginTop: -8 }}>{food.subCategory.sub_category_name}</small>
                                                         </div>
                                                     </div>
@@ -96,13 +96,13 @@ export default class Landing extends Component {
                                                     <div className="row p-0">
                                                         {catFood.foodItems.map(function (food, i) {
                                                             return (
-                                                                <Link to={"/market/foodItem/" + food.id} key={food.id} className="col-md-3 m-2 p-0" style={{ textDecoration: "none", color: "#555" }}>
+                                                                <Link to={"/market/foodItem/" + food.id} key={food.id} className="col-md-3 m-2 p-0" style={{ textDecoration: "none", color: "#555", minHeight: "100%" }}>
                                                                     <div className="card p-0">
                                                                         <div className="card-body p-5" style={{ height: 150, backgroundImage: `url(${food.item_image})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "top" }}>
 
                                                                         </div>
                                                                         <div className="card-footer p-3 white border-0">
-                                                                            <p className="lead h1-strong m-0">{food.item_name}</p>
+                                                                            <p className="m-0" style={{fontWeight: "bold", fontFamily: "inherit"}}>{food.item_name}</p>
                                                                             {/* <strong style={{ marginTop: -8 }}>{food.category.category_name}</strong><br />
                                                                             <small style={{ marginTop: -8 }}>{food.subCategory.sub_category_name}</small> */}
                                                                         </div>

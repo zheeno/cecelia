@@ -27,7 +27,7 @@
             <div class="row pad-tb-50">
                 <div class="col-md-10 mx-auto">
                     <div class="row">
-                        <div style="background-image: url({{ $foodItem->item_image }})" class="align-center col-md-3 grey lighten-4 pad-tb-100 shadow hoverable has-background-img">
+                        <div style="background-image: url({{ $foodItem->item_image }})" class="align-center col-md-3 grey lighten-4 p-0 shadow hoverable has-background-img">
                             <!-- holds item image -->
                             @if(strlen($foodItem->item_image) == 0)
                             <span class="grey-text">NO ITEM IMAGE</span>
@@ -66,6 +66,10 @@
                                                     @endforeach
                                                 </select>
                                             </span>
+                                        </li>
+                                        <li class="h5-responsive transparent p-0 list-group-item border-0" style="border-bottom: 1px solid #eee !important">
+                                            <span>Item Image</span>
+                                            <input type="text" name="item_image" style="font-size: 18px;font-weight:800" class="p-0 transparent border-0" value="{{ $foodItem->item_image }}" />
                                         </li>
                                     </ul>
                                     @if($foodItem->stock_qty == 0)

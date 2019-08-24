@@ -11,6 +11,7 @@ use App\UnitMeasure;
 use App\Cart;
 use App\Order;
 use Auth;
+use Rave;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -63,6 +64,30 @@ class MarketPlaceController extends Controller
         ];
 
         return json_encode($response);
+    }
+
+    public function searchFoodItemsWithKeyword(Request $request){
+        $q = $request->input('q');
+
+        return redirect('/market/search/'.$q);
+    }
+
+    // serach food item
+    public function searchFoodItems(Request $request){
+        $input = $request->input();
+        $keywords = explode(" ", $request->input('q'));
+        $foodItems = FoodItem::where(function($query) use($keywords){
+            foreach ($keywords as $key => $keyword){
+                if($keyword != ''){
+                    $query->where('item_name', 'LIKE', "%".$keyword."%")
+                    ->orWhere('description', 'LIKE', "%".$keyword."%");
+                }
+            }
+        })->orderBy('id', 'DESC')->get();
+
+        return json_encode([
+            "foodItems" => $foodItems
+        ]);
     }
 
     // getCategory
@@ -207,6 +232,9 @@ class MarketPlaceController extends Controller
     }
 
     public function getCartItems($token, $auth_check = false){
+        // check if cart items have been registered on the orders list
+        $order_check = Order::where("cart_token", $token)->take(1)->get();
+
         $cart = Cart::where("token", $token)->orderBy("id", "DESC")->get();
         $cartItems = []; 
         $total = 0; $sub_total = 0;
@@ -237,14 +265,25 @@ class MarketPlaceController extends Controller
         $sub_total = $total + $tax;
         // get more info about the cart
         $cartData = ["total" => $total,
-                     "tax" => $tax,
-                     "subTotal" => $sub_total, 
-                     "token" => $token
+                    "tax" => $tax,
+                    "subTotal" => $sub_total, 
+                    "token" => $token
                     ];
-        return json_encode([
-            "cart" => $cartItems,
-            "cartData" => $cartData
-        ]);
+        
+        if(count($order_check) > 0){
+            return json_encode([
+                "cart" => [],
+                "cartData" => $cartData,
+                "is_on_order_list" => true,
+                'order_id' => $order_check[0]->id
+            ]);
+        }else{
+            return json_encode([
+                "cart" => $cartItems,
+                "cartData" => $cartData,
+                "is_on_order_list" => false
+            ]);
+        }
     }
 
     // checkout
@@ -255,6 +294,11 @@ class MarketPlaceController extends Controller
         $cart = json_decode($cart, true);
         $allCategories = Category::orderBy("category_name", "ASC")->get();
 
+        // dd([
+        //     "cartContent" => $cart,
+        //     "cartToken" => $token,
+        //     "navBarCatList" => $allCategories
+        //     ]);
         return view("checkout")->with("params", [
             "cartContent" => $cart,
             "cartToken" => $token,
@@ -281,6 +325,27 @@ class MarketPlaceController extends Controller
         ]);
     }
 
+    // initRepay
+    public function initRepay(Request $request){
+        $order_id = $request->input("order_id");
+
+        $order = Order::findorfail($order_id);
+
+        $request->request->add([
+            '_token' => $request->input("_token"),            
+            'cart_token' => $order->cart_token,
+            'customer_name' => $order->customer_name,
+            'customer_email' => $order->customer_email,
+            'phone_no' => $order->phone_no,
+            'country' => $order->country,
+            'state' => $order->state,
+            'lga' => $order->lga,
+            'address' => $order->address,
+        ]);
+
+        return $this->submitCheckout($request);
+    }
+
     // submitCheckout
     public function submitCheckout(Request $request){
         $token = $request->input('cart_token');
@@ -300,10 +365,16 @@ class MarketPlaceController extends Controller
         if(count($cart_items) > 0){
             // dd($cartData);
             // check if the cart token has been used to place an order
-            $order_check = Order::where("cart_token", $token)->take(1)->get();
+            $order_check = Order::where("cart_token", $token)->where("payment_status", 1)->take(1)->get();
             if(count($order_check) == 0){
+                $order_exists = Order::where("cart_token", $token)->take(1)->get();
+                if(count($order_exists) == 0){
+                    $order = new Order();
+                }else{
+                    $order = Order::find($order_exists[0]->id);
+                }
                 // place order
-                $order = new Order();
+                
                 $order->user_id = Auth::user()->id;
                 $order->cart_token = $token;
                 $order->customer_name = $request->input('customer_name');
@@ -317,26 +388,161 @@ class MarketPlaceController extends Controller
                 $order->discount = 0;
                 $order->cart_total = $cartData['subTotal'];
                 $order->order_total = $cartData['subTotal'] + 0;
-                $order->payment_method = "Credit/Debit Card";
-                $order->payment_status = true;
+                $order->payment_method = "";
+                $order->payment_status = false;
                 $order->delivery_method = "Home Delivery";
                 $order->delivery_status_desc = "Processing Order";
                 $order->delivery_status = false;
                 $order->delivery_date = "";
                 $order->save();
+
+                $_token = $request->input("_token");
+
+                $request->request->add([
+                    '_token' => $_token,
+                    'email' => Auth::user()->email,
+                    'amount' => ''.$order->order_total,
+                    'payment_method' => 'card',
+                    'description' => 'Payment for food items purchase',
+                    'country' => 'NG',
+                    'currency' => 'NGN',
+                    'firstname' => $order->customer_name,
+                    'lastname' => '',
+                    'metadata' => '',
+                    'phonenumber' => $order->phone_no,
+                    // 'paymentplan' => '',
+                    'ref' => $order->cart_token,
+                    'logo' => 'https://pbs.twimg.com/profile_images/915859962554929153/jnVxGxVj.jpg',
+                    'title' => 'Cecelia Purchase',
+                ]);
+
+                //This initializes payment and redirects to the payment gateway
+                //The initialize method takes the parameter of the redirect URL
+                Rave::initialize(route('callback'));
+            }else{
+                return redirect()->back();
             }
-            $allCategories = Category::orderBy("category_name", "ASC")->get();
-            
-            return view("orderSuccess")->with("params", [
-                "cartContent" => $cart,
-                "navBarCatList" => $allCategories,
-                "cartToken" => $token
-            ]);
         }else{
             // this would cause a 404 error
             Cart::findorfail(0);
         }
 
     }
+
+
+    private $rave_key = "FLWPUBK-8cf6b442f95e61aaf2865ed548ac2e00-X";
+  
+        /**
+     * Initialize Rave payment process
+     * @return void
+     */
+    public function initializeRave()
+    {
+        //This initializes payment and redirects to the payment gateway
+        //The initialize method takes the parameter of the redirect URL
+        Rave::initialize(route('callback'));
+    }
+
+    /**
+     * Obtain Rave callback information
+     * @return void
+     */
+    public function raveCallback()
+    {
+
+        $_data = Rave::verifyTransaction(request()->txref);
+        $data = $_data->data;
+        // dd($data);
+        // Get the transaction from your DB using the transaction reference (txref)
+        $order = Order::where("cart_token", $data->txref)->take(1)->get();
+        if(count($order) == 0){
+            // transaction not found
+            // redirect user to an error page with message "Inavalid transaction"
+            return redirect("/me/orders/")->with("alert_failure", "We are deeply sorry, but the order you are trying to 
+            make payment for could not be found on our database.\nThank you for choosing Cecelia.");
+        }else{
+            $order = Order::find($order[0]->id);
+            // Check if you have previously given value for the transaction. If you have, redirect to your successpage else, continue
+            if($order->payment_status == 1){
+                // redirect user to successful page
+                return redirect("/me/orders/".$order->id)->with("alert_success", "Your order has been received and your payment was processed successfully.\n
+                We will get in touch with you shortly to confirm your order.\nThank you for choosing Cecelia.");
+            }else{
+                // Comfirm that the transaction is successful
+                if($data->status == "successful"){
+                    // Confirm that the chargecode is 00 or 0
+                    if($data->chargecode == "00" || $data->chargecode == "0"){
+                        // Confirm that the currency on your db transaction is equal to the returned currency
+                        if($data->currency == "NGN"){
+                            // Confirm that the db transaction amount is equal to the returned amount
+                            if($data->amount >= $order->order_total){
+                                // Update the db transaction record (including parameters that didn't exist before the transaction is completed. for audit purpose)
+                                // Give value for the transaction
+                                // Update the transaction to note that you have given value for the transaction
+                                // You can also redirect to your success page from here
+                                $_order = Order::find($order->id);
+                                $_order->payment_method = $data->paymenttype;
+                                $_order->payment_status = true;
+                                $_order->save();
+
+                                return redirect("/me/orders/".$order->id)->with("alert_success", "Your order has been received and your payment was processed successfully.\n
+                                We will get in touch with you shortly to confirm your order.\nThank you for choosing Cecelia.");
+                            }
+                        }
+                    }else{
+                        // redirect to error page
+                        return redirect("/me/orders/".$order->id)->with("alert_failure", "This is quite unfortunate, but we experienced and error while processing your payment.
+                        \nKindly bear with us and give it another trial.\nThank you for choosing Cecelia.");
+                    }
+                }else{
+                    // redirect user to error
+                    return redirect("/me/orders/".$order->id)->with("alert_failure", "This is quite unfortunate, but we experienced and error while processing your payment.
+                    \nKindly bear with us and give it another trial.\nThank you for choosing Cecelia.");
+                }
+            }
+        }
+    }
+    
+    // payWithFlutterWave
+    private function payWithFlutterWave($order){ 
+        $query = array(
+            "PBFPubKey" => $this->rave_key,
+            "txref" => $order->cart_token,
+            "amount" => $order->order_total,
+            "currency" => "NGN",
+            "customer_email" => Auth::user()->email,
+            "customer_phone" => $order->phone_no,
+            "redirect_url" => "https://cardsxchange.net/api/wallet/fundWalletSuccess?user_id=".Auth::user()->id."&amt=$order->order_total&token_id=$order->id&token=$order->cart_token"
+        );
+
+        $data_string = json_encode($query);
+        // 'https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/hosted/pay'
+        $curl = $this->curl('/market/rave/pay', 'POST', $data_string);
+        $result = json_decode($curl['response']);
+        dd($result);
+        // return redirect($result->data->link);
+
+    }
+
+    private function curl($url, $method, $data_string){
+        
+        $ch = curl_init($url);                                                                      
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);                                              
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data'));
+
+        $response = curl_exec($ch);
+
+        $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+        $header = substr($response, 0, $header_size);
+        $body = substr($response, $header_size);
+
+        return [
+            "response" => $response
+        ];
+    }
+
 
 }

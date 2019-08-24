@@ -43,9 +43,11 @@
                 </div>
             </div>
             <div class="row p-3">
-                <div class="col-md-5">
-                    <h4 class="h1-strong h4-responsive">Add Sub-category</h4>
-                    <form method="POST" action="/console/subCategories" class="p-md-3">
+                <div class="col-md-5 shadow-sm mx-auto">
+                    <h4 class="h1-strong h4-responsive">Add Sub-category
+                    <a class="btn btn-sm transparent border-0 shadow-none" data-toggle="collapse" data-target=".colView" style="float:right"><span class="fa fa-arrow-down" style="font-size:15px;color: #333 !important"></span></a>
+                    </h4>
+                    <form method="POST" action="/console/subCategories" class="p-md-3 colView collapse">
                         <div class="md-form">
                             @csrf
                             <label class="active">Sub-category Name</label>
@@ -65,26 +67,71 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-md-7">
-                    <h4 class="h1-strong h4-responsive">Sub-categories</h4>
-                    @if(count($category->subCategories) == 0)
-                        <div class="pad-tb-50 align-center">
-                            <span class="fa fa-info-circle fa-4x grey-ic"></span>
-                            <br /><br />
-                            <p class="grey-text">There are no sub-categories associated with this category</p>
-                        </div>
-                    @else
-                        <table class="table table-striped">
-                            <tbody>
-                                @foreach($category->subCategories as $subCat)
-                                    <tr class="hoverable">
-                                        <td class="p-2"><strong>{{ $subCat->sub_category_name }} ({{ number_format(count($subCat->foodItems)) }})</strong></td>
-                                        <td class="p-2" style="text-align:right"><a href="/console/categories/{{ $category->category_name }}/{{ $subCat->id }}" class="btn btn-link btn-sm shadow-none m-0"><span class="fa fa-arrow-right"></span></a></td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    @endif
+                <div class="col-md-6 shadow-sm mx-auto">
+                    <h4 class="h1-strong h4-responsive">Sub-categories
+                    <a class="btn btn-sm transparent border-0 shadow-none" data-toggle="collapse" data-target=".colView" style="float:right"><span class="fa fa-arrow-down" style="font-size:15px;color: #333 !important"></span></a>
+                    </h4>
+                    <div class="colView collapse">
+                        @if(count($category->subCategories) == 0)
+                            <div class="pad-tb-50 align-center">
+                                <span class="fa fa-info-circle fa-4x grey-ic"></span>
+                                <br /><br />
+                                <p class="grey-text">There are no sub-categories associated with this category</p>
+                            </div>
+                        @else
+                            <table class="table table-striped">
+                                <tbody>
+                                    @foreach($category->subCategories as $subCat)
+                                        <tr class="hoverable">
+                                            <td class="p-2"><strong>{{ $subCat->sub_category_name }} ({{ number_format(count($subCat->foodItems)) }})</strong></td>
+                                            <td class="p-2" style="text-align:right"><a href="/console/categories/{{ $category->category_name }}/{{ $subCat->id }}" class="btn btn-link btn-sm shadow-none m-0"><span class="fa fa-arrow-right"></span></a></td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="row p-3">
+                <div class="col-12 mx-auto">
+                <h4 class="h1-strong h4-responsive">Food Items ({{ count($category->foodItems) }})</h4>
+                @if(count($category->foodItems) == 0)
+                    <div class="col-12 pad-tb-100 align-center">
+                        <span class="fa fa-info-circle fa-4x grey-ic"></span>
+                        <br /><br />
+                        <p class="grey-text">There are currently no food items related to this category</p>
+                    </div>
+                @else
+                    <table class="table table-striped shadow">
+                        <thead class="bg-red-orange p-1">
+                            <th class="p-1 bold white-text">S/N</th>
+                            <th class="p-1 bold white-text">Food Item Name</th>
+                            <th class="p-1 bold white-text">Category</th>
+                            <th class="p-1 bold white-text">Sub Category</th>
+                            <th class="p-1 bold white-text">Unit Measure</th>
+                            <th class="p-1 bold white-text">Price</th>
+                            <th class="p-1 bold white-text">Tax (%)</th>
+                            <th class="p-1 bold white-text">Stock</th>
+                        </thead>
+                        <tbody>
+                            <?php $count = 1; ?>
+                            @foreach($category->foodItems as $item)
+                            <tr class="hoverable" style="cursor: pointer;" onClick="window.location = '/console/inventory/{{ $item->id }}' ">
+                                <td class="p-1">{{ $count }}</td>
+                                <td class="p-1">{{ $item->item_name }}</td>
+                                <td class="p-1">{{ $item->category->category_name }}</td>
+                                <td class="p-1">@if($item->subcategory != null) {{ $item->subcategory->sub_category_name }} @endif</td>
+                                <td class="p-1">@if($item->unit != null) {{ $item->unit->name }} @endif</td>
+                                <td class="p-1">&#8358;{{ number_format($item->price, 2) }}</td>
+                                <td class="p-1">{{ number_format(($item->tax * 100), 2)."%" }}</td>
+                                <td class="p-1">{{ $item->stock_qty }}</td>
+                            </tr>
+                            <?php $count++ ?>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @endif
                 </div>
             </div>
         </div>

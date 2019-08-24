@@ -19,7 +19,6 @@ require('./index');
 require('./timeago');
 //
 
-$(".timeago").ready(function(){
-    console.log("Found Timestamp");
+$(".timeago").ready(function () {
     $("time.timeago").timeago();
 });

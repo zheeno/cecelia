@@ -49,10 +49,11 @@
                 
                 <div class="col-md-3 mx-auto p-3">
                     <span style="font-size: 25px" class="h1-strong orange-text">Food Categories</span>
+                    <?php $categories = \App\Category::orderby('category_name', 'ASC')->get(); ?>
                     <ul class="list-group">
-                        <li class="list-group-item white-text transparent p-1" style="border-width: 0px">Cereals</li>
-                        <li class="list-group-item white-text transparent p-1" style="border-width: 0px">Tubers</li>
-                        <li class="list-group-item white-text transparent p-1" style="border-width: 0px">Vegetables</li>
+                        @foreach($categories as $category)
+                        <li class="list-group-item white-text transparent p-1" style="border-width: 0px"><a class="white-text" href="/market/category/{{ $category->id}}">{{ $category->category_name}}</a></li>
+                        @endforeach
                     </ul>
                 </div>
                 

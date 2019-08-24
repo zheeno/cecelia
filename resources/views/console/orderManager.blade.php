@@ -23,6 +23,22 @@
                     <div class="justify-content-center flex-center col-12 alert alert-danger align-center"><p>{!! session('alert_failure') !!}</p></div>
                 @endif
             </div>
+            <!-- search bar  -->
+            <div class="row m-4">
+                <div class="col-md-6 mx-auto shadow-lg">
+                    <form class="row" method="GET" action="{{ route('console.orders') }}">
+                        <div class="col-9 p-3">
+                            <div class="md-form p-0 m-0">
+                                <input class="form-control" type="text" name="q" placeholder="Search through the list of orders" required />
+                            </div>
+                        </div>
+                        <div class="col-3 p-3">
+                            <button type="submit" class="btn btn-danger bg-red-orange white-text capitalize"><span class="fa fa-search"></span>&nbsp;Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /search bar  -->
             <div class="row">
                 <div class="col-12" style="padding-bottom: 100px">
                     @if(count($params['orders']) == 0)
@@ -32,7 +48,7 @@
                             <p class="grey-text lead">There are no orders at the moment</p>
                         </div>
                     @else
-                        <table class="table table-striped">
+                        <table class="table table-striped shadow">
                             <thead class="bg-red-orange p-1">
                                 <th class="p-1 bold white-text">Cart Token</th>
                                 <th class="p-1 bold white-text">Customer Name</th>

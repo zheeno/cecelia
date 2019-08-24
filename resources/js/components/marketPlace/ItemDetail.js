@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Axios from 'axios';
 import { Loader } from '../MiscComponents';
 import { Link } from 'react-router-dom';
+import NumberFormat from 'react-number-format';
 
 
 export default class ItemDetail extends Component {
@@ -54,7 +55,7 @@ export default class ItemDetail extends Component {
     }
 
     handleQTYChange(e) {
-        const _qty = e.target["value"]
+        const _qty = e.target["value"];
         const qty = parseInt(_qty);
         this.calcTotal(qty);
     }
@@ -79,7 +80,7 @@ export default class ItemDetail extends Component {
                     <React.Fragment>
                         <div className="row">
                             <div className="col-12 p-3">
-                                <span className="grey-text">
+                                <h4 className="h4-responsive dark-grey-text">
                                     <Link className="dark-grey-text" to="/market" style={{ textDecoration: "none" }}>Market</Link>
                                     <span> > </span>
                                     <Link className="dark-grey-text" to={"/market/category/" + this.state.foodItem.category.id} style={{ textDecoration: "none" }}>{this.state.foodItem.category.category_name}</Link>
@@ -91,7 +92,7 @@ export default class ItemDetail extends Component {
                                         : null}
                                     <span> > </span>
                                     <span className="dark-grey-text h1-strong" >{this.state.foodItem.item.item_name}</span>
-                                </span>
+                                </h4>
                             </div>
                         </div>
                         <div className="row pad-tb-50">
@@ -128,7 +129,16 @@ export default class ItemDetail extends Component {
                                         </li>
                                         <li className="list-group-item item-detail-list p-1 transparent">
                                             <strong>Price <small>(Tax Exclusive)</small>:</strong>
-                                            <span style={{ marginLeft: 10 }}>&#8358;{this.state.foodItem.item.price}</span>
+                                            <NumberFormat
+                                                value={this.state.foodItem.item.price}
+                                                displayType={'text'}
+                                                thousandSeparator={true}
+                                                decimalSeparator={"."}
+                                                fixedDecimalScale={true}
+                                                decimalScale={2}
+                                                prefix={null}
+                                                renderText={value => <span style={{ marginLeft: 10 }}>&#8358;{value}</span>}
+                                            />
                                         </li>
                                         <li className="list-group-item item-detail-list p-1 transparent">
                                             <strong>Quantity <small>(Per {this.state.foodItem.measure.name})</small>:</strong>
@@ -137,8 +147,17 @@ export default class ItemDetail extends Component {
                                     </ul>
                                 </div>
                                 <div className="row p-3">
-                                    <div className="col-md-5 ml-auto border-bottom">
-                                        <h3 className="h3-responsive m-0 float-right">&#8358;{this.state.total_WOT}</h3>
+                                    <div className="col-md-8 ml-auto border-bottom">
+                                        <NumberFormat
+                                            value={this.state.total_WOT}
+                                            displayType={'text'}
+                                            thousandSeparator={true}
+                                            decimalSeparator={"."}
+                                            fixedDecimalScale={true}
+                                            decimalScale={2}
+                                            prefix={null}
+                                            renderText={value => <h3 className="h3-responsive m-0 float-right">&#8358;{value}</h3>}
+                                        />
                                         <small>Total</small>
                                     </div>
                                 </div>
@@ -146,14 +165,32 @@ export default class ItemDetail extends Component {
                                 {parseFloat(this.state.foodItem.item.tax) > 0 ?
                                     <React.Fragment>
                                         <div className="row p-3 pad-top-0">
-                                            <div className="col-md-5 ml-auto border-bottom">
-                                                <h3 className="h3-responsive m-0 float-right">&#8358;{this.state.total_WT}</h3>
+                                            <div className="col-md-8 ml-auto border-bottom">
+                                                <NumberFormat
+                                                    value={this.state.total_WT}
+                                                    displayType={'text'}
+                                                    thousandSeparator={true}
+                                                    decimalSeparator={"."}
+                                                    fixedDecimalScale={true}
+                                                    decimalScale={2}
+                                                    prefix={null}
+                                                    renderText={value => <h3 className="h3-responsive m-0 float-right">&#8358;{value}</h3>}
+                                                />
                                                 <small>Tax ({parseFloat(this.state.foodItem.item.tax) * 100}%)</small>
                                             </div>
                                         </div>
                                         <div className="row p-3 pad-top-0">
-                                            <div className="col-md-5 ml-auto border-bottom">
-                                                <h3 className="h3-responsive m-0 float-right">&#8358;{this.state.total_WT + this.state.total_WOT}</h3>
+                                            <div className="col-md-8 ml-auto border-bottom">
+                                                <NumberFormat
+                                                    value={this.state.total_WT + this.state.total_WOT}
+                                                    displayType={'text'}
+                                                    thousandSeparator={true}
+                                                    decimalSeparator={"."}
+                                                    fixedDecimalScale={true}
+                                                    decimalScale={2}
+                                                    prefix={null}
+                                                    renderText={value => <h2 className="h2-responsive m-0 float-right">&#8358;{value}</h2>}
+                                                />
                                                 <small>Sub Total</small>
                                             </div>
                                         </div>
@@ -204,7 +241,7 @@ export default class ItemDetail extends Component {
 
                                                         </div>
                                                         <div className="card-footer p-3 white border-0">
-                                                            <p className="lead h1-strong m-0">{food.item_name}</p>
+                                                            <p className="dark-grey-text m-0">{food.item_name}</p>
                                                         </div>
                                                     </div>
                                                 </Link>)

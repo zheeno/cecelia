@@ -10,8 +10,8 @@ Home
         <div class="col-12 hero no-pad">
             <div class="overlay mask row m-0">
                 <div class="col-md-8 m-0">
-                    <h1 class="white-text animated fadeInLeft">Get quality food items delivered to your doorstep</h1>    
-                    <p class="white-text lead">You never have to worry about the hazzle of visiting the market</p>
+                    <h1 class="white-text animated fadeInLeft" style="font-size: 300%">Get quality food items delivered to your doorstep</h1>    
+                    <h3 class="white-text h3-responsive" style="">You never have to worry about the hazzle of visiting the market</h3>
                 </div>
             </div>
             <!-- some content here -->
@@ -25,13 +25,13 @@ Home
     </div>
     <div class="row">
         <div class="col-md-3 left-sided-panel"></div>
-        <div class="col-md-6 p-5">
-            <h1 class="h1-strong">Thinking of going to the market? Think again.</h1>
+        <div class="col-md-6 pad-tb-100" style="padding-left:20px; padding-right:20px">
+            <h1 class="h1-strong">Thinking of going to the market?<br />Think again.</h1>
             <p class="lead">Buying food items has never been easy, but with Cecelia,
                 you have the entire market at your finger tips. You never have to worry about
                 the stress of going to the market anymore.
             </p>
-            <div style="text-align:center">
+            <div style="text-align:center" style="margin-top:30px">
                 <h2 class="h2-responsive h1-strong">
                     We bring the market to you!
                 </h2>
@@ -44,19 +44,19 @@ Home
         <div class="col-md-4 mx-auto">
             <div class="card border-0 transparent">
                 <div class="card-body p-2 align-center transparent">
-                    <span class="fa fa-4x fa-map-marked-alt" style="color: #f00005" ></span>
-                    <p class="lead h1-strong m-0" style="margin-top: 15px !important">Set Delivery Location</p>
-                    <span>Where would you want us to go?</span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-4 mx-auto">
-            <div class="card border-0 transparent">
-                <div class="card-body p-2 align-center transparent">
                     <span class="fa fa-4x fa-shopping-cart" style="color: #f99602" ></span>
                     <p class="lead h1-strong m-0" style="margin-top: 15px !important">Choose food Items</p>
                     <span>What would you love to buy?</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mx-auto">
+            <div class="card border-0 transparent">
+                <div class="card-body p-2 align-center transparent">
+                    <span class="fa fa-4x fa-map-marked-alt" style="color: #f00005" ></span>
+                    <p class="lead h1-strong m-0" style="margin-top: 15px !important">Set Delivery Location</p>
+                    <span>Where would you want us to go?</span>
                 </div>
             </div>
         </div>

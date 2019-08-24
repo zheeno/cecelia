@@ -212,8 +212,8 @@ class ConsoleController extends Controller
             $food->item_image = $item_image;
             $food->description = $item_desc;
             $food->price = floatval($price);
-            $food->tax = $tax / 100;
-            $food->unit_measure_id = floatval($unit) / 100;
+            $food->tax = floatValue(($tax / 100));
+            $food->unit_measure_id = $unit;
             $food->stock_qty = floatval($stock);
             $food->save();
             return redirect('/console/categories/'.$subCat->category->category_name.'/'.$subCat->id)->with('alert_success', 'The food item <b>'.$item_name.'</b> to the subcategory'); 
@@ -270,6 +270,7 @@ class ConsoleController extends Controller
     public function  updateInventoryItem(Request $request){
         $item_id = $request->input('item_id');
         $item_name= $request->input('item_name');
+        $item_image= $request->input('item_image');
         $unit_id = $request->input('unit_id');
         $item_price = $request->input('item_price');
         $item_tax = $request->input('item_tax');
@@ -280,6 +281,7 @@ class ConsoleController extends Controller
         $foodItem = FoodItem::findorfail($item_id);
 
         $foodItem->item_name = $item_name;
+        $foodItem->item_image = $item_image;
         $foodItem->category_id = $cat_id;
         $foodItem->sub_category_id = $sub_cat_id;
         $foodItem->price = $this->floatValue($item_price);
@@ -303,9 +305,24 @@ class ConsoleController extends Controller
     // orderManager
     public function orderManager(Request $request){
         $input = $request->input();
-
-        // get food items
-        $orders = Order::orderBy("id", "DESC")->paginate(15);
+        $q = $request->input('q');
+        if($q != null){
+            // search for food items
+            $keywords = explode(" ", $q);
+            $orders = Order::where(function($query) use($keywords){
+                foreach ($keywords as $key => $keyword){
+                    if($keyword != ''){
+                        $query->where("cart_token", 'LIKE', "%".$keyword."%")
+                        ->orWhere("customer_name", 'LIKE', "%".$keyword."%")
+                        ->orWhere("customer_email", 'LIKE', "%".$keyword."%")
+                        ->orWhere("phone_no", 'LIKE', "%".$keyword."%");
+                    }
+                }
+            })->orderBy('id', 'DESC')->paginate(20);
+        }else{
+            // get food items
+            $orders = Order::orderBy("id", "DESC")->paginate(20);
+        }
         $orders->appends($input);
 
         return view('/console/orderManager')->with('params', [

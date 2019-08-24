@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 
 class BuyerController extends Controller
 {
+
     //show buyer's orders
     public function orders(){
         $allCategories = Category::orderBy("category_name", "ASC")->get();
@@ -27,7 +28,6 @@ class BuyerController extends Controller
     }
 
     // open selected order
-    
     public function viewOrder($id){
         $allCategories = Category::orderBy("category_name", "ASC")->get();
         $order = Order::findorfail($id);
@@ -42,4 +42,5 @@ class BuyerController extends Controller
             "navBarCatList" => $allCategories
         ]);
     }
+
 }

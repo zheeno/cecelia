@@ -23,6 +23,11 @@ Route::group(['prefix' => 'market'], function(){
     Route::GET('/', [
         'uses' => 'Api\MarketPlaceController@getMarketPlaceData'
     ]);
+
+    
+    Route::GET('/searchFoodItems', [
+        'uses' => 'Api\MarketPlaceController@searchFoodItems'
+    ]);
     
     Route::GET('/getCategory', [
         'uses' => 'Api\MarketPlaceController@getCategory'

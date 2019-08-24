@@ -2,7 +2,7 @@
     height:70vh
 }
 .hero-container .hero{
-    height: 100%;
+    min-height: 100%;
     padding: 20;
     justify-content: center;
     align-items: center;
@@ -28,7 +28,7 @@
 
 .hero>.overlay h1,
 .h1-strong{
-    font-family: fantasy;
+    font-weight: 900;
 }
 
 @media (max-width: 768) {
@@ -98,6 +98,10 @@
 
 .bg-red-orange{
     background-color: #b80514 !important;
+}
+
+.brick-red-text{
+    color: #b80514 !important;
 }
 
 .dropdown-menu a.dropdown-item:hover,

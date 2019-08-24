@@ -66,13 +66,13 @@ export default class SubCategory extends Component {
                         <React.Fragment>
                             <div className="row">
                                 <div className="col-12 p-3">
-                                    <span className="grey-text">
+                                    <hh4 className="h4-responsive dark-grey-text">
                                         <Link className="dark-grey-text" to="/market" style={{ textDecoration: "none" }}>Market</Link>
                                         {" > "}
                                         <Link className="dark-grey-text" to={"/market/category/" + this.state.category.id} style={{ textDecoration: "none" }}>{this.state.category.category_name}</Link>
                                         {" > "}
                                         <span className="dark-grey-text h1-strong" style={{ textDecoration: "none" }}>{this.state.subCategory.sub_category_name}</span>
-                                    </span>
+                                    </hh4>
                                 </div>
                             </div>
                             <div className="row p-3">
