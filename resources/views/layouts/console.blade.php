@@ -29,14 +29,31 @@
         <!--Navbar -->
         @yield('navBar')
         <!--/.Navbar -->
-        <main style="margin-top: 50px">
+        <main style="margin-top: 50px; overflow-x: hidden">
             @yield('content')
         </main>
         <!-- footer -->
-        <footer class="container-fluid grey darken-4">
+        <footer class="container-fluid" style="background-color: #363435 !important">
+            <!-- newsletter -->
+            <section class="row p-5 bg-red-orange">
+                <div class="col-md-8 mx-auto p-3">
+                    <h2 class="h2-responsive h-strong white-text">Don&apos;t miss out on mouth-watering offers.<br />
+                    Subscribe to our newsletter</h2>
+                </div>
+                <div class="col-md-4 mx-auto p-3">
+                    <form class="row" method="POST" action="./">
+                        <div class="col-md-6 p-0 m-0">
+                            <input class="form-control" type="email" placeholder="Your e-mail address" name="email" required/>
+                        </div>
+                        <div class="col-md-3 p-0" style="padding-left:5px !important">
+                            <button type="submit" class="btn btn-outline-white btn-md m-0 capitalize">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
             <div class="row p-5">
                 <div class="col-12 align-center">
-                    <img src="{{ asset('img/cecelia-logo-white-transparent.png') }}" class="img-responsive" style="width:120px" />
+                    <img src="{{ asset('img/cecelia-logo-black-bg.png') }}" class="img-responsive" style="width:120px" />
                 </div>
             </div>
             <div class="row">
@@ -46,10 +63,9 @@
                         <li class="list-group-item white-text transparent p-1" style="border-width: 0px">Lagos</li>
                     </ul>
                 </div>
-                
+                <?php $categories = \App\Category::orderby('category_name', 'ASC')->get(); ?>
                 <div class="col-md-3 mx-auto p-3">
                     <span style="font-size: 25px" class="h1-strong orange-text">Food Categories</span>
-                    <?php $categories = \App\Category::orderby('category_name', 'ASC')->get(); ?>
                     <ul class="list-group">
                         @foreach($categories as $category)
                         <li class="list-group-item white-text transparent p-1" style="border-width: 0px"><a class="white-text" href="/market/category/{{ $category->id}}">{{ $category->category_name}}</a></li>
@@ -59,9 +75,14 @@
                 
                 <div class="col-md-3 mx-auto p-3">
                     <span style="font-size: 25px" class="h1-strong orange-text">Cecelia</span>
-                    <ul class="list-group">
+                    <div>
+                        <a href="" class="btn transparent orange-text shadow-none"><span class="fab fa-facebook fa-3x"></span></a>
+                        <a href="" class="btn transparent orange-text shadow-none"><span class="fab fa-twitter-square fa-3x"></span></a>
+                        <a href="" class="btn transparent orange-text shadow-none"><span class="fab fa-google-plus-square fa-3x"></span></a>
+                    </div>
+                    <!-- <ul class="list-group">
                         <li class="list-group-item white-text transparent p-1" style="border-width: 0px">Lagos</li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </footer>

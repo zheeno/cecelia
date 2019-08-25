@@ -113,8 +113,8 @@
             @foreach($params['order']->cartItems as $cartItem)
                 <div class="col-12 list-group-item p-md-0 m-1 shadow">
                     <div class="row">
-                        <div class="col-md-3 pad-tb-50 grey lighten-2 has-background-img" style="background-image: url({{ $cartItem->FoodItem->item_image }})"></div>
-                        <div class="col-md-9 p-1">
+                        <div class="col-md-3 pad-tb-50 white has-background-img" style="min-height:230px;background-image: url({{ $cartItem->FoodItem->item_image }});background-size: contain !important;background-position: center !important;"></div>
+                        <div class="col-md-9 p-5">
                             <h4 class="h4-responsive m-0 h1-strong">{{ $cartItem->FoodItem->item_name }}</h4>
                             <div class="row">
                                 <div class="col-md-7">
@@ -123,7 +123,7 @@
                                     <br /><span class="dark-grey-text">{{ ($cartItem->tax * 100)."%" }} Tax Inclusive</span>
                                     @endif
                                 </div>
-                                <div class="col-md-5 justify-content-center flex-center">
+                                <div class="col-md-5">
                                     <h3 class="h3-responsive h1-strong">&#8358;{{ number_format($cartItem->total, 2) }}</h3>
                                 </div>
                             </div>

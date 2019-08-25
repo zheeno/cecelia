@@ -412,7 +412,7 @@ class MarketPlaceController extends Controller
                     'phonenumber' => $order->phone_no,
                     // 'paymentplan' => '',
                     'ref' => $order->cart_token,
-                    'logo' => 'https://pbs.twimg.com/profile_images/915859962554929153/jnVxGxVj.jpg',
+                    'logo' => 'https://cecelia.com.ng/img/cecelia-icon.png',
                     'title' => 'Cecelia Purchase',
                 ]);
 
@@ -484,6 +484,13 @@ class MarketPlaceController extends Controller
                                 $_order->payment_method = $data->paymenttype;
                                 $_order->payment_status = true;
                                 $_order->save();
+                                // loop through all items on the cart and decrement the stock quantity
+                                foreach ($order->cartItems as $key => $item) {
+                                    // find food item
+                                    $food = FoodItem::find($item->item_id);
+                                    $food->stock_qty = (int)$food->stock_qty - (int)$item->qty;
+                                    $food->save();
+                                }
 
                                 return redirect("/me/orders/".$order->id)->with("alert_success", "Your order has been received and your payment was processed successfully.\n
                                 We will get in touch with you shortly to confirm your order.\nThank you for choosing Cecelia.");

@@ -26,7 +26,7 @@
         <!--Navbar -->
         <nav class="mb-1 navbar fixed-top m-0 navbar-expand-lg navbar-light white">
         <a class="navbar-brand" href="/">
-            <img src="{{ asset('img/cecelia-logo-black-transparent.png') }}" class="img-reesponsive" style="width: 150px" />
+            <img src="{{ asset('img/cecelia-logo-black.png') }}" class="img-reesponsive" style="width: 150px" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
             aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,11 +95,11 @@
         </div>
         </nav>
         <!--/.Navbar -->
-        <main style="margin-top: 50px">
+        <main style="margin-top: 50px;overflow-x: hidden">
             @yield('content')
         </main>
         <!-- footer -->
-        <footer class="container-fluid grey darken-4">
+        <footer class="container-fluid" style="background-color: #363435 !important">
             <!-- newsletter -->
             <section class="row p-5 bg-red-orange">
                 <div class="col-md-8 mx-auto p-3">
@@ -119,7 +119,7 @@
             </section>
             <div class="row p-5">
                 <div class="col-12 align-center">
-                    <img src="{{ asset('img/cecelia-logo-white-transparent.png') }}" class="img-responsive" style="width:120px" />
+                    <img src="{{ asset('img/cecelia-logo-black-bg.png') }}" class="img-responsive" style="width:120px" />
                 </div>
             </div>
             <div class="row">

@@ -1,6 +1,6 @@
 <nav class="mb-1 navbar fixed-top m-0 navbar-expand-lg navbar-dark bg-red-orange">
     <a class="navbar-brand" href="/">
-        <img src="{{ asset('img/cecelia-logo-white-transparent.png') }}" class="img-reesponsive" style="width: 150px" />
+        <img src="{{ asset('img/cecelia-logo-white-transparent-new.png') }}" class="img-reesponsive" style="width: 150px" />
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
         aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">

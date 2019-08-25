@@ -27,7 +27,7 @@
             <div class="row pad-tb-50">
                 <div class="col-md-10 mx-auto">
                     <div class="row">
-                        <div style="background-image: url({{ $foodItem->item_image }})" class="align-center col-md-3 grey lighten-4 p-0 shadow hoverable has-background-img">
+                        <div style="min-height:230px;background-image: url({{ $foodItem->item_image }});background-size: contain !important;background-position: center !important;" class="align-center col-md-3 white p-0 shadow hoverable has-background-img">
                             <!-- holds item image -->
                             @if(strlen($foodItem->item_image) == 0)
                             <span class="grey-text">NO ITEM IMAGE</span>
@@ -113,38 +113,41 @@
             </div>
         </div>
     </div>
-    <div class="row p-4" style="margin-bottom: 100px">
+    <div class="row p-2 p-md-4" style="margin-bottom: 100px">
         <div class="col-md-10 mx-auto p-0">
-        <table class="table table-striped shadow">
-            <thead class="bg-red-orange p-1">
-                <th class="p-1 bold white-text">Cart Token</th>
-                <th class="p-1 bold white-text">Customer Name</th>
-                <th class="p-1 bold white-text">Customer Phone</th>
-                <th class="p-1 bold white-text">Quantity</th>
-                <th class="p-1 bold white-text">Price</th>
-                <th class="p-1 bold white-text">Tax</th>
-                <th class="p-1 bold white-text">Total</th>
-                <th class="p-1 bold white-text">Date Placed</th>
-                <th class="p-1 bold white-text">Delivery Status</th>
-            </thead>
-            <tbody>
-            @foreach($foodItem->cartItems as $item)
-                @if($item->order != null)
-                <tr class="hoverable" style="cursor: pointer;" onClick="window.location = '/console/orders/{{ $item->order->id }}'">
-                    <td class="p-1">{{ substr($item->order->cart_token,  7, 10) }}</td>
-                    <td class="p-1">{{ $item->order->customer_name }}</td>
-                    <td class="p-1">{{ $item->order->phone_no }}</td>
-                    <td class="p-1">{{ number_format($item->qty) }}</td>
-                    <td class="p-1">&#8358;{{ number_format($item->price, 2) }}</td>
-                    <td class="p-1">{{ number_format(($item->tax * 100), 2) }}%</td>
-                    <td class="p-1">&#8358;{{ number_format($item->total, 2) }}</td>
-                    <td class="p-1">{{ $item->created_at }}</td>
-                    <td class="p-1">@if($item->order->delivery_status == 0) <span class="badge badge-danger white-text" style="font-size:13px">Pending</span> @else <span class="badge badge-success white-text" style="font-size:13px">Delivered</span> @endif</td>
-                </tr>
-                @endif
-            @endforeach
-            </tbody>
-        </table>
+            <h4 class="h4-responsive h1-strong">Related Orders</h4>
+        </div>
+        <div class="col-md-10 mx-auto p-0"  style="overflow-x: auto">
+            <table class="table table-striped shadow">
+                <thead class="bg-red-orange p-1">
+                    <th class="p-1 bold white-text">Cart Token</th>
+                    <th class="p-1 bold white-text">Customer Name</th>
+                    <th class="p-1 bold white-text">Customer Phone</th>
+                    <th class="p-1 bold white-text">Quantity</th>
+                    <th class="p-1 bold white-text">Price</th>
+                    <th class="p-1 bold white-text">Tax</th>
+                    <th class="p-1 bold white-text">Total</th>
+                    <th class="p-1 bold white-text">Date Placed</th>
+                    <th class="p-1 bold white-text">Delivery Status</th>
+                </thead>
+                <tbody>
+                @foreach($foodItem->cartItems as $item)
+                    @if($item->order != null)
+                    <tr class="hoverable" style="cursor: pointer;" onClick="window.location = '/console/orders/{{ $item->order->id }}'">
+                        <td class="p-1">{{ substr($item->order->cart_token,  7, 10) }}</td>
+                        <td class="p-1">{{ $item->order->customer_name }}</td>
+                        <td class="p-1">{{ $item->order->phone_no }}</td>
+                        <td class="p-1">{{ number_format($item->qty) }}</td>
+                        <td class="p-1">&#8358;{{ number_format($item->price, 2) }}</td>
+                        <td class="p-1">{{ number_format(($item->tax * 100), 2) }}%</td>
+                        <td class="p-1">&#8358;{{ number_format($item->total, 2) }}</td>
+                        <td class="p-1">{{ $item->created_at }}</td>
+                        <td class="p-1">@if($item->order->delivery_status == 0) <span class="badge badge-danger white-text" style="font-size:13px">Pending</span> @else <span class="badge badge-success white-text" style="font-size:13px">Delivered</span> @endif</td>
+                    </tr>
+                    @endif
+                @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

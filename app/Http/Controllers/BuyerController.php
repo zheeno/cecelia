@@ -31,7 +31,7 @@ class BuyerController extends Controller
     public function viewOrder($id){
         $allCategories = Category::orderBy("category_name", "ASC")->get();
         $order = Order::findorfail($id);
-        if($order->user_id !== Auth::user()->id){
+        if((int)$order->user_id !== Auth::user()->id){
             // show a 404 error
             Order::findorfail(0);
         }

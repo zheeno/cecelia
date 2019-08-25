@@ -22,46 +22,48 @@
                 <span class="h1-strong">Categories</span>
             </h4>
             <!-- search bar  -->
-            <div class="row m-4">
+            <div class="row m-2 m-md-4">
                 <div class="col-md-8 mx-auto shadow-lg">
                     <form class="row" method="GET" action="{{ route('console.categories') }}">
-                        <div class="col-9 p-3">
+                        <div class="col-7 p-2 p-md-3">
                             <div class="md-form p-0 m-0">
                                 <input class="form-control" type="text" name="q" placeholder="Search categories" required />
                             </div>
                         </div>
-                        <div class="col-3 p-3">
-                            <button type="submit" class="btn btn-danger bg-red-orange white-text capitalize m-1"><span class="fa fa-search"></span>&nbsp;Search</button>
-                            <button type="button" class="btn btn-danger bg-red-orange white-text capitalize m-1" data-toggle="modal" data-target="#addCatModal" title="Add a new category"><span class="fa fa-plus"></span>&nbsp;Add</button>
+                        <div class="col-5 p-2 p-md-3 align-center">
+                            <button type="submit" class="btn btn-danger bg-red-orange white-text capitalize m-0 p-2" title="Search Categories"><span class="fa fa-search"></span></button>
+                            <button type="button" class="btn btn-danger bg-red-orange white-text capitalize m-0 p-2" data-toggle="modal" data-target="#addCatModal" title="Add a new category"><span class="fa fa-plus"></span></button>
                         </div>
                     </form>
                 </div>
             </div>
             <!-- /search bar  -->
-            <table class="table table-striped shadow" style="margin-top:40px">
-                <thead class="bg-red-orange p-1">
-                    <th class="p-1 bold white-text">S/N</th>
-                    <th class="p-1 bold white-text">Category Name</th>
-                    <th class="p-1 bold white-text">Description</th>
-                    <th class="p-1 bold white-text">Sub Categories</th>
-                    <th class="p-1 bold white-text">Food Items</th>
-                    <th class="p-1 bold white-text">Stock</th>
-                </thead>
-                <tbody>
-                    <?php $count = 1; ?>
-                    @foreach($params['categories'] as $category)
-                    <tr class="hoverable" style="cursor: pointer;" onClick="window.location = '/console/categories/{{ $category->id }}' ">
-                        <td class="p-1">{{ $count }}</td>
-                        <td class="p-1">{{ $category->category_name }}</td>
-                        <td class="p-1">{{ $category->description }}</td>
-                        <td class="p-1">{{ number_format(count($category->subCategories)) }}</td>
-                        <td class="p-1">{{ number_format(count($category->foodItems)) }}</td>
-                        <td class="p-1">{{ number_format(count($category->foodItems)) }}</td>
-                    </tr>
-                    <?php $count++ ?>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="row">
+                <div class="col-12" style="overflow-x: auto">
+                    <table class="table table-striped shadow" style="margin-top:40px">
+                        <thead class="bg-red-orange p-1">
+                            <th class="p-1 bold white-text">S/N</th>
+                            <th class="p-1 bold white-text">Category Name</th>
+                            <th class="p-1 bold white-text">Description</th>
+                            <th class="p-1 bold white-text">Sub Categories</th>
+                            <th class="p-1 bold white-text">Food Items</th>
+                        </thead>
+                        <tbody>
+                            <?php $count = 1; ?>
+                            @foreach($params['categories'] as $category)
+                            <tr class="hoverable" style="cursor: pointer;" onClick="window.location = '/console/categories/{{ $category->id }}' ">
+                                <td class="p-1">{{ $count }}</td>
+                                <td class="p-1">{{ $category->category_name }}</td>
+                                <td class="p-1">{{ $category->description }}</td>
+                                <td class="p-1">{{ number_format(count($category->subCategories)) }}</td>
+                                <td class="p-1">{{ number_format(count($category->foodItems)) }}</td>
+                            </tr>
+                            <?php $count++ ?>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             {{ $params['categories']->links() }}
         </div>
     </div>

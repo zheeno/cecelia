@@ -24,23 +24,26 @@
                 @endif
             </div>
             <!-- search bar  -->
-            <div class="row m-4">
+            <div class="row m-2 m-md-4">
                 <div class="col-md-6 mx-auto shadow-lg">
                     <form class="row" method="GET" action="{{ route('console.orders') }}">
-                        <div class="col-9 p-3">
+                        <div class="col-9 p-2 p-md-3">
                             <div class="md-form p-0 m-0">
                                 <input class="form-control" type="text" name="q" placeholder="Search through the list of orders" required />
                             </div>
                         </div>
-                        <div class="col-3 p-3">
-                            <button type="submit" class="btn btn-danger bg-red-orange white-text capitalize"><span class="fa fa-search"></span>&nbsp;Search</button>
+                        <div class="col-3 p-2 p-md-3 align-center">
+                            <button type="submit" class="btn btn-danger bg-red-orange white-text capitalize" title="Search Orders"><span class="fa fa-search"></span></button>
                         </div>
                     </form>
                 </div>
             </div>
             <!-- /search bar  -->
-            <div class="row">
-                <div class="col-12" style="padding-bottom: 100px">
+            <div class="row" style="margin-top:50px">
+                <div class="col-12 mx-auto">
+                    <h4 class="h4-responsive h1-strong">Orders</h4>
+                </div>
+                <div class="col-12" style="padding-bottom: 100px;overflow-x: auto">
                     @if(count($params['orders']) == 0)
                         <div class="pad-tb-100 align-center">
                             <span class="fa fa-info-circle fa-5x grey-ic"></span>

@@ -43,14 +43,18 @@
                     </div>
                     <div class="md-form col-md-5 mx-auto">
                         <label class="active">*Country</label>
-                        <input type="text" placeholder="Nigeria" class="form-control" name="country" required/>
+                        <select name="country" class="form-control border-0" required>
+                            <option value="Nigeria">Nigeria</a>
+                        </select>
                     </div>
                 </div>
                 
                 <div class="row p-3">
                     <div class="md-form col-md-5 mx-auto">
                         <label class="active">*State</label>
-                        <input type="text" placeholder="Lagos" class="form-control" name="state" required/>
+                        <select name="state" class="form-control border-0" required>
+                            <option value="Lagos">Lagos</a>
+                        </select>
                     </div>
                     <div class="md-form col-md-5 mx-auto">
                         <label class="active">L.G.A</label>
