@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('subTitle')Password Reset @endsection
 
 @section('content')
 <div class="container-fluid">

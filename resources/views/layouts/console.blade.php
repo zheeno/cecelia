@@ -94,9 +94,9 @@
                         <h4 class="modal-title h1-strong w-100" id="unitModalLabel">
                             Unit Measurements
                         </h4>
-                        <!-- <a class="btn btn-sm transparent no-shadow white-text" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="white-text fa fa-angle-down fa-2x"></span>
-                        </a> -->
+                        <a class="btn btn-sm p-2 bg-red-orange shadow-none" data-dismiss="modal">
+                            <span class="white-text">X</span>
+                        </a>
                     </div>
                     <div class="modal-body pad-bot-50" style="text-align: center !important">
                         <form method="POST" action="{{ route('console.newMeasureUnit') }}">
@@ -133,6 +133,52 @@
                 </div>
             </div>
         </div>
+        <!-- Recipe of the week modal -->
+        <div class="modal fade" id="weekRecipeModal" tabindex="-1" role="dialog" aria-labelledby="weekRecipeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-bottom modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title h1-strong w-100" id="weekRecipeModalLabel">
+                            Recipe for the Week
+                        </h4>
+                        <a class="btn btn-sm p-2 bg-red-orange shadow-none" data-dismiss="modal">
+                            <span class="white-text">X</span>
+                        </a>
+                    </div>
+                    <div class="modal-body pad-bot-50" style="text-align: center !important">
+                        <?php $recipe = \App\Recipe::orderby('id', 'DESC')->take(1)->get(); ?>
+                        <form method="POST" action="{{ route('console.newRecipe') }}">
+                            <div class="row">
+                                <div class="col-md-10 mx-auto md-form">
+                                    <label class="active">Title</label>
+                                    @csrf
+                                    <input type="text" class="form-control" value="@if(count($recipe) > 0) {{ $recipe[0]->title }} @endif" name="rec_title" placeholder="Making Egusi Soup to die for" required />
+                                </div>
+                                <div class="col-md-10 mx-auto md-form">
+                                    <label class="active">Image URL</label>
+                                    <input type="text" class="form-control" value="@if(count($recipe) > 0) {{ $recipe[0]->image_url }} @endif" name="rec_image" placeholder="https://howto.com/egusi_soup.png" required />
+                                </div>
+                                <div class="col-md-10 mx-auto md-form">
+                                    <label class="active">Steps</label>
+                                    <textarea class="md-textarea" name="rec_steps" style="overflow-y:auto;min-height:150px; width: 90%" required >
+                                    @if(count($recipe) > 0)
+                                        {!! $recipe[0]->steps !!}
+                                    @endif
+                                    </textarea>
+                                </div>
+                                <div class="col-12 mx-auto align-center">
+                                    <button type="submit" class="btn btn-danger bg-red-orange capitalize white-text"><span class="fa fa-plus"></span>&nbsp;Add New Recipe</button> 
+                                    @if(count($recipe) > 0)
+                                    <button type="button" class="btn btn-grey capitalize dark-grey-text"><span class="fa fa-trash"></span>&nbsp;Delete</button> 
+                                    @endif
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </body>
 <script>

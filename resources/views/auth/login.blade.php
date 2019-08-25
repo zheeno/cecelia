@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('subTitle')Login @endsection
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">

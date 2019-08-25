@@ -99,7 +99,21 @@
             @yield('content')
         </main>
         <!-- footer -->
-        <footer class="container-fluid" style="background-color: #363435 !important">
+        <footer class="container-fluid transparent">
+            <!-- recipe for the week -->
+            @Auth()
+                <?php $recipe = \App\Recipe::orderby('id', 'DESC')->take(1)->get(); ?>
+                @if(count($recipe) > 0)
+                <section class="row p-0 white shadow-lg m-3">
+                    <div class="col-md-4 p-0 has-background-img" style="min-height:200px;background-image:url({{ $recipe[0]->image_url }});"></div>
+                    <div class="col-md-8" style="padding: 30px 0px 0px 20px">
+                        <h2 class="dark-grey-text h2-responsive h1-strong">Recipe for the Week</h2>
+                        <h4 class="h4-responsive h1-strong dark-grey-text">{{ $recipe[0]->title }}</h4>
+                        <p class="lead dark-grey-text">{!! $recipe[0]->steps !!}</p>
+                    </div>
+                </section>
+                @endif
+            @endAuth
             <!-- newsletter -->
             <section class="row p-5 bg-red-orange">
                 <div class="col-md-8 mx-auto p-3">
@@ -117,12 +131,12 @@
                     </form>
                 </div>
             </section>
-            <div class="row p-5">
+            <div class="row p-5" style="background-color: #363435 !important">
                 <div class="col-12 align-center">
                     <img src="{{ asset('img/cecelia-logo-black-bg.png') }}" class="img-responsive" style="width:120px" />
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="background-color: #363435 !important">
                 <div class="col-md-3 mx-auto p-3">
                     <span style="font-size: 25px" class="h1-strong orange-text">Cities</span>
                     <ul class="list-group">

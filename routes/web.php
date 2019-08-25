@@ -108,6 +108,11 @@ Route::group(['middleware' => 'auth'], function(){ //grouping routes such that o
                 'uses' => 'ConsoleController@newMeasureUnit',
                 'as' => 'console.newMeasureUnit'
             ]);
+
+            Route::POST('/newRecipe', [
+                'uses' => 'ConsoleController@newRecipe',
+                'as' => 'console.newRecipe'
+            ]);
         });
     });
 

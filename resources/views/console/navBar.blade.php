@@ -17,6 +17,9 @@
         <li class="nav-item  @if($cur_page == 'measurements') active @endif">
             <a class="nav-link" data-toggle="modal" data-target="#unitModal">Unit Measurements</a>
         </li>
+        <li class="nav-item  @if($cur_page == 'recipe') active @endif">
+            <a class="nav-link" data-toggle="modal" data-target="#weekRecipeModal">Recipe for the Week</a>
+        </li>
         <li class="nav-item  @if($cur_page == 'inventory') active @endif">
             <a class="nav-link" href="{{ route('console.inventory') }}">Inventory</a>
         </li>

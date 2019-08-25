@@ -10,6 +10,7 @@ use App\UnitMeasure;
 use App\Cart;
 use App\Order;
 use App\User;
+use App\Recipe;
 
 
 
@@ -45,7 +46,29 @@ class ConsoleController extends Controller
             ]
         ]);
     }
-    
+
+    // newRecipe
+    public function newRecipe(Request $request){
+        $title = $request->input("rec_title");
+        $image = $request->input("rec_image");
+        $steps = $request->input("rec_steps");
+
+        // check if recipe already exists
+        $r_check = Recipe::orderBy('id', 'DESC')->take(1)->get();
+        if(count($r_check) == 0){
+            $recipe = new Recipe();
+        }else{
+            $recipe = Recipe::find($r_check[0]->id);
+        }
+
+        $recipe->title = $title;
+        $recipe->image_url = $image;
+        $recipe->steps = nl2br($steps);
+        $recipe->save();
+
+        return redirect()->back()->with('alert_success', 'You have successfully added a new recipe for the week');
+    }
+
     // getSubCat
     public function getSubCat(Request $request){
         $cat_id = $request->input('cat_id');
