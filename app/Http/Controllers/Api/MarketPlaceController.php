@@ -356,6 +356,7 @@ class MarketPlaceController extends Controller
         $state = $request->input('state');
         $lga = $request->input('lga');
         $address = $request->input('address');
+        $pay_on_delivery = $request->input('pay_on_delivery');
 
         // get cart items
         $cart_items = Cart::where("token", $token)->orderBy('id', 'DESC')->get();
@@ -388,7 +389,11 @@ class MarketPlaceController extends Controller
                 $order->discount = 0;
                 $order->cart_total = $cartData['subTotal'];
                 $order->order_total = $cartData['subTotal'] + 0;
-                $order->payment_method = "";
+                if($pay_on_delivery == null){
+                    $order->payment_method = "";
+                }else{
+                    $order->payment_method = "Pay on Delivery";
+                }
                 $order->payment_status = false;
                 $order->delivery_method = "Home Delivery";
                 $order->delivery_status_desc = "Processing Order";
@@ -396,29 +401,33 @@ class MarketPlaceController extends Controller
                 $order->delivery_date = "";
                 $order->save();
 
-                $_token = $request->input("_token");
+                if($pay_on_delivery == null){
+                    $_token = $request->input("_token");
+                    $request->request->add([
+                        '_token' => $_token,
+                        'email' => Auth::user()->email,
+                        'amount' => ''.$order->order_total,
+                        'payment_method' => 'card',
+                        'description' => 'Payment for food items purchase',
+                        'country' => 'NG',
+                        'currency' => 'NGN',
+                        'firstname' => $order->customer_name,
+                        'lastname' => '',
+                        'metadata' => '',
+                        'phonenumber' => $order->phone_no,
+                        // 'paymentplan' => '',
+                        'ref' => $order->cart_token,
+                        'logo' => 'https://cecelia.com.ng/img/cecelia-icon.png',
+                        'title' => 'Cecelia Purchase',
+                    ]);
 
-                $request->request->add([
-                    '_token' => $_token,
-                    'email' => Auth::user()->email,
-                    'amount' => ''.$order->order_total,
-                    'payment_method' => 'card',
-                    'description' => 'Payment for food items purchase',
-                    'country' => 'NG',
-                    'currency' => 'NGN',
-                    'firstname' => $order->customer_name,
-                    'lastname' => '',
-                    'metadata' => '',
-                    'phonenumber' => $order->phone_no,
-                    // 'paymentplan' => '',
-                    'ref' => $order->cart_token,
-                    'logo' => 'https://cecelia.com.ng/img/cecelia-icon.png',
-                    'title' => 'Cecelia Purchase',
-                ]);
-
-                //This initializes payment and redirects to the payment gateway
-                //The initialize method takes the parameter of the redirect URL
-                Rave::initialize(route('callback'));
+                    //This initializes payment and redirects to the payment gateway
+                    //The initialize method takes the parameter of the redirect URL
+                    Rave::initialize(route('callback'));
+                }else{
+                    return redirect("/me/orders/".$order->id)->with("alert_success", "Your order has been received.\n
+                    We will get in touch with you shortly to confirm your order.\nThank you for choosing Cecelia.");
+                }
             }else{
                 return redirect()->back();
             }

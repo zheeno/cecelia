@@ -144,11 +144,13 @@
                     <p>{{ $order->created_at }}</p>
                     <strong>Cart Items</strong>
                     <p>{{ number_format(count($order->cartItems)) }}</p>
-                    <strong>Payment Status</strong>
+                    <strong>Payment Status </strong>
                     @if($order->payment_status == 0)
                         <p>No Payment made</p>
                     @else
                         <p>Paid&nbsp;<span class="fa fa-check-circle green-text"></span></p>
+                    @endif
+                    @if(strlen($order->payment_method) > 0)
                         <strong>Payment Method</strong>
                         <p>{{ $order->payment_method }}</p>
                     @endif

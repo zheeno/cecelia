@@ -114,10 +114,14 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <button type="submit" class="pull-right btn bg-red-orange btn-md capitalize white-text" >Proceed to Payment <span class=" fa fa-credit-card white-ic"></span></button>
-                        </div>
-                        <div class="col-12">
-                            <button type="button" class="pull-right btn btn-md capitalize grey lighten-2" style="color: #333 !important" data-toggle="modal" data-target="#cancelModal" >Cancel <span class="fa fa-times black-ic"></span></button>
+                            <input id="checkBox" type="checkbox" name="pay_on_delivery" style="font-size:20px; background-color:#FFF" />
+                            <label for="checkBox" class="lead">Pay on Delivery</label>
+                        </div>                    
+                    </div>
+                    <div class="row">
+                        <div class="col-12 align-center">
+                            <button type="submit" class="pull-right btn bg-red-orange btn-md capitalize white-text" >Proceed&nbsp;&nbsp;<span class=" fa fa-arrow-right white-ic"></span></button>
+                            <button type="button" class="pull-right btn btn-md capitalize grey lighten-2" style="color: #333 !important" data-toggle="modal" data-target="#cancelModal" >Cancel&nbsp;&nbsp;<span class="fa fa-times black-ic"></span></button>
                         </div>
                     </div>
                 @endif
