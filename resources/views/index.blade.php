@@ -17,6 +17,17 @@ Home
             <!-- some content here -->
         </div>
     </div>
+    <?php $recipe = \App\Recipe::orderby('id', 'DESC')->take(1)->get(); ?>
+        @if(count($recipe) > 0)
+        <div class="row p-0">
+            <div class="col-md-3 bg-red-orange p-2 align-center">
+                <span class="white-text">Recipe for the Week</span>
+            </div>
+            <div class="col-md-9 p-0 flex-center" style="padding-top:10px !important">
+                <marquee class="m-0" style="font-size: large;"><strong>{{ $recipe[0]->title }} - </strong>&nbsp;<span>{{ strip_tags($recipe[0]->steps) }}</span></marquee>
+            </div>
+        </div>
+        @endif
     <div class="row p-3">
         <div class="col-md-8 mx-auto p-5 align-center">
             <h1 class="h1-responsive" style="font-weight: 900;font-family: cursive;">Take care of your body. It's the only place you have to live.</h1>

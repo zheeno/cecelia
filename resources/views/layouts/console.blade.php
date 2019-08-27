@@ -76,9 +76,9 @@
                 <div class="col-md-3 mx-auto p-3">
                     <span style="font-size: 25px" class="h1-strong orange-text">Cecelia</span>
                     <div>
-                        <a href="" class="btn transparent orange-text shadow-none"><span class="fab fa-facebook fa-3x"></span></a>
-                        <a href="" class="btn transparent orange-text shadow-none"><span class="fab fa-twitter-square fa-3x"></span></a>
-                        <a href="" class="btn transparent orange-text shadow-none"><span class="fab fa-google-plus-square fa-3x"></span></a>
+                        <a href="https://www.facebook.com/cecelia.foods" target="_blank" class="btn transparent orange-text shadow-none"><span class="fab fa-facebook fa-3x"></span></a>
+                        <a href="https://twitter.com/ceceliafood?s=08" target="_blank" class="btn transparent orange-text shadow-none"><span class="fab fa-twitter-square fa-3x"></span></a>
+                        <a href="https://www.instagram.com/ceceliafoods?r=nametag" target="_blank" class="btn transparent orange-text shadow-none"><span class="fab fa-instagram fa-3x"></span></a>
                     </div>
                     <!-- <ul class="list-group">
                         <li class="list-group-item white-text transparent p-1" style="border-width: 0px">Lagos</li>
@@ -160,17 +160,10 @@
                                 </div>
                                 <div class="col-md-10 mx-auto md-form">
                                     <label class="active">Steps</label>
-                                    <textarea class="md-textarea" name="rec_steps" style="overflow-y:auto;min-height:150px; width: 90%" required >
-                                    @if(count($recipe) > 0)
-                                        {!! $recipe[0]->steps !!}
-                                    @endif
-                                    </textarea>
+                                    <textarea class="md-textarea" name="rec_steps" style="overflow-y:auto;min-height:150px; width: 90%" required >@if(count($recipe) > 0){!! $recipe[0]->steps !!}@endif</textarea>
                                 </div>
                                 <div class="col-12 mx-auto align-center">
                                     <button type="submit" class="btn btn-danger bg-red-orange capitalize white-text"><span class="fa fa-plus"></span>&nbsp;Add New Recipe</button> 
-                                    @if(count($recipe) > 0)
-                                    <button type="button" class="btn btn-grey capitalize dark-grey-text"><span class="fa fa-trash"></span>&nbsp;Delete</button> 
-                                    @endif
                                 </div>
                             </div>
                         </form>

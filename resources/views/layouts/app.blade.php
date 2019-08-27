@@ -156,9 +156,9 @@
                 <div class="col-md-3 mx-auto p-3">
                     <span style="font-size: 25px" class="h1-strong orange-text">Cecelia</span>
                     <div>
-                        <a href="" class="btn transparent orange-text shadow-none"><span class="fab fa-facebook fa-3x"></span></a>
-                        <a href="" class="btn transparent orange-text shadow-none"><span class="fab fa-twitter-square fa-3x"></span></a>
-                        <a href="" class="btn transparent orange-text shadow-none"><span class="fab fa-google-plus-square fa-3x"></span></a>
+                        <a href="https://www.facebook.com/cecelia.foods" target="_blank" class="btn transparent orange-text shadow-none"><span class="fab fa-facebook fa-3x"></span></a>
+                        <a href="https://twitter.com/ceceliafood?s=08" target="_blank" class="btn transparent orange-text shadow-none"><span class="fab fa-twitter-square fa-3x"></span></a>
+                        <a href="https://www.instagram.com/ceceliafoods?r=nametag" target="_blank" class="btn transparent orange-text shadow-none"><span class="fab fa-instagram fa-3x"></span></a>
                     </div>
                     <!-- <ul class="list-group">
                         <li class="list-group-item white-text transparent p-1" style="border-width: 0px">Lagos</li>
