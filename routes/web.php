@@ -113,6 +113,21 @@ Route::group(['middleware' => 'auth'], function(){ //grouping routes such that o
                 'uses' => 'ConsoleController@newRecipe',
                 'as' => 'console.newRecipe'
             ]);
+
+            
+            Route::GET('/userManager', [
+                'uses' => 'ConsoleController@userManager',
+                'as' => 'console.userManager'
+            ]);
+
+            Route::POST('/userManager', [
+                'uses' => 'ConsoleController@modUser',
+                'as' => 'console.userManager'
+            ]);
+
+            Route::GET('/users/{id}', [
+                'uses' => 'ConsoleController@userPage'
+            ]);
         });
     });
 

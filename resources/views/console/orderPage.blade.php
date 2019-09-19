@@ -115,7 +115,7 @@
                     <div class="row">
                         <div class="col-md-3 pad-tb-50 white has-background-img" style="min-height:230px;background-image: url({{ $cartItem->FoodItem->item_image }});background-size: contain !important;background-position: center !important;"></div>
                         <div class="col-md-9 p-5">
-                            <h4 class="h4-responsive m-0 h1-strong">{{ $cartItem->FoodItem->item_name }}</h4>
+                            <h4 class="h4-responsive m-0 h1-strong">{{ $cartItem->FoodItem->item_name }} <a href="/console/inventory/{{$cartItem->FoodItem->id}} "><span class="fa fa-link"></span></a></h4>
                             <div class="row">
                                 <div class="col-md-7">
                                     <span class="dark-grey-text">&#8358;{{ number_format($cartItem->price, 2)." per ". $cartItem->FoodItem->unit->name." X ".$cartItem->qty }}</span>
@@ -139,7 +139,7 @@
                 <div class="col-12">
                     <h5 class="h5-responsive h1-strong">Manage Orders &amp; Deliveries</h5>
                     <strong>Order Placed by</strong>
-                    <p>{{ $order->user->name }}</p>
+                    <p>{{ $order->user->name }} <a href="/console/users/{{$order->user_id}} "><span class="fa fa-link"></span></a></p>
                     <strong>Date Placed</strong>
                     <p>{{ $order->created_at }}</p>
                     <strong>Cart Items</strong>

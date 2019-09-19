@@ -398,4 +398,33 @@ class ConsoleController extends Controller
         }
     }
 
+    public function userManager(Request $request){
+        $input = $request->input();
+        $users = User::orderBy("name", "ASC")->paginate(20);
+        $users->appends($input);
+        return view("console/userManager")->with("params", [
+            "users" => $users
+        ]);
+    }
+
+    public function modUser(Request $request){
+        $id = $request->input('user_id');
+        $user = User::findorfail($id);
+        if($user->isAdmin()){
+            $user->permission = "700";
+        }else{
+            $user->permission = "755";
+        }
+
+        $user->save();
+        return redirect("/console/users/$id")->with("alert_success", "User's details have been updated successfully");
+    }
+
+    public function userPage($id){
+        $user = User::findorfail($id);
+
+        return view("console/userPage")->with("params", [
+            "user" => $user
+        ]);
+    }
 }

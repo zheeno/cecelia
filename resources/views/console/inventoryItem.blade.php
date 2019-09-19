@@ -25,15 +25,15 @@
                 @endif
             </div>
             <div class="row pad-tb-50">
-                <div class="col-md-10 mx-auto">
+                <div class="col-md-10 shadow mx-auto white">
                     <div class="row">
-                        <div style="min-height:230px;background-image: url({{ $foodItem->item_image }});background-size: contain !important;background-position: center !important;" class="align-center col-md-3 white p-0 shadow hoverable has-background-img">
+                        <div style="min-height:230px;background-image: url({{ $foodItem->item_image }});background-size: contain !important;background-position: center !important;" class="align-center col-md-3 white p-0 hoverable has-background-img">
                             <!-- holds item image -->
                             @if(strlen($foodItem->item_image) == 0)
                             <span class="grey-text">NO ITEM IMAGE</span>
                             @endif
                         </div>
-                        <div class="shadow grey lighten-4 col-md-9 p-4">
+                        <div class="lighten-4 col-md-9 p-4">
                         <form  method="POST" action="/console/inventory/updateItem">
                             <div class="row">
                                 <div class="col-md-6">
@@ -117,8 +117,8 @@
         <div class="col-md-10 mx-auto p-0">
             <h4 class="h4-responsive h1-strong">Related Orders</h4>
         </div>
-        <div class="col-md-10 mx-auto p-0"  style="overflow-x: auto">
-            <table class="table table-striped shadow">
+        <div class="col-md-10 mx-auto p-0 shadow white"  style="overflow-x: auto">
+            <table class="table table-striped ">
                 <thead class="bg-red-orange p-1">
                     <th class="p-1 bold white-text">Cart Token</th>
                     <th class="p-1 bold white-text">Customer Name</th>

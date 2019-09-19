@@ -37,6 +37,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function orders(){
+        return $this->hasMany('App\Order', 'user_id')->orderBy('id', 'DESC');
+    }
+    public function pendingOrders(){
+        return $this->hasMany('App\Order', 'user_id')->where('delivery_status', false)->orderBy('id', 'DESC');
+    }
     
     // for middlewares
     public function isAdmin(){

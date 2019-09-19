@@ -27,7 +27,7 @@
             <a class="nav-link" href="{{ route('console.orders') }}">Orders &amp; Delivery</a>
         </li>
         <li class="nav-item  @if($cur_page == 'users') active @endif">
-            <a class="nav-link" href="{{ route('console.dashboard') }}">User Management</a>
+            <a class="nav-link" href="{{ route('console.userManager') }}">User Management</a>
         </li>
         <form id="logoutForm" method="POST" action="/logout">
             @csrf

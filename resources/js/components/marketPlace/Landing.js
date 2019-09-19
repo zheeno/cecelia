@@ -98,7 +98,7 @@ export default class Landing extends Component {
                                                             return (
                                                                 <Link to={"/market/foodItem/" + food.id} key={food.id} className="col-md-3 m-2 p-0" style={{ textDecoration: "none", color: "#555", minHeight: "100%" }}>
                                                                     <div className="card p-0">
-                                                                        <div className="card-body p-5" style={{ height: 150, backgroundImage: `url(${food.item_image})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "top" }}>
+                                                                        <div className="card-body p-5" style={{ height: 150, backgroundImage: `url(${food.item_image})`, backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "top" }}>
 
                                                                         </div>
                                                                         <div className="card-footer p-3 white border-0">
