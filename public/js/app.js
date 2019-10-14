@@ -86,3433 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "../../../Users/Zheeno/AppData/Roaming/npm/node_modules/react-number-format/dist/react-number-format.es.js":
-/*!***********************************************************************************************************!*\
-  !*** C:/Users/Zheeno/AppData/Roaming/npm/node_modules/react-number-format/dist/react-number-format.es.js ***!
-  \***********************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../Users/Zheeno/AppData/Roaming/npm/node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/**
- * react-number-format - 4.2.0
- * Author : Sudhanshu Yadav
- * Copyright (c) 2016, 2019 to Sudhanshu Yadav, released under the MIT license.
- * https://github.com/s-yadav/react-number-format
- */
-
-
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-function _extends() {
-  _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) _setPrototypeOf(subClass, superClass);
-}
-
-function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
-
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (typeof call === "object" || typeof call === "function")) {
-    return call;
-  }
-
-  return _assertThisInitialized(self);
-}
-
-function createCommonjsModule(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
-}
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
-
-var ReactPropTypesSecret_1 = ReactPropTypesSecret;
-
-function emptyFunction() {}
-function emptyFunctionWithReset() {}
-emptyFunctionWithReset.resetWarningCache = emptyFunction;
-
-var factoryWithThrowingShims = function() {
-  function shim(props, propName, componentName, location, propFullName, secret) {
-    if (secret === ReactPropTypesSecret_1) {
-      // It is still safe when called from React.
-      return;
-    }
-    var err = new Error(
-      'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
-      'Use PropTypes.checkPropTypes() to call them. ' +
-      'Read more at http://fb.me/use-check-prop-types'
-    );
-    err.name = 'Invariant Violation';
-    throw err;
-  }  shim.isRequired = shim;
-  function getShim() {
-    return shim;
-  }  // Important!
-  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
-  var ReactPropTypes = {
-    array: shim,
-    bool: shim,
-    func: shim,
-    number: shim,
-    object: shim,
-    string: shim,
-    symbol: shim,
-
-    any: shim,
-    arrayOf: getShim,
-    element: shim,
-    elementType: shim,
-    instanceOf: getShim,
-    node: shim,
-    objectOf: getShim,
-    oneOf: getShim,
-    oneOfType: getShim,
-    shape: getShim,
-    exact: getShim,
-
-    checkPropTypes: emptyFunctionWithReset,
-    resetWarningCache: emptyFunction
-  };
-
-  ReactPropTypes.PropTypes = ReactPropTypes;
-
-  return ReactPropTypes;
-};
-
-var propTypes = createCommonjsModule(function (module) {
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-{
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = factoryWithThrowingShims();
-}
-});
-
-// basic noop function
-function noop() {}
-function returnTrue() {
-  return true;
-}
-function charIsNumber(char) {
-  return !!(char || '').match(/\d/);
-}
-function escapeRegExp(str) {
-  return str.replace(/[-[\]/{}()*+?.\\^$|]/g, "\\$&");
-}
-function getThousandsGroupRegex(thousandsGroupStyle) {
-  switch (thousandsGroupStyle) {
-    case 'lakh':
-      return /(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/g;
-
-    case 'wan':
-      return /(\d)(?=(\d{4})+(?!\d))/g;
-
-    case 'thousand':
-    default:
-      return /(\d)(?=(\d{3})+(?!\d))/g;
-  }
-}
-function applyThousandSeparator(str, thousandSeparator, thousandsGroupStyle) {
-  var thousandsGroupRegex = getThousandsGroupRegex(thousandsGroupStyle);
-  var index = str.search(/[1-9]/);
-  index = index === -1 ? str.length : index;
-  return str.substring(0, index) + str.substring(index, str.length).replace(thousandsGroupRegex, '$1' + thousandSeparator);
-} //spilt a float number into different parts beforeDecimal, afterDecimal, and negation
-
-function splitDecimal(numStr) {
-  var allowNegative = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-  var hasNagation = numStr[0] === '-';
-  var addNegation = hasNagation && allowNegative;
-  numStr = numStr.replace('-', '');
-  var parts = numStr.split('.');
-  var beforeDecimal = parts[0];
-  var afterDecimal = parts[1] || '';
-  return {
-    beforeDecimal: beforeDecimal,
-    afterDecimal: afterDecimal,
-    hasNagation: hasNagation,
-    addNegation: addNegation
-  };
-}
-function fixLeadingZero(numStr) {
-  if (!numStr) return numStr;
-  var isNegative = numStr[0] === '-';
-  if (isNegative) numStr = numStr.substring(1, numStr.length);
-  var parts = numStr.split('.');
-  var beforeDecimal = parts[0].replace(/^0+/, '') || '0';
-  var afterDecimal = parts[1] || '';
-  return "".concat(isNegative ? '-' : '').concat(beforeDecimal).concat(afterDecimal ? ".".concat(afterDecimal) : '');
-}
-/**
- * limit decimal numbers to given scale
- * Not used .fixedTo because that will break with big numbers
- */
-
-function limitToScale(numStr, scale, fixedDecimalScale) {
-  var str = '';
-  var filler = fixedDecimalScale ? '0' : '';
-
-  for (var i = 0; i <= scale - 1; i++) {
-    str += numStr[i] || filler;
-  }
-
-  return str;
-}
-/**
- * This method is required to round prop value to given scale.
- * Not used .round or .fixedTo because that will break with big numbers
- */
-
-function roundToPrecision(numStr, scale, fixedDecimalScale) {
-  //if number is empty don't do anything return empty string
-  if (['', '-'].indexOf(numStr) !== -1) return numStr;
-  var shoudHaveDecimalSeparator = numStr.indexOf('.') !== -1 && scale;
-
-  var _splitDecimal = splitDecimal(numStr),
-      beforeDecimal = _splitDecimal.beforeDecimal,
-      afterDecimal = _splitDecimal.afterDecimal,
-      hasNagation = _splitDecimal.hasNagation;
-
-  var roundedDecimalParts = parseFloat("0.".concat(afterDecimal || '0')).toFixed(scale).split('.');
-  var intPart = beforeDecimal.split('').reverse().reduce(function (roundedStr, current, idx) {
-    if (roundedStr.length > idx) {
-      return (Number(roundedStr[0]) + Number(current)).toString() + roundedStr.substring(1, roundedStr.length);
-    }
-
-    return current + roundedStr;
-  }, roundedDecimalParts[0]);
-  var decimalPart = limitToScale(roundedDecimalParts[1] || '', Math.min(scale, afterDecimal.length), fixedDecimalScale);
-  var negation = hasNagation ? '-' : '';
-  var decimalSeparator = shoudHaveDecimalSeparator ? '.' : '';
-  return "".concat(negation).concat(intPart).concat(decimalSeparator).concat(decimalPart);
-}
-function omit(obj, keyMaps) {
-  var filteredObj = {};
-  Object.keys(obj).forEach(function (key) {
-    if (!keyMaps[key]) filteredObj[key] = obj[key];
-  });
-  return filteredObj;
-}
-/** set the caret positon in an input field **/
-
-function setCaretPosition(el, caretPos) {
-  el.value = el.value; // ^ this is used to not only get "focus", but
-  // to make sure we don't have it everything -selected-
-  // (it causes an issue in chrome, and having it doesn't hurt any other browser)
-
-  if (el !== null) {
-    if (el.createTextRange) {
-      var range = el.createTextRange();
-      range.move('character', caretPos);
-      range.select();
-      return true;
-    } // (el.selectionStart === 0 added for Firefox bug)
-
-
-    if (el.selectionStart || el.selectionStart === 0) {
-      el.focus();
-      el.setSelectionRange(caretPos, caretPos);
-      return true;
-    } // fail city, fortunately this never happens (as far as I've tested) :)
-
-
-    el.focus();
-    return false;
-  }
-}
-/**
-  Given previous value and newValue it returns the index
-  start - end to which values have changed.
-  This function makes assumption about only consecutive
-  characters are changed which is correct assumption for caret input.
-*/
-
-function findChangedIndex(prevValue, newValue) {
-  var i = 0,
-      j = 0;
-  var prevLength = prevValue.length;
-  var newLength = newValue.length;
-
-  while (prevValue[i] === newValue[i] && i < prevLength) {
-    i++;
-  } //check what has been changed from last
-
-
-  while (prevValue[prevLength - 1 - j] === newValue[newLength - 1 - j] && newLength - j > i && prevLength - j > i) {
-    j++;
-  }
-
-  return {
-    start: i,
-    end: prevLength - j
-  };
-}
-/*
-  Returns a number whose value is limited to the given range
-*/
-
-function clamp(num, min, max) {
-  return Math.min(Math.max(num, min), max);
-}
-function getCurrentCaretPosition(el) {
-  /*Max of selectionStart and selectionEnd is taken for the patch of pixel and other mobile device caret bug*/
-  return Math.max(el.selectionStart, el.selectionEnd);
-}
-
-var propTypes$1 = {
-  thousandSeparator: propTypes.oneOfType([propTypes.string, propTypes.oneOf([true])]),
-  decimalSeparator: propTypes.string,
-  thousandsGroupStyle: propTypes.oneOf(['thousand', 'lakh', 'wan']),
-  decimalScale: propTypes.number,
-  fixedDecimalScale: propTypes.bool,
-  displayType: propTypes.oneOf(['input', 'text']),
-  prefix: propTypes.string,
-  suffix: propTypes.string,
-  format: propTypes.oneOfType([propTypes.string, propTypes.func]),
-  removeFormatting: propTypes.func,
-  mask: propTypes.oneOfType([propTypes.string, propTypes.arrayOf(propTypes.string)]),
-  value: propTypes.oneOfType([propTypes.number, propTypes.string]),
-  defaultValue: propTypes.oneOfType([propTypes.number, propTypes.string]),
-  isNumericString: propTypes.bool,
-  customInput: propTypes.elementType,
-  allowNegative: propTypes.bool,
-  allowEmptyFormatting: propTypes.bool,
-  allowLeadingZeros: propTypes.bool,
-  onValueChange: propTypes.func,
-  onKeyDown: propTypes.func,
-  onMouseUp: propTypes.func,
-  onChange: propTypes.func,
-  onFocus: propTypes.func,
-  onBlur: propTypes.func,
-  type: propTypes.oneOf(['text', 'tel', 'password']),
-  isAllowed: propTypes.func,
-  renderText: propTypes.func,
-  getInputRef: propTypes.func
-};
-var defaultProps = {
-  displayType: 'input',
-  decimalSeparator: '.',
-  thousandsGroupStyle: 'thousand',
-  fixedDecimalScale: false,
-  prefix: '',
-  suffix: '',
-  allowNegative: true,
-  allowEmptyFormatting: false,
-  allowLeadingZeros: false,
-  isNumericString: false,
-  type: 'text',
-  onValueChange: noop,
-  onChange: noop,
-  onKeyDown: noop,
-  onMouseUp: noop,
-  onFocus: noop,
-  onBlur: noop,
-  isAllowed: returnTrue,
-  getInputRef: noop
-};
-
-var NumberFormat =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(NumberFormat, _React$Component);
-
-  function NumberFormat(props) {
-    var _this;
-
-    _classCallCheck(this, NumberFormat);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(NumberFormat).call(this, props));
-    var defaultValue = props.defaultValue; //validate props
-
-    _this.validateProps();
-
-    var formattedValue = _this.formatValueProp(defaultValue);
-
-    _this.state = {
-      value: formattedValue,
-      numAsString: _this.removeFormatting(formattedValue)
-    };
-    _this.selectionBeforeInput = {
-      selectionStart: 0,
-      selectionEnd: 0
-    };
-    _this.onChange = _this.onChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.onKeyDown = _this.onKeyDown.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.onMouseUp = _this.onMouseUp.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.onFocus = _this.onFocus.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.onBlur = _this.onBlur.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    return _this;
-  }
-
-  _createClass(NumberFormat, [{
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      this.updateValueIfRequired(prevProps);
-    }
-  }, {
-    key: "updateValueIfRequired",
-    value: function updateValueIfRequired(prevProps) {
-      var props = this.props,
-          state = this.state,
-          focusedElm = this.focusedElm;
-      var stateValue = state.value,
-          _state$numAsString = state.numAsString,
-          lastNumStr = _state$numAsString === void 0 ? '' : _state$numAsString;
-
-      if (prevProps !== props) {
-        //validate props
-        this.validateProps();
-        var lastValueWithNewFormat = this.formatNumString(lastNumStr);
-        var formattedValue = props.value === undefined ? lastValueWithNewFormat : this.formatValueProp();
-        var numAsString = this.removeFormatting(formattedValue);
-        var floatValue = parseFloat(numAsString);
-        var lastFloatValue = parseFloat(lastNumStr);
-
-        if ( //while typing set state only when float value changes
-        (!isNaN(floatValue) || !isNaN(lastFloatValue)) && floatValue !== lastFloatValue || //can also set state when float value is same and the format props changes
-        lastValueWithNewFormat !== stateValue || //set state always when not in focus and formatted value is changed
-        focusedElm === null && formattedValue !== stateValue) {
-          this.updateValue({
-            formattedValue: formattedValue,
-            numAsString: numAsString,
-            input: focusedElm
-          });
-        }
-      }
-    }
-    /** Misc methods **/
-
-  }, {
-    key: "getFloatString",
-    value: function getFloatString() {
-      var num = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-      var decimalScale = this.props.decimalScale;
-
-      var _this$getSeparators = this.getSeparators(),
-          decimalSeparator = _this$getSeparators.decimalSeparator;
-
-      var numRegex = this.getNumberRegex(true); //remove negation for regex check
-
-      var hasNegation = num[0] === '-';
-      if (hasNegation) num = num.replace('-', ''); //if decimal scale is zero remove decimal and number after decimalSeparator
-
-      if (decimalSeparator && decimalScale === 0) {
-        num = num.split(decimalSeparator)[0];
-      }
-
-      num = (num.match(numRegex) || []).join('').replace(decimalSeparator, '.'); //remove extra decimals
-
-      var firstDecimalIndex = num.indexOf('.');
-
-      if (firstDecimalIndex !== -1) {
-        num = "".concat(num.substring(0, firstDecimalIndex), ".").concat(num.substring(firstDecimalIndex + 1, num.length).replace(new RegExp(escapeRegExp(decimalSeparator), 'g'), ''));
-      } //add negation back
-
-
-      if (hasNegation) num = '-' + num;
-      return num;
-    } //returned regex assumes decimalSeparator is as per prop
-
-  }, {
-    key: "getNumberRegex",
-    value: function getNumberRegex(g, ignoreDecimalSeparator) {
-      var _this$props = this.props,
-          format = _this$props.format,
-          decimalScale = _this$props.decimalScale;
-
-      var _this$getSeparators2 = this.getSeparators(),
-          decimalSeparator = _this$getSeparators2.decimalSeparator;
-
-      return new RegExp('\\d' + (decimalSeparator && decimalScale !== 0 && !ignoreDecimalSeparator && !format ? '|' + escapeRegExp(decimalSeparator) : ''), g ? 'g' : undefined);
-    }
-  }, {
-    key: "getSeparators",
-    value: function getSeparators() {
-      var decimalSeparator = this.props.decimalSeparator;
-      var thousandSeparator = this.props.thousandSeparator;
-
-      if (thousandSeparator === true) {
-        thousandSeparator = ',';
-      }
-
-      return {
-        decimalSeparator: decimalSeparator,
-        thousandSeparator: thousandSeparator
-      };
-    }
-  }, {
-    key: "getMaskAtIndex",
-    value: function getMaskAtIndex(index) {
-      var _this$props$mask = this.props.mask,
-          mask = _this$props$mask === void 0 ? ' ' : _this$props$mask;
-
-      if (typeof mask === 'string') {
-        return mask;
-      }
-
-      return mask[index] || ' ';
-    }
-  }, {
-    key: "getValueObject",
-    value: function getValueObject(formattedValue, numAsString) {
-      var floatValue = parseFloat(numAsString);
-      return {
-        formattedValue: formattedValue,
-        value: numAsString,
-        floatValue: isNaN(floatValue) ? undefined : floatValue
-      };
-    }
-  }, {
-    key: "validateProps",
-    value: function validateProps() {
-      var mask = this.props.mask; //validate decimalSeparator and thousandSeparator
-
-      var _this$getSeparators3 = this.getSeparators(),
-          decimalSeparator = _this$getSeparators3.decimalSeparator,
-          thousandSeparator = _this$getSeparators3.thousandSeparator;
-
-      if (decimalSeparator === thousandSeparator) {
-        throw new Error("\n          Decimal separator can't be same as thousand separator.\n          thousandSeparator: ".concat(thousandSeparator, " (thousandSeparator = {true} is same as thousandSeparator = \",\")\n          decimalSeparator: ").concat(decimalSeparator, " (default value for decimalSeparator is .)\n       "));
-      } //validate mask
-
-
-      if (mask) {
-        var maskAsStr = mask === 'string' ? mask : mask.toString();
-
-        if (maskAsStr.match(/\d/g)) {
-          throw new Error("\n          Mask ".concat(mask, " should not contain numeric character;\n        "));
-        }
-      }
-    }
-    /** Misc methods end **/
-
-    /** caret specific methods **/
-
-  }, {
-    key: "setPatchedCaretPosition",
-    value: function setPatchedCaretPosition(el, caretPos, currentValue) {
-      /* setting caret position within timeout of 0ms is required for mobile chrome,
-      otherwise browser resets the caret position after we set it
-      We are also setting it without timeout so that in normal browser we don't see the flickering */
-      setCaretPosition(el, caretPos);
-      setTimeout(function () {
-        if (el.value === currentValue) setCaretPosition(el, caretPos);
-      }, 0);
-    }
-    /* This keeps the caret within typing area so people can't type in between prefix or suffix */
-
-  }, {
-    key: "correctCaretPosition",
-    value: function correctCaretPosition(value, caretPos, direction) {
-      var _this$props2 = this.props,
-          prefix = _this$props2.prefix,
-          suffix = _this$props2.suffix,
-          format = _this$props2.format; //if value is empty return 0
-
-      if (value === '') return 0; //caret position should be between 0 and value length
-
-      caretPos = clamp(caretPos, 0, value.length); //in case of format as number limit between prefix and suffix
-
-      if (!format) {
-        var hasNegation = value[0] === '-';
-        return clamp(caretPos, prefix.length + (hasNegation ? 1 : 0), value.length - suffix.length);
-      } //in case if custom format method don't do anything
-
-
-      if (typeof format === 'function') return caretPos;
-      /* in case format is string find the closest # position from the caret position */
-      //in case the caretPos have input value on it don't do anything
-
-      if (format[caretPos] === '#' && charIsNumber(value[caretPos])) return caretPos; //if caretPos is just after input value don't do anything
-
-      if (format[caretPos - 1] === '#' && charIsNumber(value[caretPos - 1])) return caretPos; //find the nearest caret position
-
-      var firstHashPosition = format.indexOf('#');
-      var lastHashPosition = format.lastIndexOf('#'); //limit the cursor between the first # position and the last # position
-
-      caretPos = clamp(caretPos, firstHashPosition, lastHashPosition + 1);
-      var nextPos = format.substring(caretPos, format.length).indexOf('#');
-      var caretLeftBound = caretPos;
-      var caretRightBound = caretPos + (nextPos === -1 ? 0 : nextPos); //get the position where the last number is present
-
-      while (caretLeftBound > firstHashPosition && (format[caretLeftBound] !== '#' || !charIsNumber(value[caretLeftBound]))) {
-        caretLeftBound -= 1;
-      }
-
-      var goToLeft = !charIsNumber(value[caretRightBound]) || direction === 'left' && caretPos !== firstHashPosition || caretPos - caretLeftBound < caretRightBound - caretPos;
-
-      if (goToLeft) {
-        //check if number should be taken after the bound or after it
-        //if number preceding a valid number keep it after
-        return charIsNumber(value[caretLeftBound]) ? caretLeftBound + 1 : caretLeftBound;
-      }
-
-      return caretRightBound;
-    }
-  }, {
-    key: "getCaretPosition",
-    value: function getCaretPosition(inputValue, formattedValue, caretPos) {
-      var format = this.props.format;
-      var stateValue = this.state.value;
-      var numRegex = this.getNumberRegex(true);
-      var inputNumber = (inputValue.match(numRegex) || []).join('');
-      var formattedNumber = (formattedValue.match(numRegex) || []).join('');
-      var j, i;
-      j = 0;
-
-      for (i = 0; i < caretPos; i++) {
-        var currentInputChar = inputValue[i] || '';
-        var currentFormatChar = formattedValue[j] || ''; //no need to increase new cursor position if formatted value does not have those characters
-        //case inputValue = 1a23 and formattedValue =  123
-
-        if (!currentInputChar.match(numRegex) && currentInputChar !== currentFormatChar) continue; //When we are striping out leading zeros maintain the new cursor position
-        //Case inputValue = 00023 and formattedValue = 23;
-
-        if (currentInputChar === '0' && currentFormatChar.match(numRegex) && currentFormatChar !== '0' && inputNumber.length !== formattedNumber.length) continue; //we are not using currentFormatChar because j can change here
-
-        while (currentInputChar !== formattedValue[j] && j < formattedValue.length) {
-          j++;
-        }
-
-        j++;
-      }
-
-      if (typeof format === 'string' && !stateValue) {
-        //set it to the maximum value so it goes after the last number
-        j = formattedValue.length;
-      } //correct caret position if its outside of editable area
-
-
-      j = this.correctCaretPosition(formattedValue, j);
-      return j;
-    }
-    /** caret specific methods ends **/
-
-    /** methods to remove formattting **/
-
-  }, {
-    key: "removePrefixAndSuffix",
-    value: function removePrefixAndSuffix(val) {
-      var _this$props3 = this.props,
-          format = _this$props3.format,
-          prefix = _this$props3.prefix,
-          suffix = _this$props3.suffix; //remove prefix and suffix
-
-      if (!format && val) {
-        var isNegative = val[0] === '-'; //remove negation sign
-
-        if (isNegative) val = val.substring(1, val.length); //remove prefix
-
-        val = prefix && val.indexOf(prefix) === 0 ? val.substring(prefix.length, val.length) : val; //remove suffix
-
-        var suffixLastIndex = val.lastIndexOf(suffix);
-        val = suffix && suffixLastIndex !== -1 && suffixLastIndex === val.length - suffix.length ? val.substring(0, suffixLastIndex) : val; //add negation sign back
-
-        if (isNegative) val = '-' + val;
-      }
-
-      return val;
-    }
-  }, {
-    key: "removePatternFormatting",
-    value: function removePatternFormatting(val) {
-      var format = this.props.format;
-      var formatArray = format.split('#').filter(function (str) {
-        return str !== '';
-      });
-      var start = 0;
-      var numStr = '';
-
-      for (var i = 0, ln = formatArray.length; i <= ln; i++) {
-        var part = formatArray[i] || ''; //if i is the last fragment take the index of end of the value
-        //For case like +1 (911) 911 91 91 having pattern +1 (###) ### ## ##
-
-        var index = i === ln ? val.length : val.indexOf(part, start);
-        /* in any case if we don't find the pattern part in the value assume the val as numeric string
-        This will be also in case if user has started typing, in any other case it will not be -1
-        unless wrong prop value is provided */
-
-        if (index === -1) {
-          numStr = val;
-          break;
-        } else {
-          numStr += val.substring(start, index);
-          start = index + part.length;
-        }
-      }
-
-      return (numStr.match(/\d/g) || []).join('');
-    }
-  }, {
-    key: "removeFormatting",
-    value: function removeFormatting(val) {
-      var _this$props4 = this.props,
-          format = _this$props4.format,
-          removeFormatting = _this$props4.removeFormatting;
-      if (!val) return val;
-
-      if (!format) {
-        val = this.removePrefixAndSuffix(val);
-        val = this.getFloatString(val);
-      } else if (typeof format === 'string') {
-        val = this.removePatternFormatting(val);
-      } else if (typeof removeFormatting === 'function') {
-        //condition need to be handled if format method is provide,
-        val = removeFormatting(val);
-      } else {
-        val = (val.match(/\d/g) || []).join('');
-      }
-
-      return val;
-    }
-    /** methods to remove formattting end **/
-
-    /*** format specific methods start ***/
-
-    /**
-     * Format when # based string is provided
-     * @param  {string} numStr Numeric String
-     * @return {string}        formatted Value
-     */
-
-  }, {
-    key: "formatWithPattern",
-    value: function formatWithPattern(numStr) {
-      var format = this.props.format;
-      var hashCount = 0;
-      var formattedNumberAry = format.split('');
-
-      for (var i = 0, ln = format.length; i < ln; i++) {
-        if (format[i] === '#') {
-          formattedNumberAry[i] = numStr[hashCount] || this.getMaskAtIndex(hashCount);
-          hashCount += 1;
-        }
-      }
-
-      return formattedNumberAry.join('');
-    }
-    /**
-     * @param  {string} numStr Numeric string/floatString] It always have decimalSeparator as .
-     * @return {string} formatted Value
-     */
-
-  }, {
-    key: "formatAsNumber",
-    value: function formatAsNumber(numStr) {
-      var _this$props5 = this.props,
-          decimalScale = _this$props5.decimalScale,
-          fixedDecimalScale = _this$props5.fixedDecimalScale,
-          prefix = _this$props5.prefix,
-          suffix = _this$props5.suffix,
-          allowNegative = _this$props5.allowNegative,
-          thousandsGroupStyle = _this$props5.thousandsGroupStyle;
-
-      var _this$getSeparators4 = this.getSeparators(),
-          thousandSeparator = _this$getSeparators4.thousandSeparator,
-          decimalSeparator = _this$getSeparators4.decimalSeparator;
-
-      var hasDecimalSeparator = numStr.indexOf('.') !== -1 || decimalScale && fixedDecimalScale;
-
-      var _splitDecimal = splitDecimal(numStr, allowNegative),
-          beforeDecimal = _splitDecimal.beforeDecimal,
-          afterDecimal = _splitDecimal.afterDecimal,
-          addNegation = _splitDecimal.addNegation; // eslint-disable-line prefer-const
-      //apply decimal precision if its defined
-
-
-      if (decimalScale !== undefined) afterDecimal = limitToScale(afterDecimal, decimalScale, fixedDecimalScale);
-
-      if (thousandSeparator) {
-        beforeDecimal = applyThousandSeparator(beforeDecimal, thousandSeparator, thousandsGroupStyle);
-      } //add prefix and suffix
-
-
-      if (prefix) beforeDecimal = prefix + beforeDecimal;
-      if (suffix) afterDecimal = afterDecimal + suffix; //restore negation sign
-
-      if (addNegation) beforeDecimal = '-' + beforeDecimal;
-      numStr = beforeDecimal + (hasDecimalSeparator && decimalSeparator || '') + afterDecimal;
-      return numStr;
-    }
-  }, {
-    key: "formatNumString",
-    value: function formatNumString() {
-      var numStr = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-      var _this$props6 = this.props,
-          format = _this$props6.format,
-          allowEmptyFormatting = _this$props6.allowEmptyFormatting;
-      var formattedValue = numStr;
-
-      if (numStr === '' && !allowEmptyFormatting) {
-        formattedValue = '';
-      } else if (numStr === '-' && !format) {
-        formattedValue = '-';
-      } else if (typeof format === 'string') {
-        formattedValue = this.formatWithPattern(formattedValue);
-      } else if (typeof format === 'function') {
-        formattedValue = format(formattedValue);
-      } else {
-        formattedValue = this.formatAsNumber(formattedValue);
-      }
-
-      return formattedValue;
-    }
-  }, {
-    key: "formatValueProp",
-    value: function formatValueProp(defaultValue) {
-      var _this$props7 = this.props,
-          format = _this$props7.format,
-          decimalScale = _this$props7.decimalScale,
-          fixedDecimalScale = _this$props7.fixedDecimalScale,
-          allowEmptyFormatting = _this$props7.allowEmptyFormatting;
-      var _this$props8 = this.props,
-          _this$props8$value = _this$props8.value,
-          value = _this$props8$value === void 0 ? defaultValue : _this$props8$value,
-          isNumericString = _this$props8.isNumericString;
-      var isNonNumericFalsy = !value && value !== 0;
-
-      if (isNonNumericFalsy && allowEmptyFormatting) {
-        value = '';
-      } // if value is not defined return empty string
-
-
-      if (isNonNumericFalsy && !allowEmptyFormatting) return '';
-
-      if (typeof value === 'number') {
-        value = value.toString();
-        isNumericString = true;
-      } //change infinity value to empty string
-
-
-      if (value === 'Infinity' && isNumericString) {
-        value = '';
-      } //round the number based on decimalScale
-      //format only if non formatted value is provided
-
-
-      if (isNumericString && !format && typeof decimalScale === 'number') {
-        value = roundToPrecision(value, decimalScale, fixedDecimalScale);
-      }
-
-      var formattedValue = isNumericString ? this.formatNumString(value) : this.formatInput(value);
-      return formattedValue;
-    }
-  }, {
-    key: "formatNegation",
-    value: function formatNegation() {
-      var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-      var allowNegative = this.props.allowNegative;
-      var negationRegex = new RegExp('(-)');
-      var doubleNegationRegex = new RegExp('(-)(.)*(-)'); // Check number has '-' value
-
-      var hasNegation = negationRegex.test(value); // Check number has 2 or more '-' values
-
-      var removeNegation = doubleNegationRegex.test(value); //remove negation
-
-      value = value.replace(/-/g, '');
-
-      if (hasNegation && !removeNegation && allowNegative) {
-        value = '-' + value;
-      }
-
-      return value;
-    }
-  }, {
-    key: "formatInput",
-    value: function formatInput() {
-      var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-      var format = this.props.format; //format negation only if we are formatting as number
-
-      if (!format) {
-        value = this.removePrefixAndSuffix(value);
-        value = this.formatNegation(value);
-      } //remove formatting from number
-
-
-      value = this.removeFormatting(value);
-      return this.formatNumString(value);
-    }
-    /*** format specific methods end ***/
-
-  }, {
-    key: "isCharacterAFormat",
-    value: function isCharacterAFormat(caretPos, value) {
-      var _this$props9 = this.props,
-          format = _this$props9.format,
-          prefix = _this$props9.prefix,
-          suffix = _this$props9.suffix,
-          decimalScale = _this$props9.decimalScale,
-          fixedDecimalScale = _this$props9.fixedDecimalScale;
-
-      var _this$getSeparators5 = this.getSeparators(),
-          decimalSeparator = _this$getSeparators5.decimalSeparator; //check within format pattern
-
-
-      if (typeof format === 'string' && format[caretPos] !== '#') return true; //check in number format
-
-      if (!format && (caretPos < prefix.length || caretPos >= value.length - suffix.length || decimalScale && fixedDecimalScale && value[caretPos] === decimalSeparator)) {
-        return true;
-      }
-
-      return false;
-    }
-  }, {
-    key: "checkIfFormatGotDeleted",
-    value: function checkIfFormatGotDeleted(start, end, value) {
-      for (var i = start; i < end; i++) {
-        if (this.isCharacterAFormat(i, value)) return true;
-      }
-
-      return false;
-    }
-    /**
-     * This will check if any formatting got removed by the delete or backspace and reset the value
-     * It will also work as fallback if android chome keyDown handler does not work
-     **/
-
-  }, {
-    key: "correctInputValue",
-    value: function correctInputValue(caretPos, lastValue, value) {
-      var _this$props10 = this.props,
-          format = _this$props10.format,
-          allowNegative = _this$props10.allowNegative,
-          prefix = _this$props10.prefix,
-          suffix = _this$props10.suffix;
-
-      var _this$getSeparators6 = this.getSeparators(),
-          decimalSeparator = _this$getSeparators6.decimalSeparator;
-
-      var lastNumStr = this.state.numAsString || '';
-      var _this$selectionBefore = this.selectionBeforeInput,
-          selectionStart = _this$selectionBefore.selectionStart,
-          selectionEnd = _this$selectionBefore.selectionEnd;
-
-      var _findChangedIndex = findChangedIndex(lastValue, value),
-          start = _findChangedIndex.start,
-          end = _findChangedIndex.end;
-      /** Check if only . is added in the numeric format and replace it with decimal separator */
-
-
-      if (!format && decimalSeparator !== '.' && start === end && value[selectionStart] === '.') {
-        return value.substr(0, selectionStart) + decimalSeparator + value.substr(selectionStart + 1, value.length);
-      }
-      /* don't do anyhting if something got added,
-       or if value is empty string (when whole input is cleared)
-       or whole input is replace with a number
-      */
-
-
-      var leftBound = !!format ? 0 : prefix.length;
-      var rightBound = lastValue.length - (!!format ? 0 : suffix.length);
-
-      if (value.length > lastValue.length || !value.length || start === end || selectionStart === 0 && selectionEnd === lastValue.length || selectionStart === leftBound && selectionEnd === rightBound) {
-        return value;
-      } //if format got deleted reset the value to last value
-
-
-      if (this.checkIfFormatGotDeleted(start, end, lastValue)) {
-        value = lastValue;
-      } //for numbers check if beforeDecimal got deleted and there is nothing after decimal,
-      //clear all numbers in such case while keeping the - sign
-
-
-      if (!format) {
-        var numericString = this.removeFormatting(value);
-
-        var _splitDecimal2 = splitDecimal(numericString, allowNegative),
-            beforeDecimal = _splitDecimal2.beforeDecimal,
-            afterDecimal = _splitDecimal2.afterDecimal,
-            addNegation = _splitDecimal2.addNegation; // eslint-disable-line prefer-const
-        //clear only if something got deleted
-
-
-        var isBeforeDecimalPoint = caretPos < value.indexOf(decimalSeparator) + 1;
-
-        if (numericString.length < lastNumStr.length && isBeforeDecimalPoint && beforeDecimal === '' && !parseFloat(afterDecimal)) {
-          return addNegation ? '-' : '';
-        }
-      }
-
-      return value;
-    }
-    /** Update value and caret position */
-
-  }, {
-    key: "updateValue",
-    value: function updateValue(params) {
-      var _this2 = this;
-
-      var onUpdate = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : noop;
-      var formattedValue = params.formattedValue,
-          input = params.input;
-      var numAsString = params.numAsString,
-          caretPos = params.caretPos;
-      var onValueChange = this.props.onValueChange;
-      var lastValue = this.state.value; //set caret position, and value imperatively when element is provided
-
-      if (input) {
-        //calculate caret position if not defined
-        if (!caretPos) {
-          var inputValue = params.inputValue || input.value;
-          var currentCaretPosition = getCurrentCaretPosition(input); //get the caret position
-
-          caretPos = this.getCaretPosition(inputValue, formattedValue, currentCaretPosition);
-        } //set the value imperatively, this is required for IE fix
-
-
-        input.value = formattedValue; //set caret position
-
-        this.setPatchedCaretPosition(input, caretPos, formattedValue);
-      } //calculate numeric string if not passed
-
-
-      if (numAsString === undefined) {
-        numAsString = this.removeFormatting(formattedValue);
-      } //update state if value is changed
-
-
-      if (formattedValue !== lastValue) {
-        this.setState({
-          value: formattedValue,
-          numAsString: numAsString
-        }, function () {
-          onValueChange(_this2.getValueObject(formattedValue, numAsString));
-          onUpdate();
-        });
-      } else {
-        onUpdate();
-      }
-    }
-  }, {
-    key: "onChange",
-    value: function onChange(e) {
-      e.persist();
-      var el = e.target;
-      var inputValue = el.value;
-      var state = this.state,
-          props = this.props;
-      var isAllowed = props.isAllowed;
-      var lastValue = state.value || '';
-      var currentCaretPosition = getCurrentCaretPosition(el);
-      inputValue = this.correctInputValue(currentCaretPosition, lastValue, inputValue);
-      var formattedValue = this.formatInput(inputValue) || '';
-      var numAsString = this.removeFormatting(formattedValue);
-      var valueObj = this.getValueObject(formattedValue, numAsString);
-
-      if (!isAllowed(valueObj)) {
-        formattedValue = lastValue;
-      }
-
-      this.updateValue({
-        formattedValue: formattedValue,
-        numAsString: numAsString,
-        inputValue: inputValue,
-        input: el
-      }, function () {
-        props.onChange(e);
-      });
-    }
-  }, {
-    key: "onBlur",
-    value: function onBlur(e) {
-      var props = this.props,
-          state = this.state;
-      var format = props.format,
-          onBlur = props.onBlur,
-          allowLeadingZeros = props.allowLeadingZeros;
-      var numAsString = state.numAsString;
-      var lastValue = state.value;
-      this.focusedElm = null;
-
-      if (!format) {
-        if (!allowLeadingZeros) {
-          numAsString = fixLeadingZero(numAsString);
-        }
-
-        var formattedValue = this.formatNumString(numAsString); //change the state
-
-        if (formattedValue !== lastValue) {
-          // the event needs to be persisted because its properties can be accessed in an asynchronous way
-          e.persist();
-          this.updateValue({
-            formattedValue: formattedValue,
-            numAsString: numAsString
-          }, function () {
-            onBlur(e);
-          });
-          return;
-        }
-      }
-
-      onBlur(e);
-    }
-  }, {
-    key: "onKeyDown",
-    value: function onKeyDown(e) {
-      var el = e.target;
-      var key = e.key;
-      var selectionStart = el.selectionStart,
-          selectionEnd = el.selectionEnd,
-          _el$value = el.value,
-          value = _el$value === void 0 ? '' : _el$value;
-      var expectedCaretPosition;
-      var _this$props11 = this.props,
-          decimalScale = _this$props11.decimalScale,
-          fixedDecimalScale = _this$props11.fixedDecimalScale,
-          prefix = _this$props11.prefix,
-          suffix = _this$props11.suffix,
-          format = _this$props11.format,
-          onKeyDown = _this$props11.onKeyDown,
-          onValueChange = _this$props11.onValueChange;
-      var ignoreDecimalSeparator = decimalScale !== undefined && fixedDecimalScale;
-      var numRegex = this.getNumberRegex(false, ignoreDecimalSeparator);
-      var negativeRegex = new RegExp('-');
-      var isPatternFormat = typeof format === 'string';
-      this.selectionBeforeInput = {
-        selectionStart: selectionStart,
-        selectionEnd: selectionEnd //Handle backspace and delete against non numerical/decimal characters or arrow keys
-
-      };
-
-      if (key === 'ArrowLeft' || key === 'Backspace') {
-        expectedCaretPosition = selectionStart - 1;
-      } else if (key === 'ArrowRight') {
-        expectedCaretPosition = selectionStart + 1;
-      } else if (key === 'Delete') {
-        expectedCaretPosition = selectionStart;
-      } //if expectedCaretPosition is not set it means we don't want to Handle keyDown
-      //also if multiple characters are selected don't handle
-
-
-      if (expectedCaretPosition === undefined || selectionStart !== selectionEnd) {
-        onKeyDown(e);
-        return;
-      }
-
-      var newCaretPosition = expectedCaretPosition;
-      var leftBound = isPatternFormat ? format.indexOf('#') : prefix.length;
-      var rightBound = isPatternFormat ? format.lastIndexOf('#') + 1 : value.length - suffix.length;
-
-      if (key === 'ArrowLeft' || key === 'ArrowRight') {
-        var direction = key === 'ArrowLeft' ? 'left' : 'right';
-        newCaretPosition = this.correctCaretPosition(value, expectedCaretPosition, direction);
-      } else if (key === 'Delete' && !numRegex.test(value[expectedCaretPosition]) && !negativeRegex.test(value[expectedCaretPosition])) {
-        while (!numRegex.test(value[newCaretPosition]) && newCaretPosition < rightBound) {
-          newCaretPosition++;
-        }
-      } else if (key === 'Backspace' && !numRegex.test(value[expectedCaretPosition])) {
-        /* NOTE: This is special case when backspace is pressed on a
-        negative value while the cursor position is after prefix. We can't handle it on onChange because
-        we will not have any information of keyPress
-        */
-        if (selectionStart <= leftBound + 1 && value[0] === '-' && typeof format === 'undefined') {
-          var newValue = value.substring(1); //persist event before performing async task
-
-          e.persist();
-          this.updateValue({
-            formattedValue: newValue,
-            caretPos: newCaretPosition,
-            input: el
-          });
-        } else if (!negativeRegex.test(value[expectedCaretPosition])) {
-          while (!numRegex.test(value[newCaretPosition - 1]) && newCaretPosition > leftBound) {
-            newCaretPosition--;
-          }
-
-          newCaretPosition = this.correctCaretPosition(value, newCaretPosition, 'left');
-        }
-      }
-
-      if (newCaretPosition !== expectedCaretPosition || expectedCaretPosition < leftBound || expectedCaretPosition > rightBound) {
-        e.preventDefault();
-        this.setPatchedCaretPosition(el, newCaretPosition, value);
-      }
-      /* NOTE: this is just required for unit test as we need to get the newCaretPosition,
-              Remove this when you find different solution */
-
-
-      if (e.isUnitTestRun) {
-        this.setPatchedCaretPosition(el, newCaretPosition, value);
-      }
-
-      this.props.onKeyDown(e);
-    }
-    /** required to handle the caret position when click anywhere within the input **/
-
-  }, {
-    key: "onMouseUp",
-    value: function onMouseUp(e) {
-      var el = e.target;
-      /**
-       * NOTE: we have to give default value for value as in case when custom input is provided
-       * value can come as undefined when nothing is provided on value prop.
-      */
-
-      var selectionStart = el.selectionStart,
-          selectionEnd = el.selectionEnd,
-          _el$value2 = el.value,
-          value = _el$value2 === void 0 ? '' : _el$value2;
-
-      if (selectionStart === selectionEnd) {
-        var caretPosition = this.correctCaretPosition(value, selectionStart);
-
-        if (caretPosition !== selectionStart) {
-          this.setPatchedCaretPosition(el, caretPosition, value);
-        }
-      }
-
-      this.props.onMouseUp(e);
-    }
-  }, {
-    key: "onFocus",
-    value: function onFocus(e) {
-      var _this3 = this;
-
-      // Workaround Chrome and Safari bug https://bugs.chromium.org/p/chromium/issues/detail?id=779328
-      // (onFocus event target selectionStart is always 0 before setTimeout)
-      e.persist();
-      this.focusedElm = e.target;
-      setTimeout(function () {
-        var el = e.target;
-        var selectionStart = el.selectionStart,
-            selectionEnd = el.selectionEnd,
-            _el$value3 = el.value,
-            value = _el$value3 === void 0 ? '' : _el$value3;
-
-        var caretPosition = _this3.correctCaretPosition(value, selectionStart); //setPatchedCaretPosition only when everything is not selected on focus (while tabbing into the field)
-
-
-        if (caretPosition !== selectionStart && !(selectionStart === 0 && selectionEnd === value.length)) {
-          _this3.setPatchedCaretPosition(el, caretPosition, value);
-        }
-
-        _this3.props.onFocus(e);
-      }, 0);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this$props12 = this.props,
-          type = _this$props12.type,
-          displayType = _this$props12.displayType,
-          customInput = _this$props12.customInput,
-          renderText = _this$props12.renderText,
-          getInputRef = _this$props12.getInputRef;
-      var value = this.state.value;
-      var otherProps = omit(this.props, propTypes$1);
-
-      var inputProps = _extends({}, otherProps, {
-        type: type,
-        value: value,
-        onChange: this.onChange,
-        onKeyDown: this.onKeyDown,
-        onMouseUp: this.onMouseUp,
-        onFocus: this.onFocus,
-        onBlur: this.onBlur
-      });
-
-      if (displayType === 'text') {
-        return renderText ? renderText(value) || null : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", _extends({}, otherProps, {
-          ref: getInputRef
-        }), value);
-      } else if (customInput) {
-        var CustomInput = customInput;
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CustomInput, _extends({}, inputProps, {
-          ref: getInputRef
-        }));
-      }
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({}, inputProps, {
-        ref: getInputRef
-      }));
-    }
-  }]);
-
-  return NumberFormat;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-NumberFormat.propTypes = propTypes$1;
-NumberFormat.defaultProps = defaultProps;
-
-/* harmony default export */ __webpack_exports__["default"] = (NumberFormat);
-
-
-/***/ }),
-
-/***/ "../../../Users/Zheeno/AppData/Roaming/npm/node_modules/react/cjs/react.development.js":
-/*!***************************************************************************************!*\
-  !*** C:/Users/Zheeno/AppData/Roaming/npm/node_modules/react/cjs/react.development.js ***!
-  \***************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/** @license React v16.6.1
- * react.development.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-
-
-if (true) {
-  (function() {
-'use strict';
-
-var _assign = __webpack_require__(/*! object-assign */ "../../../Users/Zheeno/AppData/Roaming/npm/node_modules/react/node_modules/object-assign/index.js");
-var checkPropTypes = __webpack_require__(/*! prop-types/checkPropTypes */ "../../../Users/Zheeno/AppData/Roaming/npm/node_modules/react/node_modules/prop-types/checkPropTypes.js");
-
-// TODO: this is special because it gets imported during build.
-
-var ReactVersion = '16.6.1';
-
-// The Symbol used to tag the ReactElement-like types. If there is no native Symbol
-// nor polyfill, then a plain number is used for performance.
-var hasSymbol = typeof Symbol === 'function' && Symbol.for;
-
-var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
-var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
-var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
-var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
-var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
-var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
-var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace;
-
-var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
-var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
-var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
-var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
-var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
-
-var MAYBE_ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
-var FAUX_ITERATOR_SYMBOL = '@@iterator';
-
-function getIteratorFn(maybeIterable) {
-  if (maybeIterable === null || typeof maybeIterable !== 'object') {
-    return null;
-  }
-  var maybeIterator = MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL];
-  if (typeof maybeIterator === 'function') {
-    return maybeIterator;
-  }
-  return null;
-}
-
-var enableHooks = false;
-// Helps identify side effects in begin-phase lifecycle hooks and setState reducers:
-
-
-// In some cases, StrictMode should also double-render lifecycles.
-// This can be confusing for tests though,
-// And it can be bad for performance in production.
-// This feature flag can be used to control the behavior:
-
-
-// To preserve the "Pause on caught exceptions" behavior of the debugger, we
-// replay the begin phase of a failed component inside invokeGuardedCallback.
-
-
-// Warn about deprecated, async-unsafe lifecycles; relates to RFC #6:
-
-
-// Gather advanced timing metrics for Profiler subtrees.
-
-
-// Trace which interactions trigger each commit.
-
-
-// Only used in www builds.
-
-
-// Only used in www builds.
-
-
-// React Fire: prevent the value and checked attributes from syncing
-// with their related DOM properties
-
-
-// These APIs will no longer be "unstable" in the upcoming 16.7 release,
-// Control this behavior with a flag to support 16.6 minor releases in the meanwhile.
-var enableStableConcurrentModeAPIs = false;
-
-/**
- * Use invariant() to assert state which your program assumes to be true.
- *
- * Provide sprintf-style format (only %s is supported) and arguments
- * to provide information about what broke and what you were
- * expecting.
- *
- * The invariant message will be stripped in production, but the invariant
- * will remain to ensure logic does not differ in production.
- */
-
-var validateFormat = function () {};
-
-{
-  validateFormat = function (format) {
-    if (format === undefined) {
-      throw new Error('invariant requires an error message argument');
-    }
-  };
-}
-
-function invariant(condition, format, a, b, c, d, e, f) {
-  validateFormat(format);
-
-  if (!condition) {
-    var error = void 0;
-    if (format === undefined) {
-      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
-    } else {
-      var args = [a, b, c, d, e, f];
-      var argIndex = 0;
-      error = new Error(format.replace(/%s/g, function () {
-        return args[argIndex++];
-      }));
-      error.name = 'Invariant Violation';
-    }
-
-    error.framesToPop = 1; // we don't care about invariant's own frame
-    throw error;
-  }
-}
-
-// Relying on the `invariant()` implementation lets us
-// preserve the format and params in the www builds.
-
-/**
- * Forked from fbjs/warning:
- * https://github.com/facebook/fbjs/blob/e66ba20ad5be433eb54423f2b097d829324d9de6/packages/fbjs/src/__forks__/warning.js
- *
- * Only change is we use console.warn instead of console.error,
- * and do nothing when 'console' is not supported.
- * This really simplifies the code.
- * ---
- * Similar to invariant but only logs a warning if the condition is not met.
- * This can be used to log issues in development environments in critical
- * paths. Removing the logging code for production environments will keep the
- * same logic and follow the same code paths.
- */
-
-var lowPriorityWarning = function () {};
-
-{
-  var printWarning = function (format) {
-    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
-    var argIndex = 0;
-    var message = 'Warning: ' + format.replace(/%s/g, function () {
-      return args[argIndex++];
-    });
-    if (typeof console !== 'undefined') {
-      console.warn(message);
-    }
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message);
-    } catch (x) {}
-  };
-
-  lowPriorityWarning = function (condition, format) {
-    if (format === undefined) {
-      throw new Error('`lowPriorityWarning(condition, format, ...args)` requires a warning ' + 'message argument');
-    }
-    if (!condition) {
-      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-        args[_key2 - 2] = arguments[_key2];
-      }
-
-      printWarning.apply(undefined, [format].concat(args));
-    }
-  };
-}
-
-var lowPriorityWarning$1 = lowPriorityWarning;
-
-/**
- * Similar to invariant but only logs a warning if the condition is not met.
- * This can be used to log issues in development environments in critical
- * paths. Removing the logging code for production environments will keep the
- * same logic and follow the same code paths.
- */
-
-var warningWithoutStack = function () {};
-
-{
-  warningWithoutStack = function (condition, format) {
-    for (var _len = arguments.length, args = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
-      args[_key - 2] = arguments[_key];
-    }
-
-    if (format === undefined) {
-      throw new Error('`warningWithoutStack(condition, format, ...args)` requires a warning ' + 'message argument');
-    }
-    if (args.length > 8) {
-      // Check before the condition to catch violations early.
-      throw new Error('warningWithoutStack() currently supports at most 8 arguments.');
-    }
-    if (condition) {
-      return;
-    }
-    if (typeof console !== 'undefined') {
-      var argsWithFormat = args.map(function (item) {
-        return '' + item;
-      });
-      argsWithFormat.unshift('Warning: ' + format);
-
-      // We intentionally don't use spread (or .apply) directly because it
-      // breaks IE9: https://github.com/facebook/react/issues/13610
-      Function.prototype.apply.call(console.error, console, argsWithFormat);
-    }
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      var argIndex = 0;
-      var message = 'Warning: ' + format.replace(/%s/g, function () {
-        return args[argIndex++];
-      });
-      throw new Error(message);
-    } catch (x) {}
-  };
-}
-
-var warningWithoutStack$1 = warningWithoutStack;
-
-var didWarnStateUpdateForUnmountedComponent = {};
-
-function warnNoop(publicInstance, callerName) {
-  {
-    var _constructor = publicInstance.constructor;
-    var componentName = _constructor && (_constructor.displayName || _constructor.name) || 'ReactClass';
-    var warningKey = componentName + '.' + callerName;
-    if (didWarnStateUpdateForUnmountedComponent[warningKey]) {
-      return;
-    }
-    warningWithoutStack$1(false, "Can't call %s on a component that is not yet mounted. " + 'This is a no-op, but it might indicate a bug in your application. ' + 'Instead, assign to `this.state` directly or define a `state = {};` ' + 'class property with the desired state in the %s component.', callerName, componentName);
-    didWarnStateUpdateForUnmountedComponent[warningKey] = true;
-  }
-}
-
-/**
- * This is the abstract API for an update queue.
- */
-var ReactNoopUpdateQueue = {
-  /**
-   * Checks whether or not this composite component is mounted.
-   * @param {ReactClass} publicInstance The instance we want to test.
-   * @return {boolean} True if mounted, false otherwise.
-   * @protected
-   * @final
-   */
-  isMounted: function (publicInstance) {
-    return false;
-  },
-
-  /**
-   * Forces an update. This should only be invoked when it is known with
-   * certainty that we are **not** in a DOM transaction.
-   *
-   * You may want to call this when you know that some deeper aspect of the
-   * component's state has changed but `setState` was not called.
-   *
-   * This will not invoke `shouldComponentUpdate`, but it will invoke
-   * `componentWillUpdate` and `componentDidUpdate`.
-   *
-   * @param {ReactClass} publicInstance The instance that should rerender.
-   * @param {?function} callback Called after component is updated.
-   * @param {?string} callerName name of the calling function in the public API.
-   * @internal
-   */
-  enqueueForceUpdate: function (publicInstance, callback, callerName) {
-    warnNoop(publicInstance, 'forceUpdate');
-  },
-
-  /**
-   * Replaces all of the state. Always use this or `setState` to mutate state.
-   * You should treat `this.state` as immutable.
-   *
-   * There is no guarantee that `this.state` will be immediately updated, so
-   * accessing `this.state` after calling this method may return the old value.
-   *
-   * @param {ReactClass} publicInstance The instance that should rerender.
-   * @param {object} completeState Next state.
-   * @param {?function} callback Called after component is updated.
-   * @param {?string} callerName name of the calling function in the public API.
-   * @internal
-   */
-  enqueueReplaceState: function (publicInstance, completeState, callback, callerName) {
-    warnNoop(publicInstance, 'replaceState');
-  },
-
-  /**
-   * Sets a subset of the state. This only exists because _pendingState is
-   * internal. This provides a merging strategy that is not available to deep
-   * properties which is confusing. TODO: Expose pendingState or don't use it
-   * during the merge.
-   *
-   * @param {ReactClass} publicInstance The instance that should rerender.
-   * @param {object} partialState Next partial state to be merged with state.
-   * @param {?function} callback Called after component is updated.
-   * @param {?string} Name of the calling function in the public API.
-   * @internal
-   */
-  enqueueSetState: function (publicInstance, partialState, callback, callerName) {
-    warnNoop(publicInstance, 'setState');
-  }
-};
-
-var emptyObject = {};
-{
-  Object.freeze(emptyObject);
-}
-
-/**
- * Base class helpers for the updating state of a component.
- */
-function Component(props, context, updater) {
-  this.props = props;
-  this.context = context;
-  // If a component has string refs, we will assign a different object later.
-  this.refs = emptyObject;
-  // We initialize the default updater but the real one gets injected by the
-  // renderer.
-  this.updater = updater || ReactNoopUpdateQueue;
-}
-
-Component.prototype.isReactComponent = {};
-
-/**
- * Sets a subset of the state. Always use this to mutate
- * state. You should treat `this.state` as immutable.
- *
- * There is no guarantee that `this.state` will be immediately updated, so
- * accessing `this.state` after calling this method may return the old value.
- *
- * There is no guarantee that calls to `setState` will run synchronously,
- * as they may eventually be batched together.  You can provide an optional
- * callback that will be executed when the call to setState is actually
- * completed.
- *
- * When a function is provided to setState, it will be called at some point in
- * the future (not synchronously). It will be called with the up to date
- * component arguments (state, props, context). These values can be different
- * from this.* because your function may be called after receiveProps but before
- * shouldComponentUpdate, and this new state, props, and context will not yet be
- * assigned to this.
- *
- * @param {object|function} partialState Next partial state or function to
- *        produce next partial state to be merged with current state.
- * @param {?function} callback Called after state is updated.
- * @final
- * @protected
- */
-Component.prototype.setState = function (partialState, callback) {
-  !(typeof partialState === 'object' || typeof partialState === 'function' || partialState == null) ? invariant(false, 'setState(...): takes an object of state variables to update or a function which returns an object of state variables.') : void 0;
-  this.updater.enqueueSetState(this, partialState, callback, 'setState');
-};
-
-/**
- * Forces an update. This should only be invoked when it is known with
- * certainty that we are **not** in a DOM transaction.
- *
- * You may want to call this when you know that some deeper aspect of the
- * component's state has changed but `setState` was not called.
- *
- * This will not invoke `shouldComponentUpdate`, but it will invoke
- * `componentWillUpdate` and `componentDidUpdate`.
- *
- * @param {?function} callback Called after update is complete.
- * @final
- * @protected
- */
-Component.prototype.forceUpdate = function (callback) {
-  this.updater.enqueueForceUpdate(this, callback, 'forceUpdate');
-};
-
-/**
- * Deprecated APIs. These APIs used to exist on classic React classes but since
- * we would like to deprecate them, we're not going to move them over to this
- * modern base class. Instead, we define a getter that warns if it's accessed.
- */
-{
-  var deprecatedAPIs = {
-    isMounted: ['isMounted', 'Instead, make sure to clean up subscriptions and pending requests in ' + 'componentWillUnmount to prevent memory leaks.'],
-    replaceState: ['replaceState', 'Refactor your code to use setState instead (see ' + 'https://github.com/facebook/react/issues/3236).']
-  };
-  var defineDeprecationWarning = function (methodName, info) {
-    Object.defineProperty(Component.prototype, methodName, {
-      get: function () {
-        lowPriorityWarning$1(false, '%s(...) is deprecated in plain JavaScript React classes. %s', info[0], info[1]);
-        return undefined;
-      }
-    });
-  };
-  for (var fnName in deprecatedAPIs) {
-    if (deprecatedAPIs.hasOwnProperty(fnName)) {
-      defineDeprecationWarning(fnName, deprecatedAPIs[fnName]);
-    }
-  }
-}
-
-function ComponentDummy() {}
-ComponentDummy.prototype = Component.prototype;
-
-/**
- * Convenience component with default shallow equality check for sCU.
- */
-function PureComponent(props, context, updater) {
-  this.props = props;
-  this.context = context;
-  // If a component has string refs, we will assign a different object later.
-  this.refs = emptyObject;
-  this.updater = updater || ReactNoopUpdateQueue;
-}
-
-var pureComponentPrototype = PureComponent.prototype = new ComponentDummy();
-pureComponentPrototype.constructor = PureComponent;
-// Avoid an extra prototype jump for these methods.
-_assign(pureComponentPrototype, Component.prototype);
-pureComponentPrototype.isPureReactComponent = true;
-
-// an immutable object with a single mutable value
-function createRef() {
-  var refObject = {
-    current: null
-  };
-  {
-    Object.seal(refObject);
-  }
-  return refObject;
-}
-
-/**
- * Keeps track of the current owner.
- *
- * The current owner is the component who should own any components that are
- * currently being constructed.
- */
-var ReactCurrentOwner = {
-  /**
-   * @internal
-   * @type {ReactComponent}
-   */
-  current: null,
-  currentDispatcher: null
-};
-
-var BEFORE_SLASH_RE = /^(.*)[\\\/]/;
-
-var describeComponentFrame = function (name, source, ownerName) {
-  var sourceInfo = '';
-  if (source) {
-    var path = source.fileName;
-    var fileName = path.replace(BEFORE_SLASH_RE, '');
-    {
-      // In DEV, include code for a common special case:
-      // prefer "folder/index.js" instead of just "index.js".
-      if (/^index\./.test(fileName)) {
-        var match = path.match(BEFORE_SLASH_RE);
-        if (match) {
-          var pathBeforeSlash = match[1];
-          if (pathBeforeSlash) {
-            var folderName = pathBeforeSlash.replace(BEFORE_SLASH_RE, '');
-            fileName = folderName + '/' + fileName;
-          }
-        }
-      }
-    }
-    sourceInfo = ' (at ' + fileName + ':' + source.lineNumber + ')';
-  } else if (ownerName) {
-    sourceInfo = ' (created by ' + ownerName + ')';
-  }
-  return '\n    in ' + (name || 'Unknown') + sourceInfo;
-};
-
-var Resolved = 1;
-
-
-function refineResolvedLazyComponent(lazyComponent) {
-  return lazyComponent._status === Resolved ? lazyComponent._result : null;
-}
-
-function getWrappedName(outerType, innerType, wrapperName) {
-  var functionName = innerType.displayName || innerType.name || '';
-  return outerType.displayName || (functionName !== '' ? wrapperName + '(' + functionName + ')' : wrapperName);
-}
-
-function getComponentName(type) {
-  if (type == null) {
-    // Host root, text node or just invalid type.
-    return null;
-  }
-  {
-    if (typeof type.tag === 'number') {
-      warningWithoutStack$1(false, 'Received an unexpected object in getComponentName(). ' + 'This is likely a bug in React. Please file an issue.');
-    }
-  }
-  if (typeof type === 'function') {
-    return type.displayName || type.name || null;
-  }
-  if (typeof type === 'string') {
-    return type;
-  }
-  switch (type) {
-    case REACT_CONCURRENT_MODE_TYPE:
-      return 'ConcurrentMode';
-    case REACT_FRAGMENT_TYPE:
-      return 'Fragment';
-    case REACT_PORTAL_TYPE:
-      return 'Portal';
-    case REACT_PROFILER_TYPE:
-      return 'Profiler';
-    case REACT_STRICT_MODE_TYPE:
-      return 'StrictMode';
-    case REACT_SUSPENSE_TYPE:
-      return 'Suspense';
-  }
-  if (typeof type === 'object') {
-    switch (type.$$typeof) {
-      case REACT_CONTEXT_TYPE:
-        return 'Context.Consumer';
-      case REACT_PROVIDER_TYPE:
-        return 'Context.Provider';
-      case REACT_FORWARD_REF_TYPE:
-        return getWrappedName(type, type.render, 'ForwardRef');
-      case REACT_MEMO_TYPE:
-        return getComponentName(type.type);
-      case REACT_LAZY_TYPE:
-        {
-          var thenable = type;
-          var resolvedThenable = refineResolvedLazyComponent(thenable);
-          if (resolvedThenable) {
-            return getComponentName(resolvedThenable);
-          }
-        }
-    }
-  }
-  return null;
-}
-
-var ReactDebugCurrentFrame = {};
-
-var currentlyValidatingElement = null;
-
-function setCurrentlyValidatingElement(element) {
-  {
-    currentlyValidatingElement = element;
-  }
-}
-
-{
-  // Stack implementation injected by the current renderer.
-  ReactDebugCurrentFrame.getCurrentStack = null;
-
-  ReactDebugCurrentFrame.getStackAddendum = function () {
-    var stack = '';
-
-    // Add an extra top frame while an element is being validated
-    if (currentlyValidatingElement) {
-      var name = getComponentName(currentlyValidatingElement.type);
-      var owner = currentlyValidatingElement._owner;
-      stack += describeComponentFrame(name, currentlyValidatingElement._source, owner && getComponentName(owner.type));
-    }
-
-    // Delegate to the injected renderer-specific implementation
-    var impl = ReactDebugCurrentFrame.getCurrentStack;
-    if (impl) {
-      stack += impl() || '';
-    }
-
-    return stack;
-  };
-}
-
-var ReactSharedInternals = {
-  ReactCurrentOwner: ReactCurrentOwner,
-  // Used by renderers to avoid bundling object-assign twice in UMD bundles:
-  assign: _assign
-};
-
-{
-  _assign(ReactSharedInternals, {
-    // These should not be included in production.
-    ReactDebugCurrentFrame: ReactDebugCurrentFrame,
-    // Shim for React DOM 16.0.0 which still destructured (but not used) this.
-    // TODO: remove in React 17.0.
-    ReactComponentTreeHook: {}
-  });
-}
-
-/**
- * Similar to invariant but only logs a warning if the condition is not met.
- * This can be used to log issues in development environments in critical
- * paths. Removing the logging code for production environments will keep the
- * same logic and follow the same code paths.
- */
-
-var warning = warningWithoutStack$1;
-
-{
-  warning = function (condition, format) {
-    if (condition) {
-      return;
-    }
-    var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
-    var stack = ReactDebugCurrentFrame.getStackAddendum();
-    // eslint-disable-next-line react-internal/warning-and-invariant-args
-
-    for (var _len = arguments.length, args = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
-      args[_key - 2] = arguments[_key];
-    }
-
-    warningWithoutStack$1.apply(undefined, [false, format + '%s'].concat(args, [stack]));
-  };
-}
-
-var warning$1 = warning;
-
-var hasOwnProperty = Object.prototype.hasOwnProperty;
-
-var RESERVED_PROPS = {
-  key: true,
-  ref: true,
-  __self: true,
-  __source: true
-};
-
-var specialPropKeyWarningShown = void 0;
-var specialPropRefWarningShown = void 0;
-
-function hasValidRef(config) {
-  {
-    if (hasOwnProperty.call(config, 'ref')) {
-      var getter = Object.getOwnPropertyDescriptor(config, 'ref').get;
-      if (getter && getter.isReactWarning) {
-        return false;
-      }
-    }
-  }
-  return config.ref !== undefined;
-}
-
-function hasValidKey(config) {
-  {
-    if (hasOwnProperty.call(config, 'key')) {
-      var getter = Object.getOwnPropertyDescriptor(config, 'key').get;
-      if (getter && getter.isReactWarning) {
-        return false;
-      }
-    }
-  }
-  return config.key !== undefined;
-}
-
-function defineKeyPropWarningGetter(props, displayName) {
-  var warnAboutAccessingKey = function () {
-    if (!specialPropKeyWarningShown) {
-      specialPropKeyWarningShown = true;
-      warningWithoutStack$1(false, '%s: `key` is not a prop. Trying to access it will result ' + 'in `undefined` being returned. If you need to access the same ' + 'value within the child component, you should pass it as a different ' + 'prop. (https://fb.me/react-special-props)', displayName);
-    }
-  };
-  warnAboutAccessingKey.isReactWarning = true;
-  Object.defineProperty(props, 'key', {
-    get: warnAboutAccessingKey,
-    configurable: true
-  });
-}
-
-function defineRefPropWarningGetter(props, displayName) {
-  var warnAboutAccessingRef = function () {
-    if (!specialPropRefWarningShown) {
-      specialPropRefWarningShown = true;
-      warningWithoutStack$1(false, '%s: `ref` is not a prop. Trying to access it will result ' + 'in `undefined` being returned. If you need to access the same ' + 'value within the child component, you should pass it as a different ' + 'prop. (https://fb.me/react-special-props)', displayName);
-    }
-  };
-  warnAboutAccessingRef.isReactWarning = true;
-  Object.defineProperty(props, 'ref', {
-    get: warnAboutAccessingRef,
-    configurable: true
-  });
-}
-
-/**
- * Factory method to create a new React element. This no longer adheres to
- * the class pattern, so do not use new to call it. Also, no instanceof check
- * will work. Instead test $$typeof field against Symbol.for('react.element') to check
- * if something is a React Element.
- *
- * @param {*} type
- * @param {*} key
- * @param {string|object} ref
- * @param {*} self A *temporary* helper to detect places where `this` is
- * different from the `owner` when React.createElement is called, so that we
- * can warn. We want to get rid of owner and replace string `ref`s with arrow
- * functions, and as long as `this` and owner are the same, there will be no
- * change in behavior.
- * @param {*} source An annotation object (added by a transpiler or otherwise)
- * indicating filename, line number, and/or other information.
- * @param {*} owner
- * @param {*} props
- * @internal
- */
-var ReactElement = function (type, key, ref, self, source, owner, props) {
-  var element = {
-    // This tag allows us to uniquely identify this as a React Element
-    $$typeof: REACT_ELEMENT_TYPE,
-
-    // Built-in properties that belong on the element
-    type: type,
-    key: key,
-    ref: ref,
-    props: props,
-
-    // Record the component responsible for creating this element.
-    _owner: owner
-  };
-
-  {
-    // The validation flag is currently mutative. We put it on
-    // an external backing store so that we can freeze the whole object.
-    // This can be replaced with a WeakMap once they are implemented in
-    // commonly used development environments.
-    element._store = {};
-
-    // To make comparing ReactElements easier for testing purposes, we make
-    // the validation flag non-enumerable (where possible, which should
-    // include every environment we run tests in), so the test framework
-    // ignores it.
-    Object.defineProperty(element._store, 'validated', {
-      configurable: false,
-      enumerable: false,
-      writable: true,
-      value: false
-    });
-    // self and source are DEV only properties.
-    Object.defineProperty(element, '_self', {
-      configurable: false,
-      enumerable: false,
-      writable: false,
-      value: self
-    });
-    // Two elements created in two different places should be considered
-    // equal for testing purposes and therefore we hide it from enumeration.
-    Object.defineProperty(element, '_source', {
-      configurable: false,
-      enumerable: false,
-      writable: false,
-      value: source
-    });
-    if (Object.freeze) {
-      Object.freeze(element.props);
-      Object.freeze(element);
-    }
-  }
-
-  return element;
-};
-
-/**
- * Create and return a new ReactElement of the given type.
- * See https://reactjs.org/docs/react-api.html#createelement
- */
-function createElement(type, config, children) {
-  var propName = void 0;
-
-  // Reserved names are extracted
-  var props = {};
-
-  var key = null;
-  var ref = null;
-  var self = null;
-  var source = null;
-
-  if (config != null) {
-    if (hasValidRef(config)) {
-      ref = config.ref;
-    }
-    if (hasValidKey(config)) {
-      key = '' + config.key;
-    }
-
-    self = config.__self === undefined ? null : config.__self;
-    source = config.__source === undefined ? null : config.__source;
-    // Remaining properties are added to a new props object
-    for (propName in config) {
-      if (hasOwnProperty.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
-        props[propName] = config[propName];
-      }
-    }
-  }
-
-  // Children can be more than one argument, and those are transferred onto
-  // the newly allocated props object.
-  var childrenLength = arguments.length - 2;
-  if (childrenLength === 1) {
-    props.children = children;
-  } else if (childrenLength > 1) {
-    var childArray = Array(childrenLength);
-    for (var i = 0; i < childrenLength; i++) {
-      childArray[i] = arguments[i + 2];
-    }
-    {
-      if (Object.freeze) {
-        Object.freeze(childArray);
-      }
-    }
-    props.children = childArray;
-  }
-
-  // Resolve default props
-  if (type && type.defaultProps) {
-    var defaultProps = type.defaultProps;
-    for (propName in defaultProps) {
-      if (props[propName] === undefined) {
-        props[propName] = defaultProps[propName];
-      }
-    }
-  }
-  {
-    if (key || ref) {
-      var displayName = typeof type === 'function' ? type.displayName || type.name || 'Unknown' : type;
-      if (key) {
-        defineKeyPropWarningGetter(props, displayName);
-      }
-      if (ref) {
-        defineRefPropWarningGetter(props, displayName);
-      }
-    }
-  }
-  return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props);
-}
-
-/**
- * Return a function that produces ReactElements of a given type.
- * See https://reactjs.org/docs/react-api.html#createfactory
- */
-
-
-function cloneAndReplaceKey(oldElement, newKey) {
-  var newElement = ReactElement(oldElement.type, newKey, oldElement.ref, oldElement._self, oldElement._source, oldElement._owner, oldElement.props);
-
-  return newElement;
-}
-
-/**
- * Clone and return a new ReactElement using element as the starting point.
- * See https://reactjs.org/docs/react-api.html#cloneelement
- */
-function cloneElement(element, config, children) {
-  !!(element === null || element === undefined) ? invariant(false, 'React.cloneElement(...): The argument must be a React element, but you passed %s.', element) : void 0;
-
-  var propName = void 0;
-
-  // Original props are copied
-  var props = _assign({}, element.props);
-
-  // Reserved names are extracted
-  var key = element.key;
-  var ref = element.ref;
-  // Self is preserved since the owner is preserved.
-  var self = element._self;
-  // Source is preserved since cloneElement is unlikely to be targeted by a
-  // transpiler, and the original source is probably a better indicator of the
-  // true owner.
-  var source = element._source;
-
-  // Owner will be preserved, unless ref is overridden
-  var owner = element._owner;
-
-  if (config != null) {
-    if (hasValidRef(config)) {
-      // Silently steal the ref from the parent.
-      ref = config.ref;
-      owner = ReactCurrentOwner.current;
-    }
-    if (hasValidKey(config)) {
-      key = '' + config.key;
-    }
-
-    // Remaining properties override existing props
-    var defaultProps = void 0;
-    if (element.type && element.type.defaultProps) {
-      defaultProps = element.type.defaultProps;
-    }
-    for (propName in config) {
-      if (hasOwnProperty.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
-        if (config[propName] === undefined && defaultProps !== undefined) {
-          // Resolve default props
-          props[propName] = defaultProps[propName];
-        } else {
-          props[propName] = config[propName];
-        }
-      }
-    }
-  }
-
-  // Children can be more than one argument, and those are transferred onto
-  // the newly allocated props object.
-  var childrenLength = arguments.length - 2;
-  if (childrenLength === 1) {
-    props.children = children;
-  } else if (childrenLength > 1) {
-    var childArray = Array(childrenLength);
-    for (var i = 0; i < childrenLength; i++) {
-      childArray[i] = arguments[i + 2];
-    }
-    props.children = childArray;
-  }
-
-  return ReactElement(element.type, key, ref, self, source, owner, props);
-}
-
-/**
- * Verifies the object is a ReactElement.
- * See https://reactjs.org/docs/react-api.html#isvalidelement
- * @param {?object} object
- * @return {boolean} True if `object` is a ReactElement.
- * @final
- */
-function isValidElement(object) {
-  return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
-}
-
-var SEPARATOR = '.';
-var SUBSEPARATOR = ':';
-
-/**
- * Escape and wrap key so it is safe to use as a reactid
- *
- * @param {string} key to be escaped.
- * @return {string} the escaped key.
- */
-function escape(key) {
-  var escapeRegex = /[=:]/g;
-  var escaperLookup = {
-    '=': '=0',
-    ':': '=2'
-  };
-  var escapedString = ('' + key).replace(escapeRegex, function (match) {
-    return escaperLookup[match];
-  });
-
-  return '$' + escapedString;
-}
-
-/**
- * TODO: Test that a single child and an array with one item have the same key
- * pattern.
- */
-
-var didWarnAboutMaps = false;
-
-var userProvidedKeyEscapeRegex = /\/+/g;
-function escapeUserProvidedKey(text) {
-  return ('' + text).replace(userProvidedKeyEscapeRegex, '$&/');
-}
-
-var POOL_SIZE = 10;
-var traverseContextPool = [];
-function getPooledTraverseContext(mapResult, keyPrefix, mapFunction, mapContext) {
-  if (traverseContextPool.length) {
-    var traverseContext = traverseContextPool.pop();
-    traverseContext.result = mapResult;
-    traverseContext.keyPrefix = keyPrefix;
-    traverseContext.func = mapFunction;
-    traverseContext.context = mapContext;
-    traverseContext.count = 0;
-    return traverseContext;
-  } else {
-    return {
-      result: mapResult,
-      keyPrefix: keyPrefix,
-      func: mapFunction,
-      context: mapContext,
-      count: 0
-    };
-  }
-}
-
-function releaseTraverseContext(traverseContext) {
-  traverseContext.result = null;
-  traverseContext.keyPrefix = null;
-  traverseContext.func = null;
-  traverseContext.context = null;
-  traverseContext.count = 0;
-  if (traverseContextPool.length < POOL_SIZE) {
-    traverseContextPool.push(traverseContext);
-  }
-}
-
-/**
- * @param {?*} children Children tree container.
- * @param {!string} nameSoFar Name of the key path so far.
- * @param {!function} callback Callback to invoke with each child found.
- * @param {?*} traverseContext Used to pass information throughout the traversal
- * process.
- * @return {!number} The number of children in this subtree.
- */
-function traverseAllChildrenImpl(children, nameSoFar, callback, traverseContext) {
-  var type = typeof children;
-
-  if (type === 'undefined' || type === 'boolean') {
-    // All of the above are perceived as null.
-    children = null;
-  }
-
-  var invokeCallback = false;
-
-  if (children === null) {
-    invokeCallback = true;
-  } else {
-    switch (type) {
-      case 'string':
-      case 'number':
-        invokeCallback = true;
-        break;
-      case 'object':
-        switch (children.$$typeof) {
-          case REACT_ELEMENT_TYPE:
-          case REACT_PORTAL_TYPE:
-            invokeCallback = true;
-        }
-    }
-  }
-
-  if (invokeCallback) {
-    callback(traverseContext, children,
-    // If it's the only child, treat the name as if it was wrapped in an array
-    // so that it's consistent if the number of children grows.
-    nameSoFar === '' ? SEPARATOR + getComponentKey(children, 0) : nameSoFar);
-    return 1;
-  }
-
-  var child = void 0;
-  var nextName = void 0;
-  var subtreeCount = 0; // Count of children found in the current subtree.
-  var nextNamePrefix = nameSoFar === '' ? SEPARATOR : nameSoFar + SUBSEPARATOR;
-
-  if (Array.isArray(children)) {
-    for (var i = 0; i < children.length; i++) {
-      child = children[i];
-      nextName = nextNamePrefix + getComponentKey(child, i);
-      subtreeCount += traverseAllChildrenImpl(child, nextName, callback, traverseContext);
-    }
-  } else {
-    var iteratorFn = getIteratorFn(children);
-    if (typeof iteratorFn === 'function') {
-      {
-        // Warn about using Maps as children
-        if (iteratorFn === children.entries) {
-          !didWarnAboutMaps ? warning$1(false, 'Using Maps as children is unsupported and will likely yield ' + 'unexpected results. Convert it to a sequence/iterable of keyed ' + 'ReactElements instead.') : void 0;
-          didWarnAboutMaps = true;
-        }
-      }
-
-      var iterator = iteratorFn.call(children);
-      var step = void 0;
-      var ii = 0;
-      while (!(step = iterator.next()).done) {
-        child = step.value;
-        nextName = nextNamePrefix + getComponentKey(child, ii++);
-        subtreeCount += traverseAllChildrenImpl(child, nextName, callback, traverseContext);
-      }
-    } else if (type === 'object') {
-      var addendum = '';
-      {
-        addendum = ' If you meant to render a collection of children, use an array ' + 'instead.' + ReactDebugCurrentFrame.getStackAddendum();
-      }
-      var childrenString = '' + children;
-      invariant(false, 'Objects are not valid as a React child (found: %s).%s', childrenString === '[object Object]' ? 'object with keys {' + Object.keys(children).join(', ') + '}' : childrenString, addendum);
-    }
-  }
-
-  return subtreeCount;
-}
-
-/**
- * Traverses children that are typically specified as `props.children`, but
- * might also be specified through attributes:
- *
- * - `traverseAllChildren(this.props.children, ...)`
- * - `traverseAllChildren(this.props.leftPanelChildren, ...)`
- *
- * The `traverseContext` is an optional argument that is passed through the
- * entire traversal. It can be used to store accumulations or anything else that
- * the callback might find relevant.
- *
- * @param {?*} children Children tree object.
- * @param {!function} callback To invoke upon traversing each child.
- * @param {?*} traverseContext Context for traversal.
- * @return {!number} The number of children in this subtree.
- */
-function traverseAllChildren(children, callback, traverseContext) {
-  if (children == null) {
-    return 0;
-  }
-
-  return traverseAllChildrenImpl(children, '', callback, traverseContext);
-}
-
-/**
- * Generate a key string that identifies a component within a set.
- *
- * @param {*} component A component that could contain a manual key.
- * @param {number} index Index that is used if a manual key is not provided.
- * @return {string}
- */
-function getComponentKey(component, index) {
-  // Do some typechecking here since we call this blindly. We want to ensure
-  // that we don't block potential future ES APIs.
-  if (typeof component === 'object' && component !== null && component.key != null) {
-    // Explicit key
-    return escape(component.key);
-  }
-  // Implicit key determined by the index in the set
-  return index.toString(36);
-}
-
-function forEachSingleChild(bookKeeping, child, name) {
-  var func = bookKeeping.func,
-      context = bookKeeping.context;
-
-  func.call(context, child, bookKeeping.count++);
-}
-
-/**
- * Iterates through children that are typically specified as `props.children`.
- *
- * See https://reactjs.org/docs/react-api.html#reactchildrenforeach
- *
- * The provided forEachFunc(child, index) will be called for each
- * leaf child.
- *
- * @param {?*} children Children tree container.
- * @param {function(*, int)} forEachFunc
- * @param {*} forEachContext Context for forEachContext.
- */
-function forEachChildren(children, forEachFunc, forEachContext) {
-  if (children == null) {
-    return children;
-  }
-  var traverseContext = getPooledTraverseContext(null, null, forEachFunc, forEachContext);
-  traverseAllChildren(children, forEachSingleChild, traverseContext);
-  releaseTraverseContext(traverseContext);
-}
-
-function mapSingleChildIntoContext(bookKeeping, child, childKey) {
-  var result = bookKeeping.result,
-      keyPrefix = bookKeeping.keyPrefix,
-      func = bookKeeping.func,
-      context = bookKeeping.context;
-
-
-  var mappedChild = func.call(context, child, bookKeeping.count++);
-  if (Array.isArray(mappedChild)) {
-    mapIntoWithKeyPrefixInternal(mappedChild, result, childKey, function (c) {
-      return c;
-    });
-  } else if (mappedChild != null) {
-    if (isValidElement(mappedChild)) {
-      mappedChild = cloneAndReplaceKey(mappedChild,
-      // Keep both the (mapped) and old keys if they differ, just as
-      // traverseAllChildren used to do for objects as children
-      keyPrefix + (mappedChild.key && (!child || child.key !== mappedChild.key) ? escapeUserProvidedKey(mappedChild.key) + '/' : '') + childKey);
-    }
-    result.push(mappedChild);
-  }
-}
-
-function mapIntoWithKeyPrefixInternal(children, array, prefix, func, context) {
-  var escapedPrefix = '';
-  if (prefix != null) {
-    escapedPrefix = escapeUserProvidedKey(prefix) + '/';
-  }
-  var traverseContext = getPooledTraverseContext(array, escapedPrefix, func, context);
-  traverseAllChildren(children, mapSingleChildIntoContext, traverseContext);
-  releaseTraverseContext(traverseContext);
-}
-
-/**
- * Maps children that are typically specified as `props.children`.
- *
- * See https://reactjs.org/docs/react-api.html#reactchildrenmap
- *
- * The provided mapFunction(child, key, index) will be called for each
- * leaf child.
- *
- * @param {?*} children Children tree container.
- * @param {function(*, int)} func The map function.
- * @param {*} context Context for mapFunction.
- * @return {object} Object containing the ordered map of results.
- */
-function mapChildren(children, func, context) {
-  if (children == null) {
-    return children;
-  }
-  var result = [];
-  mapIntoWithKeyPrefixInternal(children, result, null, func, context);
-  return result;
-}
-
-/**
- * Count the number of children that are typically specified as
- * `props.children`.
- *
- * See https://reactjs.org/docs/react-api.html#reactchildrencount
- *
- * @param {?*} children Children tree container.
- * @return {number} The number of children.
- */
-function countChildren(children) {
-  return traverseAllChildren(children, function () {
-    return null;
-  }, null);
-}
-
-/**
- * Flatten a children object (typically specified as `props.children`) and
- * return an array with appropriately re-keyed children.
- *
- * See https://reactjs.org/docs/react-api.html#reactchildrentoarray
- */
-function toArray(children) {
-  var result = [];
-  mapIntoWithKeyPrefixInternal(children, result, null, function (child) {
-    return child;
-  });
-  return result;
-}
-
-/**
- * Returns the first child in a collection of children and verifies that there
- * is only one child in the collection.
- *
- * See https://reactjs.org/docs/react-api.html#reactchildrenonly
- *
- * The current implementation of this function assumes that a single child gets
- * passed without a wrapper, but the purpose of this helper function is to
- * abstract away the particular structure of children.
- *
- * @param {?object} children Child collection structure.
- * @return {ReactElement} The first and only `ReactElement` contained in the
- * structure.
- */
-function onlyChild(children) {
-  !isValidElement(children) ? invariant(false, 'React.Children.only expected to receive a single React element child.') : void 0;
-  return children;
-}
-
-function createContext(defaultValue, calculateChangedBits) {
-  if (calculateChangedBits === undefined) {
-    calculateChangedBits = null;
-  } else {
-    {
-      !(calculateChangedBits === null || typeof calculateChangedBits === 'function') ? warningWithoutStack$1(false, 'createContext: Expected the optional second argument to be a ' + 'function. Instead received: %s', calculateChangedBits) : void 0;
-    }
-  }
-
-  var context = {
-    $$typeof: REACT_CONTEXT_TYPE,
-    _calculateChangedBits: calculateChangedBits,
-    // As a workaround to support multiple concurrent renderers, we categorize
-    // some renderers as primary and others as secondary. We only expect
-    // there to be two concurrent renderers at most: React Native (primary) and
-    // Fabric (secondary); React DOM (primary) and React ART (secondary).
-    // Secondary renderers store their context values on separate fields.
-    _currentValue: defaultValue,
-    _currentValue2: defaultValue,
-    // These are circular
-    Provider: null,
-    Consumer: null
-  };
-
-  context.Provider = {
-    $$typeof: REACT_PROVIDER_TYPE,
-    _context: context
-  };
-
-  var hasWarnedAboutUsingNestedContextConsumers = false;
-  var hasWarnedAboutUsingConsumerProvider = false;
-
-  {
-    // A separate object, but proxies back to the original context object for
-    // backwards compatibility. It has a different $$typeof, so we can properly
-    // warn for the incorrect usage of Context as a Consumer.
-    var Consumer = {
-      $$typeof: REACT_CONTEXT_TYPE,
-      _context: context,
-      _calculateChangedBits: context._calculateChangedBits
-    };
-    // $FlowFixMe: Flow complains about not setting a value, which is intentional here
-    Object.defineProperties(Consumer, {
-      Provider: {
-        get: function () {
-          if (!hasWarnedAboutUsingConsumerProvider) {
-            hasWarnedAboutUsingConsumerProvider = true;
-            warning$1(false, 'Rendering <Context.Consumer.Provider> is not supported and will be removed in ' + 'a future major release. Did you mean to render <Context.Provider> instead?');
-          }
-          return context.Provider;
-        },
-        set: function (_Provider) {
-          context.Provider = _Provider;
-        }
-      },
-      _currentValue: {
-        get: function () {
-          return context._currentValue;
-        },
-        set: function (_currentValue) {
-          context._currentValue = _currentValue;
-        }
-      },
-      _currentValue2: {
-        get: function () {
-          return context._currentValue2;
-        },
-        set: function (_currentValue2) {
-          context._currentValue2 = _currentValue2;
-        }
-      },
-      Consumer: {
-        get: function () {
-          if (!hasWarnedAboutUsingNestedContextConsumers) {
-            hasWarnedAboutUsingNestedContextConsumers = true;
-            warning$1(false, 'Rendering <Context.Consumer.Consumer> is not supported and will be removed in ' + 'a future major release. Did you mean to render <Context.Consumer> instead?');
-          }
-          return context.Consumer;
-        }
-      }
-    });
-    // $FlowFixMe: Flow complains about missing properties because it doesn't understand defineProperty
-    context.Consumer = Consumer;
-  }
-
-  {
-    context._currentRenderer = null;
-    context._currentRenderer2 = null;
-  }
-
-  return context;
-}
-
-function lazy(ctor) {
-  return {
-    $$typeof: REACT_LAZY_TYPE,
-    _ctor: ctor,
-    // React uses these fields to store the result.
-    _status: -1,
-    _result: null
-  };
-}
-
-function forwardRef(render) {
-  {
-    if (render != null && render.$$typeof === REACT_MEMO_TYPE) {
-      warningWithoutStack$1(false, 'forwardRef requires a render function but received a `memo` ' + 'component. Instead of forwardRef(memo(...)), use ' + 'memo(forwardRef(...)).');
-    } else if (typeof render !== 'function') {
-      warningWithoutStack$1(false, 'forwardRef requires a render function but was given %s.', render === null ? 'null' : typeof render);
-    } else {
-      !(
-      // Do not warn for 0 arguments because it could be due to usage of the 'arguments' object
-      render.length === 0 || render.length === 2) ? warningWithoutStack$1(false, 'forwardRef render functions accept exactly two parameters: props and ref. %s', render.length === 1 ? 'Did you forget to use the ref parameter?' : 'Any additional parameter will be undefined.') : void 0;
-    }
-
-    if (render != null) {
-      !(render.defaultProps == null && render.propTypes == null) ? warningWithoutStack$1(false, 'forwardRef render functions do not support propTypes or defaultProps. ' + 'Did you accidentally pass a React component?') : void 0;
-    }
-  }
-
-  return {
-    $$typeof: REACT_FORWARD_REF_TYPE,
-    render: render
-  };
-}
-
-function isValidElementType(type) {
-  return typeof type === 'string' || typeof type === 'function' ||
-  // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
-  type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE);
-}
-
-function memo(type, compare) {
-  {
-    if (!isValidElementType(type)) {
-      warningWithoutStack$1(false, 'memo: The first argument must be a component. Instead ' + 'received: %s', type === null ? 'null' : typeof type);
-    }
-  }
-  return {
-    $$typeof: REACT_MEMO_TYPE,
-    type: type,
-    compare: compare === undefined ? null : compare
-  };
-}
-
-function resolveDispatcher() {
-  var dispatcher = ReactCurrentOwner.currentDispatcher;
-  !(dispatcher !== null) ? invariant(false, 'Hooks can only be called inside the body of a function component.') : void 0;
-  return dispatcher;
-}
-
-function useContext(Context, observedBits) {
-  var dispatcher = resolveDispatcher();
-  {
-    // TODO: add a more generic warning for invalid values.
-    if (Context._context !== undefined) {
-      var realContext = Context._context;
-      // Don't deduplicate because this legitimately causes bugs
-      // and nobody should be using this in existing code.
-      if (realContext.Consumer === Context) {
-        warning$1(false, 'Calling useContext(Context.Consumer) is not supported, may cause bugs, and will be ' + 'removed in a future major release. Did you mean to call useContext(Context) instead?');
-      } else if (realContext.Provider === Context) {
-        warning$1(false, 'Calling useContext(Context.Provider) is not supported. ' + 'Did you mean to call useContext(Context) instead?');
-      }
-    }
-  }
-  return dispatcher.useContext(Context, observedBits);
-}
-
-function useState(initialState) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useState(initialState);
-}
-
-function useReducer(reducer, initialState, initialAction) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useReducer(reducer, initialState, initialAction);
-}
-
-function useRef(initialValue) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useRef(initialValue);
-}
-
-function useEffect(create, inputs) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useEffect(create, inputs);
-}
-
-function useMutationEffect(create, inputs) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useMutationEffect(create, inputs);
-}
-
-function useLayoutEffect(create, inputs) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useLayoutEffect(create, inputs);
-}
-
-function useCallback(callback, inputs) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useCallback(callback, inputs);
-}
-
-function useMemo(create, inputs) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useMemo(create, inputs);
-}
-
-function useImperativeMethods(ref, create, inputs) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useImperativeMethods(ref, create, inputs);
-}
-
-/**
- * ReactElementValidator provides a wrapper around a element factory
- * which validates the props passed to the element. This is intended to be
- * used only in DEV and could be replaced by a static type checker for languages
- * that support it.
- */
-
-var propTypesMisspellWarningShown = void 0;
-
-{
-  propTypesMisspellWarningShown = false;
-}
-
-function getDeclarationErrorAddendum() {
-  if (ReactCurrentOwner.current) {
-    var name = getComponentName(ReactCurrentOwner.current.type);
-    if (name) {
-      return '\n\nCheck the render method of `' + name + '`.';
-    }
-  }
-  return '';
-}
-
-function getSourceInfoErrorAddendum(elementProps) {
-  if (elementProps !== null && elementProps !== undefined && elementProps.__source !== undefined) {
-    var source = elementProps.__source;
-    var fileName = source.fileName.replace(/^.*[\\\/]/, '');
-    var lineNumber = source.lineNumber;
-    return '\n\nCheck your code at ' + fileName + ':' + lineNumber + '.';
-  }
-  return '';
-}
-
-/**
- * Warn if there's no key explicitly set on dynamic arrays of children or
- * object keys are not valid. This allows us to keep track of children between
- * updates.
- */
-var ownerHasKeyUseWarning = {};
-
-function getCurrentComponentErrorInfo(parentType) {
-  var info = getDeclarationErrorAddendum();
-
-  if (!info) {
-    var parentName = typeof parentType === 'string' ? parentType : parentType.displayName || parentType.name;
-    if (parentName) {
-      info = '\n\nCheck the top-level render call using <' + parentName + '>.';
-    }
-  }
-  return info;
-}
-
-/**
- * Warn if the element doesn't have an explicit key assigned to it.
- * This element is in an array. The array could grow and shrink or be
- * reordered. All children that haven't already been validated are required to
- * have a "key" property assigned to it. Error statuses are cached so a warning
- * will only be shown once.
- *
- * @internal
- * @param {ReactElement} element Element that requires a key.
- * @param {*} parentType element's parent's type.
- */
-function validateExplicitKey(element, parentType) {
-  if (!element._store || element._store.validated || element.key != null) {
-    return;
-  }
-  element._store.validated = true;
-
-  var currentComponentErrorInfo = getCurrentComponentErrorInfo(parentType);
-  if (ownerHasKeyUseWarning[currentComponentErrorInfo]) {
-    return;
-  }
-  ownerHasKeyUseWarning[currentComponentErrorInfo] = true;
-
-  // Usually the current owner is the offender, but if it accepts children as a
-  // property, it may be the creator of the child that's responsible for
-  // assigning it a key.
-  var childOwner = '';
-  if (element && element._owner && element._owner !== ReactCurrentOwner.current) {
-    // Give the component that originally created this child.
-    childOwner = ' It was passed a child from ' + getComponentName(element._owner.type) + '.';
-  }
-
-  setCurrentlyValidatingElement(element);
-  {
-    warning$1(false, 'Each child in an array or iterator should have a unique "key" prop.' + '%s%s See https://fb.me/react-warning-keys for more information.', currentComponentErrorInfo, childOwner);
-  }
-  setCurrentlyValidatingElement(null);
-}
-
-/**
- * Ensure that every element either is passed in a static location, in an
- * array with an explicit keys property defined, or in an object literal
- * with valid key property.
- *
- * @internal
- * @param {ReactNode} node Statically passed child of any type.
- * @param {*} parentType node's parent's type.
- */
-function validateChildKeys(node, parentType) {
-  if (typeof node !== 'object') {
-    return;
-  }
-  if (Array.isArray(node)) {
-    for (var i = 0; i < node.length; i++) {
-      var child = node[i];
-      if (isValidElement(child)) {
-        validateExplicitKey(child, parentType);
-      }
-    }
-  } else if (isValidElement(node)) {
-    // This element was passed in a valid location.
-    if (node._store) {
-      node._store.validated = true;
-    }
-  } else if (node) {
-    var iteratorFn = getIteratorFn(node);
-    if (typeof iteratorFn === 'function') {
-      // Entry iterators used to provide implicit keys,
-      // but now we print a separate warning for them later.
-      if (iteratorFn !== node.entries) {
-        var iterator = iteratorFn.call(node);
-        var step = void 0;
-        while (!(step = iterator.next()).done) {
-          if (isValidElement(step.value)) {
-            validateExplicitKey(step.value, parentType);
-          }
-        }
-      }
-    }
-  }
-}
-
-/**
- * Given an element, validate that its props follow the propTypes definition,
- * provided by the type.
- *
- * @param {ReactElement} element
- */
-function validatePropTypes(element) {
-  var type = element.type;
-  var name = void 0,
-      propTypes = void 0;
-  if (typeof type === 'function') {
-    // Class or function component
-    name = type.displayName || type.name;
-    propTypes = type.propTypes;
-  } else if (typeof type === 'object' && type !== null && type.$$typeof === REACT_FORWARD_REF_TYPE) {
-    // ForwardRef
-    var functionName = type.render.displayName || type.render.name || '';
-    name = type.displayName || (functionName !== '' ? 'ForwardRef(' + functionName + ')' : 'ForwardRef');
-    propTypes = type.propTypes;
-  } else {
-    return;
-  }
-  if (propTypes) {
-    setCurrentlyValidatingElement(element);
-    checkPropTypes(propTypes, element.props, 'prop', name, ReactDebugCurrentFrame.getStackAddendum);
-    setCurrentlyValidatingElement(null);
-  } else if (type.PropTypes !== undefined && !propTypesMisspellWarningShown) {
-    propTypesMisspellWarningShown = true;
-    warningWithoutStack$1(false, 'Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?', name || 'Unknown');
-  }
-  if (typeof type.getDefaultProps === 'function') {
-    !type.getDefaultProps.isReactClassApproved ? warningWithoutStack$1(false, 'getDefaultProps is only used on classic React.createClass ' + 'definitions. Use a static property named `defaultProps` instead.') : void 0;
-  }
-}
-
-/**
- * Given a fragment, validate that it can only be provided with fragment props
- * @param {ReactElement} fragment
- */
-function validateFragmentProps(fragment) {
-  setCurrentlyValidatingElement(fragment);
-
-  var keys = Object.keys(fragment.props);
-  for (var i = 0; i < keys.length; i++) {
-    var key = keys[i];
-    if (key !== 'children' && key !== 'key') {
-      warning$1(false, 'Invalid prop `%s` supplied to `React.Fragment`. ' + 'React.Fragment can only have `key` and `children` props.', key);
-      break;
-    }
-  }
-
-  if (fragment.ref !== null) {
-    warning$1(false, 'Invalid attribute `ref` supplied to `React.Fragment`.');
-  }
-
-  setCurrentlyValidatingElement(null);
-}
-
-function createElementWithValidation(type, props, children) {
-  var validType = isValidElementType(type);
-
-  // We warn in this case but don't throw. We expect the element creation to
-  // succeed and there will likely be errors in render.
-  if (!validType) {
-    var info = '';
-    if (type === undefined || typeof type === 'object' && type !== null && Object.keys(type).length === 0) {
-      info += ' You likely forgot to export your component from the file ' + "it's defined in, or you might have mixed up default and named imports.";
-    }
-
-    var sourceInfo = getSourceInfoErrorAddendum(props);
-    if (sourceInfo) {
-      info += sourceInfo;
-    } else {
-      info += getDeclarationErrorAddendum();
-    }
-
-    var typeString = void 0;
-    if (type === null) {
-      typeString = 'null';
-    } else if (Array.isArray(type)) {
-      typeString = 'array';
-    } else if (type !== undefined && type.$$typeof === REACT_ELEMENT_TYPE) {
-      typeString = '<' + (getComponentName(type.type) || 'Unknown') + ' />';
-      info = ' Did you accidentally export a JSX literal instead of a component?';
-    } else {
-      typeString = typeof type;
-    }
-
-    warning$1(false, 'React.createElement: type is invalid -- expected a string (for ' + 'built-in components) or a class/function (for composite ' + 'components) but got: %s.%s', typeString, info);
-  }
-
-  var element = createElement.apply(this, arguments);
-
-  // The result can be nullish if a mock or a custom function is used.
-  // TODO: Drop this when these are no longer allowed as the type argument.
-  if (element == null) {
-    return element;
-  }
-
-  // Skip key warning if the type isn't valid since our key validation logic
-  // doesn't expect a non-string/function type and can throw confusing errors.
-  // We don't want exception behavior to differ between dev and prod.
-  // (Rendering will throw with a helpful message and as soon as the type is
-  // fixed, the key warnings will appear.)
-  if (validType) {
-    for (var i = 2; i < arguments.length; i++) {
-      validateChildKeys(arguments[i], type);
-    }
-  }
-
-  if (type === REACT_FRAGMENT_TYPE) {
-    validateFragmentProps(element);
-  } else {
-    validatePropTypes(element);
-  }
-
-  return element;
-}
-
-function createFactoryWithValidation(type) {
-  var validatedFactory = createElementWithValidation.bind(null, type);
-  validatedFactory.type = type;
-  // Legacy hook: remove it
-  {
-    Object.defineProperty(validatedFactory, 'type', {
-      enumerable: false,
-      get: function () {
-        lowPriorityWarning$1(false, 'Factory.type is deprecated. Access the class directly ' + 'before passing it to createFactory.');
-        Object.defineProperty(this, 'type', {
-          value: type
-        });
-        return type;
-      }
-    });
-  }
-
-  return validatedFactory;
-}
-
-function cloneElementWithValidation(element, props, children) {
-  var newElement = cloneElement.apply(this, arguments);
-  for (var i = 2; i < arguments.length; i++) {
-    validateChildKeys(arguments[i], newElement.type);
-  }
-  validatePropTypes(newElement);
-  return newElement;
-}
-
-var React = {
-  Children: {
-    map: mapChildren,
-    forEach: forEachChildren,
-    count: countChildren,
-    toArray: toArray,
-    only: onlyChild
-  },
-
-  createRef: createRef,
-  Component: Component,
-  PureComponent: PureComponent,
-
-  createContext: createContext,
-  forwardRef: forwardRef,
-  lazy: lazy,
-  memo: memo,
-
-  Fragment: REACT_FRAGMENT_TYPE,
-  StrictMode: REACT_STRICT_MODE_TYPE,
-  Suspense: REACT_SUSPENSE_TYPE,
-
-  createElement: createElementWithValidation,
-  cloneElement: cloneElementWithValidation,
-  createFactory: createFactoryWithValidation,
-  isValidElement: isValidElement,
-
-  version: ReactVersion,
-
-  __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED: ReactSharedInternals
-};
-
-if (enableStableConcurrentModeAPIs) {
-  React.ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
-  React.Profiler = REACT_PROFILER_TYPE;
-} else {
-  React.unstable_ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
-  React.unstable_Profiler = REACT_PROFILER_TYPE;
-}
-
-if (enableHooks) {
-  React.useCallback = useCallback;
-  React.useContext = useContext;
-  React.useEffect = useEffect;
-  React.useImperativeMethods = useImperativeMethods;
-  React.useLayoutEffect = useLayoutEffect;
-  React.useMemo = useMemo;
-  React.useMutationEffect = useMutationEffect;
-  React.useReducer = useReducer;
-  React.useRef = useRef;
-  React.useState = useState;
-}
-
-
-
-var React$2 = Object.freeze({
-	default: React
-});
-
-var React$3 = ( React$2 && React ) || React$2;
-
-// TODO: decide on the top-level export form.
-// This is hacky but makes it work with both Rollup and Jest.
-var react = React$3.default || React$3;
-
-module.exports = react;
-  })();
-}
-
-
-/***/ }),
-
-/***/ "../../../Users/Zheeno/AppData/Roaming/npm/node_modules/react/index.js":
-/*!***********************************************************************!*\
-  !*** C:/Users/Zheeno/AppData/Roaming/npm/node_modules/react/index.js ***!
-  \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-if (false) {} else {
-  module.exports = __webpack_require__(/*! ./cjs/react.development.js */ "../../../Users/Zheeno/AppData/Roaming/npm/node_modules/react/cjs/react.development.js");
-}
-
-
-/***/ }),
-
-/***/ "../../../Users/Zheeno/AppData/Roaming/npm/node_modules/react/node_modules/object-assign/index.js":
-/*!**************************************************************************************************!*\
-  !*** C:/Users/Zheeno/AppData/Roaming/npm/node_modules/react/node_modules/object-assign/index.js ***!
-  \**************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
-
-
-/* eslint-disable no-unused-vars */
-var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-var hasOwnProperty = Object.prototype.hasOwnProperty;
-var propIsEnumerable = Object.prototype.propertyIsEnumerable;
-
-function toObject(val) {
-	if (val === null || val === undefined) {
-		throw new TypeError('Object.assign cannot be called with null or undefined');
-	}
-
-	return Object(val);
-}
-
-function shouldUseNative() {
-	try {
-		if (!Object.assign) {
-			return false;
-		}
-
-		// Detect buggy property enumeration order in older V8 versions.
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
-		test1[5] = 'de';
-		if (Object.getOwnPropertyNames(test1)[0] === '5') {
-			return false;
-		}
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-		var test2 = {};
-		for (var i = 0; i < 10; i++) {
-			test2['_' + String.fromCharCode(i)] = i;
-		}
-		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
-			return test2[n];
-		});
-		if (order2.join('') !== '0123456789') {
-			return false;
-		}
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-		var test3 = {};
-		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
-			test3[letter] = letter;
-		});
-		if (Object.keys(Object.assign({}, test3)).join('') !==
-				'abcdefghijklmnopqrst') {
-			return false;
-		}
-
-		return true;
-	} catch (err) {
-		// We don't expect any of the above to throw, but better to be safe.
-		return false;
-	}
-}
-
-module.exports = shouldUseNative() ? Object.assign : function (target, source) {
-	var from;
-	var to = toObject(target);
-	var symbols;
-
-	for (var s = 1; s < arguments.length; s++) {
-		from = Object(arguments[s]);
-
-		for (var key in from) {
-			if (hasOwnProperty.call(from, key)) {
-				to[key] = from[key];
-			}
-		}
-
-		if (getOwnPropertySymbols) {
-			symbols = getOwnPropertySymbols(from);
-			for (var i = 0; i < symbols.length; i++) {
-				if (propIsEnumerable.call(from, symbols[i])) {
-					to[symbols[i]] = from[symbols[i]];
-				}
-			}
-		}
-	}
-
-	return to;
-};
-
-
-/***/ }),
-
-/***/ "../../../Users/Zheeno/AppData/Roaming/npm/node_modules/react/node_modules/prop-types/checkPropTypes.js":
-/*!********************************************************************************************************!*\
-  !*** C:/Users/Zheeno/AppData/Roaming/npm/node_modules/react/node_modules/prop-types/checkPropTypes.js ***!
-  \********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-var printWarning = function() {};
-
-if (true) {
-  var ReactPropTypesSecret = __webpack_require__(/*! ./lib/ReactPropTypesSecret */ "../../../Users/Zheeno/AppData/Roaming/npm/node_modules/react/node_modules/prop-types/lib/ReactPropTypesSecret.js");
-  var loggedTypeFailures = {};
-
-  printWarning = function(text) {
-    var message = 'Warning: ' + text;
-    if (typeof console !== 'undefined') {
-      console.error(message);
-    }
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message);
-    } catch (x) {}
-  };
-}
-
-/**
- * Assert that the values match with the type specs.
- * Error messages are memorized and will only be shown once.
- *
- * @param {object} typeSpecs Map of name to a ReactPropType
- * @param {object} values Runtime values that need to be type-checked
- * @param {string} location e.g. "prop", "context", "child context"
- * @param {string} componentName Name of the component for error messages.
- * @param {?Function} getStack Returns the component stack.
- * @private
- */
-function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
-  if (true) {
-    for (var typeSpecName in typeSpecs) {
-      if (typeSpecs.hasOwnProperty(typeSpecName)) {
-        var error;
-        // Prop type validation may throw. In case they do, we don't want to
-        // fail the render phase where it didn't fail before. So we log it.
-        // After these have been cleaned up, we'll let them throw.
-        try {
-          // This is intentionally an invariant that gets caught. It's the same
-          // behavior as without this statement except with a better message.
-          if (typeof typeSpecs[typeSpecName] !== 'function') {
-            var err = Error(
-              (componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' +
-              'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.'
-            );
-            err.name = 'Invariant Violation';
-            throw err;
-          }
-          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
-        } catch (ex) {
-          error = ex;
-        }
-        if (error && !(error instanceof Error)) {
-          printWarning(
-            (componentName || 'React class') + ': type specification of ' +
-            location + ' `' + typeSpecName + '` is invalid; the type checker ' +
-            'function must return `null` or an `Error` but returned a ' + typeof error + '. ' +
-            'You may have forgotten to pass an argument to the type checker ' +
-            'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' +
-            'shape all require an argument).'
-          )
-
-        }
-        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
-          // Only monitor this failure once because there tends to be a lot of the
-          // same error.
-          loggedTypeFailures[error.message] = true;
-
-          var stack = getStack ? getStack() : '';
-
-          printWarning(
-            'Failed ' + location + ' type: ' + error.message + (stack != null ? stack : '')
-          );
-        }
-      }
-    }
-  }
-}
-
-module.exports = checkPropTypes;
-
-
-/***/ }),
-
-/***/ "../../../Users/Zheeno/AppData/Roaming/npm/node_modules/react/node_modules/prop-types/lib/ReactPropTypesSecret.js":
-/*!******************************************************************************************************************!*\
-  !*** C:/Users/Zheeno/AppData/Roaming/npm/node_modules/react/node_modules/prop-types/lib/ReactPropTypesSecret.js ***!
-  \******************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
-
-module.exports = ReactPropTypesSecret;
-
-
-/***/ }),
-
 /***/ "./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js":
 /*!**************************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js ***!
@@ -64016,6 +60589,1346 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/react-number-format/dist/react-number-format.es.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/react-number-format/dist/react-number-format.es.js ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/**
+ * react-number-format - 4.2.0
+ * Author : Sudhanshu Yadav
+ * Copyright (c) 2016, 2019 to Sudhanshu Yadav, released under the MIT license.
+ * https://github.com/s-yadav/react-number-format
+ */
+
+
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) _setPrototypeOf(subClass, superClass);
+}
+
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (typeof call === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return _assertThisInitialized(self);
+}
+
+function createCommonjsModule(fn, module) {
+	return module = { exports: {} }, fn(module, module.exports), module.exports;
+}
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+
+var ReactPropTypesSecret_1 = ReactPropTypesSecret;
+
+function emptyFunction() {}
+function emptyFunctionWithReset() {}
+emptyFunctionWithReset.resetWarningCache = emptyFunction;
+
+var factoryWithThrowingShims = function() {
+  function shim(props, propName, componentName, location, propFullName, secret) {
+    if (secret === ReactPropTypesSecret_1) {
+      // It is still safe when called from React.
+      return;
+    }
+    var err = new Error(
+      'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
+      'Use PropTypes.checkPropTypes() to call them. ' +
+      'Read more at http://fb.me/use-check-prop-types'
+    );
+    err.name = 'Invariant Violation';
+    throw err;
+  }  shim.isRequired = shim;
+  function getShim() {
+    return shim;
+  }  // Important!
+  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
+  var ReactPropTypes = {
+    array: shim,
+    bool: shim,
+    func: shim,
+    number: shim,
+    object: shim,
+    string: shim,
+    symbol: shim,
+
+    any: shim,
+    arrayOf: getShim,
+    element: shim,
+    elementType: shim,
+    instanceOf: getShim,
+    node: shim,
+    objectOf: getShim,
+    oneOf: getShim,
+    oneOfType: getShim,
+    shape: getShim,
+    exact: getShim,
+
+    checkPropTypes: emptyFunctionWithReset,
+    resetWarningCache: emptyFunction
+  };
+
+  ReactPropTypes.PropTypes = ReactPropTypes;
+
+  return ReactPropTypes;
+};
+
+var propTypes = createCommonjsModule(function (module) {
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+{
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = factoryWithThrowingShims();
+}
+});
+
+// basic noop function
+function noop() {}
+function returnTrue() {
+  return true;
+}
+function charIsNumber(char) {
+  return !!(char || '').match(/\d/);
+}
+function escapeRegExp(str) {
+  return str.replace(/[-[\]/{}()*+?.\\^$|]/g, "\\$&");
+}
+function getThousandsGroupRegex(thousandsGroupStyle) {
+  switch (thousandsGroupStyle) {
+    case 'lakh':
+      return /(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/g;
+
+    case 'wan':
+      return /(\d)(?=(\d{4})+(?!\d))/g;
+
+    case 'thousand':
+    default:
+      return /(\d)(?=(\d{3})+(?!\d))/g;
+  }
+}
+function applyThousandSeparator(str, thousandSeparator, thousandsGroupStyle) {
+  var thousandsGroupRegex = getThousandsGroupRegex(thousandsGroupStyle);
+  var index = str.search(/[1-9]/);
+  index = index === -1 ? str.length : index;
+  return str.substring(0, index) + str.substring(index, str.length).replace(thousandsGroupRegex, '$1' + thousandSeparator);
+} //spilt a float number into different parts beforeDecimal, afterDecimal, and negation
+
+function splitDecimal(numStr) {
+  var allowNegative = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+  var hasNagation = numStr[0] === '-';
+  var addNegation = hasNagation && allowNegative;
+  numStr = numStr.replace('-', '');
+  var parts = numStr.split('.');
+  var beforeDecimal = parts[0];
+  var afterDecimal = parts[1] || '';
+  return {
+    beforeDecimal: beforeDecimal,
+    afterDecimal: afterDecimal,
+    hasNagation: hasNagation,
+    addNegation: addNegation
+  };
+}
+function fixLeadingZero(numStr) {
+  if (!numStr) return numStr;
+  var isNegative = numStr[0] === '-';
+  if (isNegative) numStr = numStr.substring(1, numStr.length);
+  var parts = numStr.split('.');
+  var beforeDecimal = parts[0].replace(/^0+/, '') || '0';
+  var afterDecimal = parts[1] || '';
+  return "".concat(isNegative ? '-' : '').concat(beforeDecimal).concat(afterDecimal ? ".".concat(afterDecimal) : '');
+}
+/**
+ * limit decimal numbers to given scale
+ * Not used .fixedTo because that will break with big numbers
+ */
+
+function limitToScale(numStr, scale, fixedDecimalScale) {
+  var str = '';
+  var filler = fixedDecimalScale ? '0' : '';
+
+  for (var i = 0; i <= scale - 1; i++) {
+    str += numStr[i] || filler;
+  }
+
+  return str;
+}
+/**
+ * This method is required to round prop value to given scale.
+ * Not used .round or .fixedTo because that will break with big numbers
+ */
+
+function roundToPrecision(numStr, scale, fixedDecimalScale) {
+  //if number is empty don't do anything return empty string
+  if (['', '-'].indexOf(numStr) !== -1) return numStr;
+  var shoudHaveDecimalSeparator = numStr.indexOf('.') !== -1 && scale;
+
+  var _splitDecimal = splitDecimal(numStr),
+      beforeDecimal = _splitDecimal.beforeDecimal,
+      afterDecimal = _splitDecimal.afterDecimal,
+      hasNagation = _splitDecimal.hasNagation;
+
+  var roundedDecimalParts = parseFloat("0.".concat(afterDecimal || '0')).toFixed(scale).split('.');
+  var intPart = beforeDecimal.split('').reverse().reduce(function (roundedStr, current, idx) {
+    if (roundedStr.length > idx) {
+      return (Number(roundedStr[0]) + Number(current)).toString() + roundedStr.substring(1, roundedStr.length);
+    }
+
+    return current + roundedStr;
+  }, roundedDecimalParts[0]);
+  var decimalPart = limitToScale(roundedDecimalParts[1] || '', Math.min(scale, afterDecimal.length), fixedDecimalScale);
+  var negation = hasNagation ? '-' : '';
+  var decimalSeparator = shoudHaveDecimalSeparator ? '.' : '';
+  return "".concat(negation).concat(intPart).concat(decimalSeparator).concat(decimalPart);
+}
+function omit(obj, keyMaps) {
+  var filteredObj = {};
+  Object.keys(obj).forEach(function (key) {
+    if (!keyMaps[key]) filteredObj[key] = obj[key];
+  });
+  return filteredObj;
+}
+/** set the caret positon in an input field **/
+
+function setCaretPosition(el, caretPos) {
+  el.value = el.value; // ^ this is used to not only get "focus", but
+  // to make sure we don't have it everything -selected-
+  // (it causes an issue in chrome, and having it doesn't hurt any other browser)
+
+  if (el !== null) {
+    if (el.createTextRange) {
+      var range = el.createTextRange();
+      range.move('character', caretPos);
+      range.select();
+      return true;
+    } // (el.selectionStart === 0 added for Firefox bug)
+
+
+    if (el.selectionStart || el.selectionStart === 0) {
+      el.focus();
+      el.setSelectionRange(caretPos, caretPos);
+      return true;
+    } // fail city, fortunately this never happens (as far as I've tested) :)
+
+
+    el.focus();
+    return false;
+  }
+}
+/**
+  Given previous value and newValue it returns the index
+  start - end to which values have changed.
+  This function makes assumption about only consecutive
+  characters are changed which is correct assumption for caret input.
+*/
+
+function findChangedIndex(prevValue, newValue) {
+  var i = 0,
+      j = 0;
+  var prevLength = prevValue.length;
+  var newLength = newValue.length;
+
+  while (prevValue[i] === newValue[i] && i < prevLength) {
+    i++;
+  } //check what has been changed from last
+
+
+  while (prevValue[prevLength - 1 - j] === newValue[newLength - 1 - j] && newLength - j > i && prevLength - j > i) {
+    j++;
+  }
+
+  return {
+    start: i,
+    end: prevLength - j
+  };
+}
+/*
+  Returns a number whose value is limited to the given range
+*/
+
+function clamp(num, min, max) {
+  return Math.min(Math.max(num, min), max);
+}
+function getCurrentCaretPosition(el) {
+  /*Max of selectionStart and selectionEnd is taken for the patch of pixel and other mobile device caret bug*/
+  return Math.max(el.selectionStart, el.selectionEnd);
+}
+
+var propTypes$1 = {
+  thousandSeparator: propTypes.oneOfType([propTypes.string, propTypes.oneOf([true])]),
+  decimalSeparator: propTypes.string,
+  thousandsGroupStyle: propTypes.oneOf(['thousand', 'lakh', 'wan']),
+  decimalScale: propTypes.number,
+  fixedDecimalScale: propTypes.bool,
+  displayType: propTypes.oneOf(['input', 'text']),
+  prefix: propTypes.string,
+  suffix: propTypes.string,
+  format: propTypes.oneOfType([propTypes.string, propTypes.func]),
+  removeFormatting: propTypes.func,
+  mask: propTypes.oneOfType([propTypes.string, propTypes.arrayOf(propTypes.string)]),
+  value: propTypes.oneOfType([propTypes.number, propTypes.string]),
+  defaultValue: propTypes.oneOfType([propTypes.number, propTypes.string]),
+  isNumericString: propTypes.bool,
+  customInput: propTypes.elementType,
+  allowNegative: propTypes.bool,
+  allowEmptyFormatting: propTypes.bool,
+  allowLeadingZeros: propTypes.bool,
+  onValueChange: propTypes.func,
+  onKeyDown: propTypes.func,
+  onMouseUp: propTypes.func,
+  onChange: propTypes.func,
+  onFocus: propTypes.func,
+  onBlur: propTypes.func,
+  type: propTypes.oneOf(['text', 'tel', 'password']),
+  isAllowed: propTypes.func,
+  renderText: propTypes.func,
+  getInputRef: propTypes.func
+};
+var defaultProps = {
+  displayType: 'input',
+  decimalSeparator: '.',
+  thousandsGroupStyle: 'thousand',
+  fixedDecimalScale: false,
+  prefix: '',
+  suffix: '',
+  allowNegative: true,
+  allowEmptyFormatting: false,
+  allowLeadingZeros: false,
+  isNumericString: false,
+  type: 'text',
+  onValueChange: noop,
+  onChange: noop,
+  onKeyDown: noop,
+  onMouseUp: noop,
+  onFocus: noop,
+  onBlur: noop,
+  isAllowed: returnTrue,
+  getInputRef: noop
+};
+
+var NumberFormat =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(NumberFormat, _React$Component);
+
+  function NumberFormat(props) {
+    var _this;
+
+    _classCallCheck(this, NumberFormat);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(NumberFormat).call(this, props));
+    var defaultValue = props.defaultValue; //validate props
+
+    _this.validateProps();
+
+    var formattedValue = _this.formatValueProp(defaultValue);
+
+    _this.state = {
+      value: formattedValue,
+      numAsString: _this.removeFormatting(formattedValue)
+    };
+    _this.selectionBeforeInput = {
+      selectionStart: 0,
+      selectionEnd: 0
+    };
+    _this.onChange = _this.onChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onKeyDown = _this.onKeyDown.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onMouseUp = _this.onMouseUp.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onFocus = _this.onFocus.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onBlur = _this.onBlur.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
+  }
+
+  _createClass(NumberFormat, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      this.updateValueIfRequired(prevProps);
+    }
+  }, {
+    key: "updateValueIfRequired",
+    value: function updateValueIfRequired(prevProps) {
+      var props = this.props,
+          state = this.state,
+          focusedElm = this.focusedElm;
+      var stateValue = state.value,
+          _state$numAsString = state.numAsString,
+          lastNumStr = _state$numAsString === void 0 ? '' : _state$numAsString;
+
+      if (prevProps !== props) {
+        //validate props
+        this.validateProps();
+        var lastValueWithNewFormat = this.formatNumString(lastNumStr);
+        var formattedValue = props.value === undefined ? lastValueWithNewFormat : this.formatValueProp();
+        var numAsString = this.removeFormatting(formattedValue);
+        var floatValue = parseFloat(numAsString);
+        var lastFloatValue = parseFloat(lastNumStr);
+
+        if ( //while typing set state only when float value changes
+        (!isNaN(floatValue) || !isNaN(lastFloatValue)) && floatValue !== lastFloatValue || //can also set state when float value is same and the format props changes
+        lastValueWithNewFormat !== stateValue || //set state always when not in focus and formatted value is changed
+        focusedElm === null && formattedValue !== stateValue) {
+          this.updateValue({
+            formattedValue: formattedValue,
+            numAsString: numAsString,
+            input: focusedElm
+          });
+        }
+      }
+    }
+    /** Misc methods **/
+
+  }, {
+    key: "getFloatString",
+    value: function getFloatString() {
+      var num = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+      var decimalScale = this.props.decimalScale;
+
+      var _this$getSeparators = this.getSeparators(),
+          decimalSeparator = _this$getSeparators.decimalSeparator;
+
+      var numRegex = this.getNumberRegex(true); //remove negation for regex check
+
+      var hasNegation = num[0] === '-';
+      if (hasNegation) num = num.replace('-', ''); //if decimal scale is zero remove decimal and number after decimalSeparator
+
+      if (decimalSeparator && decimalScale === 0) {
+        num = num.split(decimalSeparator)[0];
+      }
+
+      num = (num.match(numRegex) || []).join('').replace(decimalSeparator, '.'); //remove extra decimals
+
+      var firstDecimalIndex = num.indexOf('.');
+
+      if (firstDecimalIndex !== -1) {
+        num = "".concat(num.substring(0, firstDecimalIndex), ".").concat(num.substring(firstDecimalIndex + 1, num.length).replace(new RegExp(escapeRegExp(decimalSeparator), 'g'), ''));
+      } //add negation back
+
+
+      if (hasNegation) num = '-' + num;
+      return num;
+    } //returned regex assumes decimalSeparator is as per prop
+
+  }, {
+    key: "getNumberRegex",
+    value: function getNumberRegex(g, ignoreDecimalSeparator) {
+      var _this$props = this.props,
+          format = _this$props.format,
+          decimalScale = _this$props.decimalScale;
+
+      var _this$getSeparators2 = this.getSeparators(),
+          decimalSeparator = _this$getSeparators2.decimalSeparator;
+
+      return new RegExp('\\d' + (decimalSeparator && decimalScale !== 0 && !ignoreDecimalSeparator && !format ? '|' + escapeRegExp(decimalSeparator) : ''), g ? 'g' : undefined);
+    }
+  }, {
+    key: "getSeparators",
+    value: function getSeparators() {
+      var decimalSeparator = this.props.decimalSeparator;
+      var thousandSeparator = this.props.thousandSeparator;
+
+      if (thousandSeparator === true) {
+        thousandSeparator = ',';
+      }
+
+      return {
+        decimalSeparator: decimalSeparator,
+        thousandSeparator: thousandSeparator
+      };
+    }
+  }, {
+    key: "getMaskAtIndex",
+    value: function getMaskAtIndex(index) {
+      var _this$props$mask = this.props.mask,
+          mask = _this$props$mask === void 0 ? ' ' : _this$props$mask;
+
+      if (typeof mask === 'string') {
+        return mask;
+      }
+
+      return mask[index] || ' ';
+    }
+  }, {
+    key: "getValueObject",
+    value: function getValueObject(formattedValue, numAsString) {
+      var floatValue = parseFloat(numAsString);
+      return {
+        formattedValue: formattedValue,
+        value: numAsString,
+        floatValue: isNaN(floatValue) ? undefined : floatValue
+      };
+    }
+  }, {
+    key: "validateProps",
+    value: function validateProps() {
+      var mask = this.props.mask; //validate decimalSeparator and thousandSeparator
+
+      var _this$getSeparators3 = this.getSeparators(),
+          decimalSeparator = _this$getSeparators3.decimalSeparator,
+          thousandSeparator = _this$getSeparators3.thousandSeparator;
+
+      if (decimalSeparator === thousandSeparator) {
+        throw new Error("\n          Decimal separator can't be same as thousand separator.\n          thousandSeparator: ".concat(thousandSeparator, " (thousandSeparator = {true} is same as thousandSeparator = \",\")\n          decimalSeparator: ").concat(decimalSeparator, " (default value for decimalSeparator is .)\n       "));
+      } //validate mask
+
+
+      if (mask) {
+        var maskAsStr = mask === 'string' ? mask : mask.toString();
+
+        if (maskAsStr.match(/\d/g)) {
+          throw new Error("\n          Mask ".concat(mask, " should not contain numeric character;\n        "));
+        }
+      }
+    }
+    /** Misc methods end **/
+
+    /** caret specific methods **/
+
+  }, {
+    key: "setPatchedCaretPosition",
+    value: function setPatchedCaretPosition(el, caretPos, currentValue) {
+      /* setting caret position within timeout of 0ms is required for mobile chrome,
+      otherwise browser resets the caret position after we set it
+      We are also setting it without timeout so that in normal browser we don't see the flickering */
+      setCaretPosition(el, caretPos);
+      setTimeout(function () {
+        if (el.value === currentValue) setCaretPosition(el, caretPos);
+      }, 0);
+    }
+    /* This keeps the caret within typing area so people can't type in between prefix or suffix */
+
+  }, {
+    key: "correctCaretPosition",
+    value: function correctCaretPosition(value, caretPos, direction) {
+      var _this$props2 = this.props,
+          prefix = _this$props2.prefix,
+          suffix = _this$props2.suffix,
+          format = _this$props2.format; //if value is empty return 0
+
+      if (value === '') return 0; //caret position should be between 0 and value length
+
+      caretPos = clamp(caretPos, 0, value.length); //in case of format as number limit between prefix and suffix
+
+      if (!format) {
+        var hasNegation = value[0] === '-';
+        return clamp(caretPos, prefix.length + (hasNegation ? 1 : 0), value.length - suffix.length);
+      } //in case if custom format method don't do anything
+
+
+      if (typeof format === 'function') return caretPos;
+      /* in case format is string find the closest # position from the caret position */
+      //in case the caretPos have input value on it don't do anything
+
+      if (format[caretPos] === '#' && charIsNumber(value[caretPos])) return caretPos; //if caretPos is just after input value don't do anything
+
+      if (format[caretPos - 1] === '#' && charIsNumber(value[caretPos - 1])) return caretPos; //find the nearest caret position
+
+      var firstHashPosition = format.indexOf('#');
+      var lastHashPosition = format.lastIndexOf('#'); //limit the cursor between the first # position and the last # position
+
+      caretPos = clamp(caretPos, firstHashPosition, lastHashPosition + 1);
+      var nextPos = format.substring(caretPos, format.length).indexOf('#');
+      var caretLeftBound = caretPos;
+      var caretRightBound = caretPos + (nextPos === -1 ? 0 : nextPos); //get the position where the last number is present
+
+      while (caretLeftBound > firstHashPosition && (format[caretLeftBound] !== '#' || !charIsNumber(value[caretLeftBound]))) {
+        caretLeftBound -= 1;
+      }
+
+      var goToLeft = !charIsNumber(value[caretRightBound]) || direction === 'left' && caretPos !== firstHashPosition || caretPos - caretLeftBound < caretRightBound - caretPos;
+
+      if (goToLeft) {
+        //check if number should be taken after the bound or after it
+        //if number preceding a valid number keep it after
+        return charIsNumber(value[caretLeftBound]) ? caretLeftBound + 1 : caretLeftBound;
+      }
+
+      return caretRightBound;
+    }
+  }, {
+    key: "getCaretPosition",
+    value: function getCaretPosition(inputValue, formattedValue, caretPos) {
+      var format = this.props.format;
+      var stateValue = this.state.value;
+      var numRegex = this.getNumberRegex(true);
+      var inputNumber = (inputValue.match(numRegex) || []).join('');
+      var formattedNumber = (formattedValue.match(numRegex) || []).join('');
+      var j, i;
+      j = 0;
+
+      for (i = 0; i < caretPos; i++) {
+        var currentInputChar = inputValue[i] || '';
+        var currentFormatChar = formattedValue[j] || ''; //no need to increase new cursor position if formatted value does not have those characters
+        //case inputValue = 1a23 and formattedValue =  123
+
+        if (!currentInputChar.match(numRegex) && currentInputChar !== currentFormatChar) continue; //When we are striping out leading zeros maintain the new cursor position
+        //Case inputValue = 00023 and formattedValue = 23;
+
+        if (currentInputChar === '0' && currentFormatChar.match(numRegex) && currentFormatChar !== '0' && inputNumber.length !== formattedNumber.length) continue; //we are not using currentFormatChar because j can change here
+
+        while (currentInputChar !== formattedValue[j] && j < formattedValue.length) {
+          j++;
+        }
+
+        j++;
+      }
+
+      if (typeof format === 'string' && !stateValue) {
+        //set it to the maximum value so it goes after the last number
+        j = formattedValue.length;
+      } //correct caret position if its outside of editable area
+
+
+      j = this.correctCaretPosition(formattedValue, j);
+      return j;
+    }
+    /** caret specific methods ends **/
+
+    /** methods to remove formattting **/
+
+  }, {
+    key: "removePrefixAndSuffix",
+    value: function removePrefixAndSuffix(val) {
+      var _this$props3 = this.props,
+          format = _this$props3.format,
+          prefix = _this$props3.prefix,
+          suffix = _this$props3.suffix; //remove prefix and suffix
+
+      if (!format && val) {
+        var isNegative = val[0] === '-'; //remove negation sign
+
+        if (isNegative) val = val.substring(1, val.length); //remove prefix
+
+        val = prefix && val.indexOf(prefix) === 0 ? val.substring(prefix.length, val.length) : val; //remove suffix
+
+        var suffixLastIndex = val.lastIndexOf(suffix);
+        val = suffix && suffixLastIndex !== -1 && suffixLastIndex === val.length - suffix.length ? val.substring(0, suffixLastIndex) : val; //add negation sign back
+
+        if (isNegative) val = '-' + val;
+      }
+
+      return val;
+    }
+  }, {
+    key: "removePatternFormatting",
+    value: function removePatternFormatting(val) {
+      var format = this.props.format;
+      var formatArray = format.split('#').filter(function (str) {
+        return str !== '';
+      });
+      var start = 0;
+      var numStr = '';
+
+      for (var i = 0, ln = formatArray.length; i <= ln; i++) {
+        var part = formatArray[i] || ''; //if i is the last fragment take the index of end of the value
+        //For case like +1 (911) 911 91 91 having pattern +1 (###) ### ## ##
+
+        var index = i === ln ? val.length : val.indexOf(part, start);
+        /* in any case if we don't find the pattern part in the value assume the val as numeric string
+        This will be also in case if user has started typing, in any other case it will not be -1
+        unless wrong prop value is provided */
+
+        if (index === -1) {
+          numStr = val;
+          break;
+        } else {
+          numStr += val.substring(start, index);
+          start = index + part.length;
+        }
+      }
+
+      return (numStr.match(/\d/g) || []).join('');
+    }
+  }, {
+    key: "removeFormatting",
+    value: function removeFormatting(val) {
+      var _this$props4 = this.props,
+          format = _this$props4.format,
+          removeFormatting = _this$props4.removeFormatting;
+      if (!val) return val;
+
+      if (!format) {
+        val = this.removePrefixAndSuffix(val);
+        val = this.getFloatString(val);
+      } else if (typeof format === 'string') {
+        val = this.removePatternFormatting(val);
+      } else if (typeof removeFormatting === 'function') {
+        //condition need to be handled if format method is provide,
+        val = removeFormatting(val);
+      } else {
+        val = (val.match(/\d/g) || []).join('');
+      }
+
+      return val;
+    }
+    /** methods to remove formattting end **/
+
+    /*** format specific methods start ***/
+
+    /**
+     * Format when # based string is provided
+     * @param  {string} numStr Numeric String
+     * @return {string}        formatted Value
+     */
+
+  }, {
+    key: "formatWithPattern",
+    value: function formatWithPattern(numStr) {
+      var format = this.props.format;
+      var hashCount = 0;
+      var formattedNumberAry = format.split('');
+
+      for (var i = 0, ln = format.length; i < ln; i++) {
+        if (format[i] === '#') {
+          formattedNumberAry[i] = numStr[hashCount] || this.getMaskAtIndex(hashCount);
+          hashCount += 1;
+        }
+      }
+
+      return formattedNumberAry.join('');
+    }
+    /**
+     * @param  {string} numStr Numeric string/floatString] It always have decimalSeparator as .
+     * @return {string} formatted Value
+     */
+
+  }, {
+    key: "formatAsNumber",
+    value: function formatAsNumber(numStr) {
+      var _this$props5 = this.props,
+          decimalScale = _this$props5.decimalScale,
+          fixedDecimalScale = _this$props5.fixedDecimalScale,
+          prefix = _this$props5.prefix,
+          suffix = _this$props5.suffix,
+          allowNegative = _this$props5.allowNegative,
+          thousandsGroupStyle = _this$props5.thousandsGroupStyle;
+
+      var _this$getSeparators4 = this.getSeparators(),
+          thousandSeparator = _this$getSeparators4.thousandSeparator,
+          decimalSeparator = _this$getSeparators4.decimalSeparator;
+
+      var hasDecimalSeparator = numStr.indexOf('.') !== -1 || decimalScale && fixedDecimalScale;
+
+      var _splitDecimal = splitDecimal(numStr, allowNegative),
+          beforeDecimal = _splitDecimal.beforeDecimal,
+          afterDecimal = _splitDecimal.afterDecimal,
+          addNegation = _splitDecimal.addNegation; // eslint-disable-line prefer-const
+      //apply decimal precision if its defined
+
+
+      if (decimalScale !== undefined) afterDecimal = limitToScale(afterDecimal, decimalScale, fixedDecimalScale);
+
+      if (thousandSeparator) {
+        beforeDecimal = applyThousandSeparator(beforeDecimal, thousandSeparator, thousandsGroupStyle);
+      } //add prefix and suffix
+
+
+      if (prefix) beforeDecimal = prefix + beforeDecimal;
+      if (suffix) afterDecimal = afterDecimal + suffix; //restore negation sign
+
+      if (addNegation) beforeDecimal = '-' + beforeDecimal;
+      numStr = beforeDecimal + (hasDecimalSeparator && decimalSeparator || '') + afterDecimal;
+      return numStr;
+    }
+  }, {
+    key: "formatNumString",
+    value: function formatNumString() {
+      var numStr = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+      var _this$props6 = this.props,
+          format = _this$props6.format,
+          allowEmptyFormatting = _this$props6.allowEmptyFormatting;
+      var formattedValue = numStr;
+
+      if (numStr === '' && !allowEmptyFormatting) {
+        formattedValue = '';
+      } else if (numStr === '-' && !format) {
+        formattedValue = '-';
+      } else if (typeof format === 'string') {
+        formattedValue = this.formatWithPattern(formattedValue);
+      } else if (typeof format === 'function') {
+        formattedValue = format(formattedValue);
+      } else {
+        formattedValue = this.formatAsNumber(formattedValue);
+      }
+
+      return formattedValue;
+    }
+  }, {
+    key: "formatValueProp",
+    value: function formatValueProp(defaultValue) {
+      var _this$props7 = this.props,
+          format = _this$props7.format,
+          decimalScale = _this$props7.decimalScale,
+          fixedDecimalScale = _this$props7.fixedDecimalScale,
+          allowEmptyFormatting = _this$props7.allowEmptyFormatting;
+      var _this$props8 = this.props,
+          _this$props8$value = _this$props8.value,
+          value = _this$props8$value === void 0 ? defaultValue : _this$props8$value,
+          isNumericString = _this$props8.isNumericString;
+      var isNonNumericFalsy = !value && value !== 0;
+
+      if (isNonNumericFalsy && allowEmptyFormatting) {
+        value = '';
+      } // if value is not defined return empty string
+
+
+      if (isNonNumericFalsy && !allowEmptyFormatting) return '';
+
+      if (typeof value === 'number') {
+        value = value.toString();
+        isNumericString = true;
+      } //change infinity value to empty string
+
+
+      if (value === 'Infinity' && isNumericString) {
+        value = '';
+      } //round the number based on decimalScale
+      //format only if non formatted value is provided
+
+
+      if (isNumericString && !format && typeof decimalScale === 'number') {
+        value = roundToPrecision(value, decimalScale, fixedDecimalScale);
+      }
+
+      var formattedValue = isNumericString ? this.formatNumString(value) : this.formatInput(value);
+      return formattedValue;
+    }
+  }, {
+    key: "formatNegation",
+    value: function formatNegation() {
+      var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+      var allowNegative = this.props.allowNegative;
+      var negationRegex = new RegExp('(-)');
+      var doubleNegationRegex = new RegExp('(-)(.)*(-)'); // Check number has '-' value
+
+      var hasNegation = negationRegex.test(value); // Check number has 2 or more '-' values
+
+      var removeNegation = doubleNegationRegex.test(value); //remove negation
+
+      value = value.replace(/-/g, '');
+
+      if (hasNegation && !removeNegation && allowNegative) {
+        value = '-' + value;
+      }
+
+      return value;
+    }
+  }, {
+    key: "formatInput",
+    value: function formatInput() {
+      var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+      var format = this.props.format; //format negation only if we are formatting as number
+
+      if (!format) {
+        value = this.removePrefixAndSuffix(value);
+        value = this.formatNegation(value);
+      } //remove formatting from number
+
+
+      value = this.removeFormatting(value);
+      return this.formatNumString(value);
+    }
+    /*** format specific methods end ***/
+
+  }, {
+    key: "isCharacterAFormat",
+    value: function isCharacterAFormat(caretPos, value) {
+      var _this$props9 = this.props,
+          format = _this$props9.format,
+          prefix = _this$props9.prefix,
+          suffix = _this$props9.suffix,
+          decimalScale = _this$props9.decimalScale,
+          fixedDecimalScale = _this$props9.fixedDecimalScale;
+
+      var _this$getSeparators5 = this.getSeparators(),
+          decimalSeparator = _this$getSeparators5.decimalSeparator; //check within format pattern
+
+
+      if (typeof format === 'string' && format[caretPos] !== '#') return true; //check in number format
+
+      if (!format && (caretPos < prefix.length || caretPos >= value.length - suffix.length || decimalScale && fixedDecimalScale && value[caretPos] === decimalSeparator)) {
+        return true;
+      }
+
+      return false;
+    }
+  }, {
+    key: "checkIfFormatGotDeleted",
+    value: function checkIfFormatGotDeleted(start, end, value) {
+      for (var i = start; i < end; i++) {
+        if (this.isCharacterAFormat(i, value)) return true;
+      }
+
+      return false;
+    }
+    /**
+     * This will check if any formatting got removed by the delete or backspace and reset the value
+     * It will also work as fallback if android chome keyDown handler does not work
+     **/
+
+  }, {
+    key: "correctInputValue",
+    value: function correctInputValue(caretPos, lastValue, value) {
+      var _this$props10 = this.props,
+          format = _this$props10.format,
+          allowNegative = _this$props10.allowNegative,
+          prefix = _this$props10.prefix,
+          suffix = _this$props10.suffix;
+
+      var _this$getSeparators6 = this.getSeparators(),
+          decimalSeparator = _this$getSeparators6.decimalSeparator;
+
+      var lastNumStr = this.state.numAsString || '';
+      var _this$selectionBefore = this.selectionBeforeInput,
+          selectionStart = _this$selectionBefore.selectionStart,
+          selectionEnd = _this$selectionBefore.selectionEnd;
+
+      var _findChangedIndex = findChangedIndex(lastValue, value),
+          start = _findChangedIndex.start,
+          end = _findChangedIndex.end;
+      /** Check if only . is added in the numeric format and replace it with decimal separator */
+
+
+      if (!format && decimalSeparator !== '.' && start === end && value[selectionStart] === '.') {
+        return value.substr(0, selectionStart) + decimalSeparator + value.substr(selectionStart + 1, value.length);
+      }
+      /* don't do anyhting if something got added,
+       or if value is empty string (when whole input is cleared)
+       or whole input is replace with a number
+      */
+
+
+      var leftBound = !!format ? 0 : prefix.length;
+      var rightBound = lastValue.length - (!!format ? 0 : suffix.length);
+
+      if (value.length > lastValue.length || !value.length || start === end || selectionStart === 0 && selectionEnd === lastValue.length || selectionStart === leftBound && selectionEnd === rightBound) {
+        return value;
+      } //if format got deleted reset the value to last value
+
+
+      if (this.checkIfFormatGotDeleted(start, end, lastValue)) {
+        value = lastValue;
+      } //for numbers check if beforeDecimal got deleted and there is nothing after decimal,
+      //clear all numbers in such case while keeping the - sign
+
+
+      if (!format) {
+        var numericString = this.removeFormatting(value);
+
+        var _splitDecimal2 = splitDecimal(numericString, allowNegative),
+            beforeDecimal = _splitDecimal2.beforeDecimal,
+            afterDecimal = _splitDecimal2.afterDecimal,
+            addNegation = _splitDecimal2.addNegation; // eslint-disable-line prefer-const
+        //clear only if something got deleted
+
+
+        var isBeforeDecimalPoint = caretPos < value.indexOf(decimalSeparator) + 1;
+
+        if (numericString.length < lastNumStr.length && isBeforeDecimalPoint && beforeDecimal === '' && !parseFloat(afterDecimal)) {
+          return addNegation ? '-' : '';
+        }
+      }
+
+      return value;
+    }
+    /** Update value and caret position */
+
+  }, {
+    key: "updateValue",
+    value: function updateValue(params) {
+      var _this2 = this;
+
+      var onUpdate = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : noop;
+      var formattedValue = params.formattedValue,
+          input = params.input;
+      var numAsString = params.numAsString,
+          caretPos = params.caretPos;
+      var onValueChange = this.props.onValueChange;
+      var lastValue = this.state.value; //set caret position, and value imperatively when element is provided
+
+      if (input) {
+        //calculate caret position if not defined
+        if (!caretPos) {
+          var inputValue = params.inputValue || input.value;
+          var currentCaretPosition = getCurrentCaretPosition(input); //get the caret position
+
+          caretPos = this.getCaretPosition(inputValue, formattedValue, currentCaretPosition);
+        } //set the value imperatively, this is required for IE fix
+
+
+        input.value = formattedValue; //set caret position
+
+        this.setPatchedCaretPosition(input, caretPos, formattedValue);
+      } //calculate numeric string if not passed
+
+
+      if (numAsString === undefined) {
+        numAsString = this.removeFormatting(formattedValue);
+      } //update state if value is changed
+
+
+      if (formattedValue !== lastValue) {
+        this.setState({
+          value: formattedValue,
+          numAsString: numAsString
+        }, function () {
+          onValueChange(_this2.getValueObject(formattedValue, numAsString));
+          onUpdate();
+        });
+      } else {
+        onUpdate();
+      }
+    }
+  }, {
+    key: "onChange",
+    value: function onChange(e) {
+      e.persist();
+      var el = e.target;
+      var inputValue = el.value;
+      var state = this.state,
+          props = this.props;
+      var isAllowed = props.isAllowed;
+      var lastValue = state.value || '';
+      var currentCaretPosition = getCurrentCaretPosition(el);
+      inputValue = this.correctInputValue(currentCaretPosition, lastValue, inputValue);
+      var formattedValue = this.formatInput(inputValue) || '';
+      var numAsString = this.removeFormatting(formattedValue);
+      var valueObj = this.getValueObject(formattedValue, numAsString);
+
+      if (!isAllowed(valueObj)) {
+        formattedValue = lastValue;
+      }
+
+      this.updateValue({
+        formattedValue: formattedValue,
+        numAsString: numAsString,
+        inputValue: inputValue,
+        input: el
+      }, function () {
+        props.onChange(e);
+      });
+    }
+  }, {
+    key: "onBlur",
+    value: function onBlur(e) {
+      var props = this.props,
+          state = this.state;
+      var format = props.format,
+          onBlur = props.onBlur,
+          allowLeadingZeros = props.allowLeadingZeros;
+      var numAsString = state.numAsString;
+      var lastValue = state.value;
+      this.focusedElm = null;
+
+      if (!format) {
+        if (!allowLeadingZeros) {
+          numAsString = fixLeadingZero(numAsString);
+        }
+
+        var formattedValue = this.formatNumString(numAsString); //change the state
+
+        if (formattedValue !== lastValue) {
+          // the event needs to be persisted because its properties can be accessed in an asynchronous way
+          e.persist();
+          this.updateValue({
+            formattedValue: formattedValue,
+            numAsString: numAsString
+          }, function () {
+            onBlur(e);
+          });
+          return;
+        }
+      }
+
+      onBlur(e);
+    }
+  }, {
+    key: "onKeyDown",
+    value: function onKeyDown(e) {
+      var el = e.target;
+      var key = e.key;
+      var selectionStart = el.selectionStart,
+          selectionEnd = el.selectionEnd,
+          _el$value = el.value,
+          value = _el$value === void 0 ? '' : _el$value;
+      var expectedCaretPosition;
+      var _this$props11 = this.props,
+          decimalScale = _this$props11.decimalScale,
+          fixedDecimalScale = _this$props11.fixedDecimalScale,
+          prefix = _this$props11.prefix,
+          suffix = _this$props11.suffix,
+          format = _this$props11.format,
+          onKeyDown = _this$props11.onKeyDown,
+          onValueChange = _this$props11.onValueChange;
+      var ignoreDecimalSeparator = decimalScale !== undefined && fixedDecimalScale;
+      var numRegex = this.getNumberRegex(false, ignoreDecimalSeparator);
+      var negativeRegex = new RegExp('-');
+      var isPatternFormat = typeof format === 'string';
+      this.selectionBeforeInput = {
+        selectionStart: selectionStart,
+        selectionEnd: selectionEnd //Handle backspace and delete against non numerical/decimal characters or arrow keys
+
+      };
+
+      if (key === 'ArrowLeft' || key === 'Backspace') {
+        expectedCaretPosition = selectionStart - 1;
+      } else if (key === 'ArrowRight') {
+        expectedCaretPosition = selectionStart + 1;
+      } else if (key === 'Delete') {
+        expectedCaretPosition = selectionStart;
+      } //if expectedCaretPosition is not set it means we don't want to Handle keyDown
+      //also if multiple characters are selected don't handle
+
+
+      if (expectedCaretPosition === undefined || selectionStart !== selectionEnd) {
+        onKeyDown(e);
+        return;
+      }
+
+      var newCaretPosition = expectedCaretPosition;
+      var leftBound = isPatternFormat ? format.indexOf('#') : prefix.length;
+      var rightBound = isPatternFormat ? format.lastIndexOf('#') + 1 : value.length - suffix.length;
+
+      if (key === 'ArrowLeft' || key === 'ArrowRight') {
+        var direction = key === 'ArrowLeft' ? 'left' : 'right';
+        newCaretPosition = this.correctCaretPosition(value, expectedCaretPosition, direction);
+      } else if (key === 'Delete' && !numRegex.test(value[expectedCaretPosition]) && !negativeRegex.test(value[expectedCaretPosition])) {
+        while (!numRegex.test(value[newCaretPosition]) && newCaretPosition < rightBound) {
+          newCaretPosition++;
+        }
+      } else if (key === 'Backspace' && !numRegex.test(value[expectedCaretPosition])) {
+        /* NOTE: This is special case when backspace is pressed on a
+        negative value while the cursor position is after prefix. We can't handle it on onChange because
+        we will not have any information of keyPress
+        */
+        if (selectionStart <= leftBound + 1 && value[0] === '-' && typeof format === 'undefined') {
+          var newValue = value.substring(1); //persist event before performing async task
+
+          e.persist();
+          this.updateValue({
+            formattedValue: newValue,
+            caretPos: newCaretPosition,
+            input: el
+          });
+        } else if (!negativeRegex.test(value[expectedCaretPosition])) {
+          while (!numRegex.test(value[newCaretPosition - 1]) && newCaretPosition > leftBound) {
+            newCaretPosition--;
+          }
+
+          newCaretPosition = this.correctCaretPosition(value, newCaretPosition, 'left');
+        }
+      }
+
+      if (newCaretPosition !== expectedCaretPosition || expectedCaretPosition < leftBound || expectedCaretPosition > rightBound) {
+        e.preventDefault();
+        this.setPatchedCaretPosition(el, newCaretPosition, value);
+      }
+      /* NOTE: this is just required for unit test as we need to get the newCaretPosition,
+              Remove this when you find different solution */
+
+
+      if (e.isUnitTestRun) {
+        this.setPatchedCaretPosition(el, newCaretPosition, value);
+      }
+
+      this.props.onKeyDown(e);
+    }
+    /** required to handle the caret position when click anywhere within the input **/
+
+  }, {
+    key: "onMouseUp",
+    value: function onMouseUp(e) {
+      var el = e.target;
+      /**
+       * NOTE: we have to give default value for value as in case when custom input is provided
+       * value can come as undefined when nothing is provided on value prop.
+      */
+
+      var selectionStart = el.selectionStart,
+          selectionEnd = el.selectionEnd,
+          _el$value2 = el.value,
+          value = _el$value2 === void 0 ? '' : _el$value2;
+
+      if (selectionStart === selectionEnd) {
+        var caretPosition = this.correctCaretPosition(value, selectionStart);
+
+        if (caretPosition !== selectionStart) {
+          this.setPatchedCaretPosition(el, caretPosition, value);
+        }
+      }
+
+      this.props.onMouseUp(e);
+    }
+  }, {
+    key: "onFocus",
+    value: function onFocus(e) {
+      var _this3 = this;
+
+      // Workaround Chrome and Safari bug https://bugs.chromium.org/p/chromium/issues/detail?id=779328
+      // (onFocus event target selectionStart is always 0 before setTimeout)
+      e.persist();
+      this.focusedElm = e.target;
+      setTimeout(function () {
+        var el = e.target;
+        var selectionStart = el.selectionStart,
+            selectionEnd = el.selectionEnd,
+            _el$value3 = el.value,
+            value = _el$value3 === void 0 ? '' : _el$value3;
+
+        var caretPosition = _this3.correctCaretPosition(value, selectionStart); //setPatchedCaretPosition only when everything is not selected on focus (while tabbing into the field)
+
+
+        if (caretPosition !== selectionStart && !(selectionStart === 0 && selectionEnd === value.length)) {
+          _this3.setPatchedCaretPosition(el, caretPosition, value);
+        }
+
+        _this3.props.onFocus(e);
+      }, 0);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props12 = this.props,
+          type = _this$props12.type,
+          displayType = _this$props12.displayType,
+          customInput = _this$props12.customInput,
+          renderText = _this$props12.renderText,
+          getInputRef = _this$props12.getInputRef;
+      var value = this.state.value;
+      var otherProps = omit(this.props, propTypes$1);
+
+      var inputProps = _extends({}, otherProps, {
+        type: type,
+        value: value,
+        onChange: this.onChange,
+        onKeyDown: this.onKeyDown,
+        onMouseUp: this.onMouseUp,
+        onFocus: this.onFocus,
+        onBlur: this.onBlur
+      });
+
+      if (displayType === 'text') {
+        return renderText ? renderText(value) || null : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", _extends({}, otherProps, {
+          ref: getInputRef
+        }), value);
+      } else if (customInput) {
+        var CustomInput = customInput;
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CustomInput, _extends({}, inputProps, {
+          ref: getInputRef
+        }));
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({}, inputProps, {
+        ref: getInputRef
+      }));
+    }
+  }]);
+
+  return NumberFormat;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+NumberFormat.propTypes = propTypes$1;
+NumberFormat.defaultProps = defaultProps;
+
+/* harmony default export */ __webpack_exports__["default"] = (NumberFormat);
+
+
+/***/ }),
+
 /***/ "./node_modules/react-redux/es/components/Context.js":
 /*!***********************************************************!*\
   !*** ./node_modules/react-redux/es/components/Context.js ***!
@@ -71323,7 +69236,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_number_format__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-number-format */ "../../../Users/Zheeno/AppData/Roaming/npm/node_modules/react-number-format/dist/react-number-format.es.js");
+/* harmony import */ var react_number_format__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-number-format */ "./node_modules/react-number-format/dist/react-number-format.es.js");
 
 
 
@@ -71714,7 +69627,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _MiscComponents__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../MiscComponents */ "./resources/js/components/MiscComponents.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_number_format__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-number-format */ "../../../Users/Zheeno/AppData/Roaming/npm/node_modules/react-number-format/dist/react-number-format.es.js");
+/* harmony import */ var react_number_format__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-number-format */ "./node_modules/react-number-format/dist/react-number-format.es.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -73251,8 +71164,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\Cecelia\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\Cecelia\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/Cecelia/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/Cecelia/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

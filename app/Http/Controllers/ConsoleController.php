@@ -235,7 +235,7 @@ class ConsoleController extends Controller
             $food->item_image = $item_image;
             $food->description = $item_desc;
             $food->price = floatval($price);
-            $food->tax = floatValue(($tax / 100));
+            $food->tax = $this->floatValue(($tax / 100));
             $food->unit_measure_id = $unit;
             $food->stock_qty = floatval($stock);
             $food->save();
