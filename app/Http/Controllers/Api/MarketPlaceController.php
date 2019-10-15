@@ -357,6 +357,23 @@ class MarketPlaceController extends Controller
         $lga = $request->input('lga');
         $address = $request->input('address');
         $pay_on_delivery = $request->input('pay_on_delivery');
+        $delFee = 0;
+
+        switch ($state) {
+            case '100001':
+                $state = "Lagos Mainland";
+                $delFee = 500;
+                break;
+            
+            case '101001':
+                $state = "Lagos Island";
+                $delFee = 800;
+                break;
+            default:
+                $state = "Not Specified";
+                $delFee = 0;
+                break;
+        }
 
         // get cart items
         $cart_items = Cart::where("token", $token)->orderBy('id', 'DESC')->get();
@@ -382,13 +399,13 @@ class MarketPlaceController extends Controller
                 $order->customer_email = $request->input('customer_email');
                 $order->phone_no = $request->input('phone_no');
                 $order->country = $request->input('country');
-                $order->state = $request->input('state');
+                $order->state = $state;
                 $order->lga = $request->input('lga');
                 $order->address = $request->input('address');
-                $order->shipping_fee = 0;
+                $order->shipping_fee = $delFee;
                 $order->discount = 0;
                 $order->cart_total = $cartData['subTotal'];
-                $order->order_total = $cartData['subTotal'] + 0;
+                $order->order_total = $cartData['subTotal'] + $delFee;
                 if($pay_on_delivery == null){
                     $order->payment_method = "";
                 }else{
@@ -460,62 +477,68 @@ class MarketPlaceController extends Controller
     {
 
         $_data = Rave::verifyTransaction(request()->txref);
-        $data = $_data->data;
-        // dd($data);
-        // Get the transaction from your DB using the transaction reference (txref)
-        $order = Order::where("cart_token", $data->txref)->take(1)->get();
-        if(count($order) == 0){
-            // transaction not found
-            // redirect user to an error page with message "Inavalid transaction"
-            return redirect("/me/orders/")->with("alert_failure", "We are deeply sorry, but the order you are trying to 
-            make payment for could not be found on our database.\nThank you for choosing Cecelia.");
-        }else{
-            $order = Order::find($order[0]->id);
-            // Check if you have previously given value for the transaction. If you have, redirect to your successpage else, continue
-            if($order->payment_status == 1){
-                // redirect user to successful page
-                return redirect("/me/orders/".$order->id)->with("alert_success", "Your order has been received and your payment was processed successfully.\n
-                We will get in touch with you shortly to confirm your order.\nThank you for choosing Cecelia.");
+        // if transaction was cancelled, $_data will be null
+        if($_data != null){
+            $data = $_data->data;
+            // dd($data);
+            // Get the transaction from your DB using the transaction reference (txref)
+            $order = Order::where("cart_token", $data->txref)->take(1)->get();
+            if(count($order) == 0){
+                // transaction not found
+                // redirect user to an error page with message "Inavalid transaction"
+                return redirect("/me/orders/")->with("alert_failure", "We are deeply sorry, but the order you are trying to 
+                make payment for could not be found on our database.\nThank you for choosing Cecelia.");
             }else{
-                // Comfirm that the transaction is successful
-                if($data->status == "successful"){
-                    // Confirm that the chargecode is 00 or 0
-                    if($data->chargecode == "00" || $data->chargecode == "0"){
-                        // Confirm that the currency on your db transaction is equal to the returned currency
-                        if($data->currency == "NGN"){
-                            // Confirm that the db transaction amount is equal to the returned amount
-                            if($data->amount >= $order->order_total){
-                                // Update the db transaction record (including parameters that didn't exist before the transaction is completed. for audit purpose)
-                                // Give value for the transaction
-                                // Update the transaction to note that you have given value for the transaction
-                                // You can also redirect to your success page from here
-                                $_order = Order::find($order->id);
-                                $_order->payment_method = $data->paymenttype;
-                                $_order->payment_status = true;
-                                $_order->save();
-                                // loop through all items on the cart and decrement the stock quantity
-                                foreach ($order->cartItems as $key => $item) {
-                                    // find food item
-                                    $food = FoodItem::find($item->item_id);
-                                    $food->stock_qty = (int)$food->stock_qty - (int)$item->qty;
-                                    $food->save();
-                                }
+                $order = Order::find($order[0]->id);
+                // Check if you have previously given value for the transaction. If you have, redirect to your successpage else, continue
+                if($order->payment_status == 1){
+                    // redirect user to successful page
+                    return redirect("/me/orders/".$order->id)->with("alert_success", "Your order has been received and your payment was processed successfully.\n
+                    We will get in touch with you shortly to confirm your order.\nThank you for choosing Cecelia.");
+                }else{
+                    // Comfirm that the transaction is successful
+                    if($data->status == "successful"){
+                        // Confirm that the chargecode is 00 or 0
+                        if($data->chargecode == "00" || $data->chargecode == "0"){
+                            // Confirm that the currency on your db transaction is equal to the returned currency
+                            if($data->currency == "NGN"){
+                                // Confirm that the db transaction amount is equal to the returned amount
+                                if($data->amount >= $order->order_total){
+                                    // Update the db transaction record (including parameters that didn't exist before the transaction is completed. for audit purpose)
+                                    // Give value for the transaction
+                                    // Update the transaction to note that you have given value for the transaction
+                                    // You can also redirect to your success page from here
+                                    $_order = Order::find($order->id);
+                                    $_order->payment_method = $data->paymenttype;
+                                    $_order->payment_status = true;
+                                    $_order->save();
+                                    // loop through all items on the cart and decrement the stock quantity
+                                    foreach ($order->cartItems as $key => $item) {
+                                        // find food item
+                                        $food = FoodItem::find($item->item_id);
+                                        $food->stock_qty = (int)$food->stock_qty - (int)$item->qty;
+                                        $food->save();
+                                    }
 
-                                return redirect("/me/orders/".$order->id)->with("alert_success", "Your order has been received and your payment was processed successfully.\n
-                                We will get in touch with you shortly to confirm your order.\nThank you for choosing Cecelia.");
+                                    return redirect("/me/orders/".$order->id)->with("alert_success", "Your order has been received and your payment was processed successfully.\n
+                                    We will get in touch with you shortly to confirm your order.\nThank you for choosing Cecelia.");
+                                }
                             }
+                        }else{
+                            // redirect to error page
+                            return redirect("/me/orders/".$order->id)->with("alert_failure", "This is quite unfortunate, but we experienced and error while processing your payment.
+                            \nKindly bear with us and give it another trial.\nThank you for choosing Cecelia.");
                         }
                     }else{
-                        // redirect to error page
+                        // redirect user to error
                         return redirect("/me/orders/".$order->id)->with("alert_failure", "This is quite unfortunate, but we experienced and error while processing your payment.
                         \nKindly bear with us and give it another trial.\nThank you for choosing Cecelia.");
                     }
-                }else{
-                    // redirect user to error
-                    return redirect("/me/orders/".$order->id)->with("alert_failure", "This is quite unfortunate, but we experienced and error while processing your payment.
-                    \nKindly bear with us and give it another trial.\nThank you for choosing Cecelia.");
                 }
             }
+        }else{
+            // redirect user to an error page with message "Transaction Cancelled"
+            return redirect("/me/orders/")->with("alert_failure", "The transaction was cancelled.\nThank you for choosing Cecelia.");
         }
     }
     

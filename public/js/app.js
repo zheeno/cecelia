@@ -69391,14 +69391,15 @@ var CartSlip = function CartSlip(props) {
     name: "q",
     value: props.cartData != null ? props.cartData.token : "",
     required: true
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }), props.cartData != null ? Number(props.cartData.subTotal) >= 2000 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "btn m-3 bg-red-orange white-text capitalize",
     disabled: props.isAdding || props.cartItems.length == 0 ? true : false
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Checkout"), "\xA0", props.isAdding ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "fa fa-spinner fa-spin white-text"
   }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "fa fa-check-circle"
-  }))))));
+  })) : null // <span>Your order has to be over &#8358;2,000</span>
+  : null))));
 };
 
 /***/ }),

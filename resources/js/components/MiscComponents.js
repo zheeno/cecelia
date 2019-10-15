@@ -125,14 +125,21 @@ export const CartSlip = props => {
                     }
                     <form method="GET" action="/market/checkout" style={{ alignItems: "center", textAlign: "center" }}>
                         <input type="hidden" name="q" value={props.cartData != null ? props.cartData.token : ""} required />
-                        <button className="btn m-3 bg-red-orange white-text capitalize" disabled={props.isAdding || props.cartItems.length == 0 ? true : false}>
-                            <span>Checkout</span>&nbsp;
-                        {props.isAdding ?
-                                <span className="fa fa-spinner fa-spin white-text"></span>
-                                :
-                                <span className="fa fa-check-circle"></span>
-                            }
-                        </button>
+                        {props.cartData != null ?
+                            Number(props.cartData.subTotal) >= 2000 ?
+                                <button className="btn m-3 bg-red-orange white-text capitalize" disabled={props.isAdding || props.cartItems.length == 0 ? true : false}>
+                                    <span>Checkout</span>&nbsp;
+                                    {props.isAdding ?
+                                        <span className="fa fa-spinner fa-spin white-text"></span>
+                                        :
+                                        <span className="fa fa-check-circle"></span>
+                                    }
+                                </button>
+                            :
+                            null
+                            // <span>Your order has to be over &#8358;2,000</span>
+                            : null
+                        }
                     </form>
                 </div>
             </div>

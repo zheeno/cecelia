@@ -4,15 +4,18 @@
 
 @section('content')
 
-    @if($params['cartContent']['is_on_order_list'] == true)
+    @if($params['cartContent']['is_on_order_list'] == true || $params['cartToken'] == "null")
     <div class="container-fluid">
         <div class="row" style="padding-top:100px; padding-bottom:100px">
             <div class="col-md-8 mx-auto align-center p-3">
                 <span class="fa fa-exclamation-triangle fa-4x warning-ic"></span>
                 <br /><br />
                 <p class="lead dark-grey-text">Sorry we were unable to find the items which you added to cart.<br />
-                They may have been moved to your order list, kindly click the button below.<br />
+                They may have been moved to your order list.
+                @if($params['cartToken'] !== "null")
+                kindly click the button below.<br />
                 <a class="btn btn-danger bg-red-orange capitalize white-text" href="/me/orders/{{ $params['cartContent']['order_id'] }}">View orders</a> 
+                @endif
             </div>
         </div>
     </div>
@@ -52,8 +55,9 @@
                 <div class="row p-3">
                     <div class="md-form col-md-5 mx-auto">
                         <label class="active">*State</label>
-                        <select name="state" class="form-control border-0" required>
-                            <option value="Lagos">Lagos</a>
+                        <select id="state" name="state" class="form-control border-0" required>
+                            <option value="100001">Lagos Mainland</option>
+                            <option value="101001">Lagos Island</option>
                         </select>
                     </div>
                     <div class="md-form col-md-5 mx-auto">
@@ -108,10 +112,13 @@
                                 <h3 class="h3-responsive m-0">&#8358;{{ number_format($params['cartContent']['cartData']['tax'], 2) }}</h3>
                                 <small>Tax</small>
                             @endif
-                            <h2 class="h2-responsive m-0">&#8358;{{ number_format($params['cartContent']['cartData']['subTotal'], 2) }}</h2>
+                            <h4 class="h4-responsive m-0">&#8358;<span id="delFee">{{ number_format(500, 2) }}</span></h4>
+                            <small>Shipping Fee</small>
+                            <h2 class="h2-responsive m-0">&#8358;<span id="subTotal" data-total="{{ $params['cartContent']['cartData']['subTotal'] }}">{{ number_format($params['cartContent']['cartData']['subTotal'] + 500, 2) }}</span></h2>
                             <small>Sub total</small>
                         </div>
                     </div>
+                    @if($params['cartContent']['cartData']['subTotal'] >= 2000)
                     <div class="row">
                         <div class="col-12">
                             <input id="checkBox" type="checkbox" name="pay_on_delivery" style="font-size:20px; background-color:#FFF" />
@@ -124,6 +131,7 @@
                             <button type="button" class="pull-right btn btn-md capitalize grey lighten-2" style="color: #333 !important" data-toggle="modal" data-target="#cancelModal" >Cancel&nbsp;&nbsp;<span class="fa fa-times black-ic"></span></button>
                         </div>
                     </div>
+                    @endif
                 @endif
             </div>
         </form>
@@ -156,4 +164,29 @@
         </div>
     </div>
     @endif
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script>
+        $('select').on('change', function() {
+            let val = $(this).val();
+            let total = $("#subTotal").attr("data-total");
+            let fee = 0;
+            switch (val) {
+                case '100001': //lagos Mainland
+                    fee = 500
+                    break;
+            case '101001': //lagos Islan
+                    fee = 800;
+                break;
+                default:
+                    break;
+            }
+            total = parseFloat(total)+fee;
+            total = parseFloat(total).toFixed(2);
+            fee = parseFloat(fee).toFixed(2);
+            const totalFormat = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            const delFeeFormat = fee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            $("#delFee").text(delFeeFormat)
+            $("#subTotal").text(totalFormat);
+        });
+    </script>
 @endSection

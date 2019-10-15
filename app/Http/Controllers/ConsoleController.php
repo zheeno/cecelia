@@ -375,6 +375,7 @@ class ConsoleController extends Controller
             $order->delivery_status_desc = $del_status_desc;
         }else{
             $order->delivery_status_desc = "Order has been fulfiled";
+            $order->payment_status = true;
         }
         $order->save();
 
